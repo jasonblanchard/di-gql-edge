@@ -1,3 +1,5 @@
+.PHONY: build tag push
+
 IMAGE_NAME=entry-gql-edge
 GIT_SHA = $(shell git rev-parse HEAD)
 IMAGE_REPO=jasonblanchard/${IMAGE_NAME}

@@ -1,4 +1,4 @@
-FROM 12.14.0-alpine3.11 AS base
+FROM node:12.14.0-buster AS base
 
 ENV APP_HOME /usr/src/app/
 ENV PROD_DEPS /usr/src/deps/prod/
@@ -29,5 +29,7 @@ WORKDIR $APP_HOME
 COPY --from=build --chown=docker:docker $PROD_DEPS/node_modules $APP_HOME/node_modules/
 COPY --from=build --chown=docker:docker $APP_HOME/build $APP_HOME/build
 COPY --from=build --chown=docker:docker $APP_HOME/package.json $APP_HOME/package.json
+
+EXPOSE 4000
 
 CMD ["npm", "start", "--production"]
