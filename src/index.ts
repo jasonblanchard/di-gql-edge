@@ -12,25 +12,25 @@ const PORT = process.env.PORT;
 const natsHosts = [<string>process.env.NATS_HOST];
 
 async function bootstrap() {
-  try {
-    const { typeDefs, resolvers } = await bootstrapGraph({ natsHosts });
+  const app = express();
+  app.get('/health', (request, response) => {
+    // TODO: Make sure we're still connected to NATS
+    response.json({ status: 'ok' });
+  });
+  app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
 
-    const server = new ApolloServer({ typeDefs, resolvers });
-    const app = express();
-    app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
+  // try {
+  //   const { typeDefs, resolvers } = await bootstrapGraph({ natsHosts });
+  //   const server = new ApolloServer({ typeDefs, resolvers });
+  //   server.applyMiddleware({ app, path: '/' });
+  // } catch (error) {
+  //   console.log(error);
+  //   process.exit(1);
+  // }
 
-    app.get('/health', (request, response) => {
-      response.json({ status: 'ok' });
-    });
-
-    server.applyMiddleware({ app, path: '/' });
-
-    app.listen({ port: PORT }, () => {
-      console.log(`🚀 entry-gql-edge ready`);
-    });
-  } catch (error) {
-    console.log(error);
-  }
+  app.listen({ port: PORT }, () => {
+    console.log(`🚀 entry-gql-edge ready`);
+  });
 }
 
 bootstrap();
