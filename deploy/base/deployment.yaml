@@ -17,7 +17,7 @@ spec:
     spec:
       serviceAccountName: entry-gql-edge
       containers:
-      - image: jasonblanchard/entry-gql-edge
+      - image: jasonblanchard/di-entry-gql-edge
         name: entry-gql-edge
         envFrom:
           - configMapRef:

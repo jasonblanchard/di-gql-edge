@@ -1,6 +1,6 @@
 .PHONY: build tag push deploy
 
-IMAGE_NAME=entry-gql-edge
+IMAGE_NAME=di-entry-gql-edge
 GIT_SHA = $(shell git rev-parse HEAD)
 IMAGE_REPO=jasonblanchard/${IMAGE_NAME}
 LOCAL_TAG = ${IMAGE_REPO}
