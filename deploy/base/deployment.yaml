@@ -19,9 +19,9 @@ spec:
       containers:
       - image: jasonblanchard/entry-gql-edge
         name: entry-gql-edge
-        env:
-          - name: PORT
-            value: "4000"
+        envFrom:
+          - configMapRef:
+              name: entry-gql-edge-config
         livenessProbe:
           httpGet:
             path: /health
