@@ -1,4 +1,4 @@
-.PHONY: build tag push
+.PHONY: build tag push deploy
 
 IMAGE_NAME=entry-gql-edge
 GIT_SHA = $(shell git rev-parse HEAD)
@@ -17,3 +17,10 @@ tag: build
 push: tag
 	docker push ${LATEST_TAG}
 	docker push ${SHA_TAG}
+
+deploy:
+	cd ./deploy/base; kustomize edit set image jasonblanchard/entry-gql-edge=jasonblanchard/entry-gql-edge:${GIT_SHA}; \
+	cd ..; \
+	kubectl apply -k ./overlays/development; \
+	cd base; \
+	kustomize edit set image jasonblanchard/entry-gql-edge=jasonblanchard/entry-gql-edge:latest
