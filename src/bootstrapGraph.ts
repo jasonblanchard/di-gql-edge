@@ -1,6 +1,6 @@
 import { gql } from 'apollo-server';
 import { messages } from './messages';
-import { connect, Payload } from 'ts-nats';
+import { Client } from 'ts-nats';
 
 const TIMEOUT = 3000;
 
@@ -14,15 +14,10 @@ function mapError(code: number | null | undefined) {
 }
 
 interface BootstrapGraph {
-  natsHosts: string[];
+  nc: Client;
 }
 
-export default async function bootstrapGraph({ natsHosts }: BootstrapGraph) {
-  let nc = await connect({
-    servers: natsHosts,
-    payload: Payload.BINARY
-  });
-
+export default async function bootstrapGraph({ nc }: BootstrapGraph) {
   const typeDefs = gql`
     type Entry {
       id: String
