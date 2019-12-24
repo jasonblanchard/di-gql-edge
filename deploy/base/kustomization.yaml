@@ -5,6 +5,7 @@ resources:
 - sa.yaml
 - deployment.yaml
 - service.yaml
+- mapping.yaml
 images:
 - name: jasonblanchard/entry-gql-edge
   newName: jasonblanchard/entry-gql-edge
