@@ -12,4 +12,5 @@ images:
 configMapGenerator:
 - literals:
   - PORT=4000
+  - NATS_HOST=nats://nats:4222
   name: entry-gql-edge-config

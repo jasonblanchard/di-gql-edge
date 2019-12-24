@@ -19,14 +19,14 @@ async function bootstrap() {
   });
   app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
 
-  // try {
-  //   const { typeDefs, resolvers } = await bootstrapGraph({ natsHosts });
-  //   const server = new ApolloServer({ typeDefs, resolvers });
-  //   server.applyMiddleware({ app, path: '/' });
-  // } catch (error) {
-  //   console.log(error);
-  //   process.exit(1);
-  // }
+  try {
+    const { typeDefs, resolvers } = await bootstrapGraph({ natsHosts });
+    const server = new ApolloServer({ typeDefs, resolvers });
+    server.applyMiddleware({ app, path: '/' });
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
 
   app.listen({ port: PORT }, () => {
     console.log(`🚀 entry-gql-edge ready`);
