@@ -8,7 +8,6 @@ resources:
 - mapping.yaml
 images:
 - name: jasonblanchard/entry-gql-edge
-  newName: jasonblanchard/entry-gql-edge
   newTag: latest
 configMapGenerator:
 - literals:

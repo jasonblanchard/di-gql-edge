@@ -6,7 +6,6 @@ IMAGE_REPO=jasonblanchard/${IMAGE_NAME}
 LOCAL_TAG = ${IMAGE_REPO}
 LATEST_TAG= ${IMAGE_REPO}:latest
 SHA_TAG = ${IMAGE_REPO}:${GIT_SHA}
-TAG=node-hello
 
 build:
 	docker build -t ${LOCAL_TAG} .
@@ -19,8 +18,11 @@ push: tag
 	docker push ${SHA_TAG}
 
 deploy:
-	cd ./deploy/base; kustomize edit set image jasonblanchard/entry-gql-edge=jasonblanchard/entry-gql-edge:${GIT_SHA}; \
+	cd ./deploy/base; kustomize edit set image ${SHA_TAG}; \
 	cd ..; \
 	kubectl apply -k ./overlays/development; \
 	cd base; \
-	kustomize edit set image jasonblanchard/entry-gql-edge=jasonblanchard/entry-gql-edge:latest
+	kustomize edit set image ${LATEST_TAG}
+
+clean_k8s:
+	kustomize delete -k ./overlays/development

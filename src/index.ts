@@ -6,7 +6,7 @@ import { connect, Payload } from 'ts-nats';
 import bootstrapGraph from './bootstrapGraph';
 import checkStatus from './ops/checkStatus';
 
-require('dotenv').config()
+require('dotenv').config();
 
 
 const PORT = process.env.PORT;
