@@ -15,6 +15,7 @@ const natsHosts = [<string>process.env.NATS_HOST];
 
 async function bootstrap() {
   const app = express();
+  app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
 
   let nc = await connect({
     servers: natsHosts,
@@ -25,7 +26,6 @@ async function bootstrap() {
     const { services, httpCode } = checkStatus({ nc });
     response.status(httpCode).json(services);
   });
-  app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
 
   const { typeDefs, resolvers } = await bootstrapGraph({ nc });
   const server = new ApolloServer({ typeDefs, resolvers });
