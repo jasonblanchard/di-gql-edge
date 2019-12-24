@@ -26,6 +26,10 @@ spec:
           httpGet:
             path: /health
             port: 4000
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 4000
         ports:
           - containerPort: 4000
 
