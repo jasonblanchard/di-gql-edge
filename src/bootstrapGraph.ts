@@ -6,8 +6,12 @@ const TIMEOUT = 3000;
 
 function mapError(code: number | null | undefined) {
   switch (code) {
-    case (1):
+    case (messages.entry.Error.Code.UNKNOWN):
       return new Error('UNEXPECTED');
+    case (messages.entry.Error.Code.NOT_FOUND):
+      return new Error('NOT_FOUND');
+    case (messages.entry.Error.Code.VALIDATION_FAILED):
+      return new Error('VALIDATION_FAILED');
     default:
       return new Error('UNEXPECTED');
   }
@@ -46,7 +50,8 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
       entry: async (_obj: any, args: EntryQueryArgs) => {
         const request = messages.entry.GetEntryRequest.encode({
           payload: {
-            id: args.id,
+            // id: args.id,
+            id: 'dsasdfasdf'
           },
           context: {
             userId: '123',
