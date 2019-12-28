@@ -45,9 +45,13 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
     Query: {
       entry: async (_obj: any, args: EntryQueryArgs) => {
         const request = messages.entry.GetEntryRequest.encode({
-          id: '123',
-          creatorId: '123',
-          traceId: 'abc123'
+          payload: {
+            id: '123',
+          },
+          context: {
+            userId: '123',
+            traceId: 'abc123'
+          },
         }).finish();
         const message = await nc.request('get.entry', TIMEOUT, request);
         const response = message.data;
@@ -64,9 +68,13 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
     Mutation: {
       createEntry: async () => {
         const request = messages.entry.CreateEntryRequest.encode({
-          text: 'asdf asdf asdf',
-          creatorId: '123',
-          traceId: 'abc123'
+          payload: {
+            text: 'asdf asdf asdf',
+          },
+          context: {
+            userId: '123',
+            traceId: 'abc123'
+          },
         }).finish();
         const message = await nc.request('create.entry', TIMEOUT, request);
         const response = message.data;
