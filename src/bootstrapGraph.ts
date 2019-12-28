@@ -93,11 +93,13 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
         }).finish();
         const message = await nc.request('list.entry', TIMEOUT, request);
         const response = message.data;
-        const { error, payload: entries } = messages.entry.GetEntryResponse.decode(response);
+        const { error, payload: entries } = messages.entry.GetEntriesResponse.decode(response);
         if (error) throw mapError(error.code);
+        console.log(entries);
         if (entries) {
           return {
             edges: entries
+            // TODO: pageInfo
           }
         }
         throw new Error('not found');
