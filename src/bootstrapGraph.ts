@@ -23,13 +23,13 @@ interface BootstrapGraph {
 
 export default async function bootstrapGraph({ nc }: BootstrapGraph) {
   const typeDefs = gql`
-    type Entry {
+    type GetEntryResponse {
       id: String
       text: String
     }
 
     type Query {
-      entry(id: String): Entry
+      entry(id: String!): GetEntryResponse
     }
 
     type CreateEntryResponse {
@@ -37,7 +37,7 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
     }
 
     type Mutation {
-      createEntry(text: String): CreateEntryResponse
+      createEntry(text: String!): CreateEntryResponse
     }
 `;
 
