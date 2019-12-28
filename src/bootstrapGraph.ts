@@ -45,9 +45,13 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
     id: string;
   }
 
+  interface CreateEntryArgs {
+    text: string;
+  }
+
   const resolvers = {
     Query: {
-      entry: async (_obj: any, args: EntryQueryArgs) => {
+      entry: async (_context: any, args: EntryQueryArgs) => {
         const request = messages.entry.GetEntryRequest.encode({
           payload: {
             id: args.id,
@@ -70,10 +74,10 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
     },
 
     Mutation: {
-      createEntry: async () => {
+      createEntry: async (_context:any, args: CreateEntryArgs) => {
         const request = messages.entry.CreateEntryRequest.encode({
           payload: {
-            text: 'asdf asdf asdf',
+            text: args.text,
           },
           context: {
             userId: '123',
