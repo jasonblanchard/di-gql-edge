@@ -23,13 +23,26 @@ interface BootstrapGraph {
 
 export default async function bootstrapGraph({ nc }: BootstrapGraph) {
   const typeDefs = gql`
-    type GetEntryResponse {
+    type Entry {
       id: String
       text: String
     }
 
+    type PageInfo {
+      totalCount: Int
+      hasNextPage: Boolean
+      startCursor: String
+      endCurosor: String
+    }
+
+    type GetEntriesResponse {
+      edges: [Entry]
+      pageInfo: PageInfo
+    }
+
     type Query {
-      entry(id: String!): GetEntryResponse
+      entry(id: String!): Entry
+      entries: GetEntriesResponse
     }
 
     type CreateEntryResponse {
@@ -68,6 +81,22 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
         if (entry) {
           const { id, text } = entry;
           return { id, text };
+        }
+        throw new Error('not found');
+      },
+      entries: async (_context: any, _args: any) => {
+        const request = messages.entry.GetEntriesRequest.encode({
+          context: {
+            userId: '123',
+            traceId: 'abc123'
+          },
+        }).finish();
+        const message = await nc.request('list.entry', TIMEOUT, request);
+        const response = message.data;
+        const { error, payload: entries } = messages.entry.GetEntryResponse.decode(response);
+        if (error) throw mapError(error.code);
+        if (entries) {
+          return entries;
         }
         throw new Error('not found');
       }
