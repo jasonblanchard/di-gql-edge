@@ -37,7 +37,7 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
     }
 
     type Mutation {
-      createEntry(text: String!): CreateEntryResponse
+      createEntry(text: String): CreateEntryResponse
     }
 `;
 
