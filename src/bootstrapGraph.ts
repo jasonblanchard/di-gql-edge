@@ -96,7 +96,9 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
         const { error, payload: entries } = messages.entry.GetEntryResponse.decode(response);
         if (error) throw mapError(error.code);
         if (entries) {
-          return entries;
+          return {
+            edges: entries
+          }
         }
         throw new Error('not found');
       }
