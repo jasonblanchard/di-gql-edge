@@ -46,7 +46,7 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
       entry: async (_obj: any, args: EntryQueryArgs) => {
         const request = messages.entry.GetEntryRequest.encode({
           payload: {
-            id: '123',
+            id: args.id,
           },
           context: {
             userId: '123',
