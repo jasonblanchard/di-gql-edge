@@ -56,7 +56,7 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
     type Mutation {
       createEntry(text: String!): CreateEntryResponse
       updateEntry(id: String!, text: String!): Entry
-      deleteEntry: DeleteEntryResponse
+      deleteEntry(id: String!): DeleteEntryResponse
     }
 `;
 
@@ -71,6 +71,10 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
   interface UpdateEntryArgs {
     id: string;
     text: string;
+  }
+
+  interface DeleteEntryArgs {
+    id: string;
   }
 
   const resolvers = {
@@ -141,7 +145,6 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
             id
           };
         }
-        throw new Error('Unexpected');
       },
       updateEntry: async (_context: any, args: UpdateEntryArgs) => {
         const request = messages.entry.UpdateEntryRequest.encode({
@@ -157,7 +160,6 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
         const message = await nc.request('update.entry', TIMEOUT, request);
         const response = message.data;
         const { error, payload: entry } = messages.entry.UpdateEntryResponse.decode(response);
-        console.log(entry);
         if (error) throw mapError(error.code);
         if (entry) {
           const { id, text } = entry;
@@ -166,7 +168,24 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
             text
           };
         }
-        throw new Error('Unexpected');
+      },
+      deleteEntry: async (_context: any, args: DeleteEntryArgs) => {
+        const request = messages.entry.DeleteEntryRequest.encode({
+          payload: {
+            id: args.id
+          },
+          context: {
+            userId: '123',
+            traceId: 'abc123'
+          }
+        }).finish();
+        const message = await nc.request('delete.entry', TIMEOUT, request);
+        const response = message.data;
+        const { error } = messages.entry.DeleteEntryResponse.decode(response);
+        if (error) throw mapError(error.code);
+        return {
+          result: true,
+        }
       }
     }
   }
