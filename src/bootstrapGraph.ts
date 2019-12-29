@@ -49,8 +49,14 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
       id: String
     }
 
+    type DeleteEntryResponse {
+      result: Boolean
+    }
+
     type Mutation {
       createEntry(text: String!): CreateEntryResponse
+      updateEntry(id: String!, text: String!): Entry
+      deleteEntry: DeleteEntryResponse
     }
 `;
 
@@ -59,6 +65,11 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
   }
 
   interface CreateEntryArgs {
+    text: string;
+  }
+
+  interface UpdateEntryArgs {
+    id: string;
     text: string;
   }
 
@@ -128,6 +139,31 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
           const { id } = entry;
           return {
             id
+          };
+        }
+        throw new Error('Unexpected');
+      },
+      updateEntry: async (_context: any, args: UpdateEntryArgs) => {
+        const request = messages.entry.UpdateEntryRequest.encode({
+          payload: {
+            id: args.id,
+            text: args.text,
+          },
+          context: {
+            userId: '123',
+            traceId: 'abc123'
+          },
+        }).finish();
+        const message = await nc.request('update.entry', TIMEOUT, request);
+        const response = message.data;
+        const { error, payload: entry } = messages.entry.UpdateEntryResponse.decode(response);
+        console.log(entry);
+        if (error) throw mapError(error.code);
+        if (entry) {
+          const { id, text } = entry;
+          return {
+            id,
+            text
           };
         }
         throw new Error('Unexpected');
