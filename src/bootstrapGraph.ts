@@ -35,14 +35,14 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
       endCursor: String
     }
 
-    type GetEntriesResponse {
+    type ListEntriesResponse {
       edges: [Entry]
       pageInfo: PageInfo
     }
 
     type Query {
       entry(id: String!): Entry
-      entries(first: Int, after: String): GetEntriesResponse
+      entries(first: Int, after: String): ListEntriesResponse
     }
 
     type CreateEntryResponse {
@@ -85,7 +85,7 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
         throw new Error('not found');
       },
       entries: async (_context: any, args: any) => {
-        const request = messages.entry.GetEntriesRequest.encode({
+        const request = messages.entry.ListEntriesRequest.encode({
           payload: {
             first: args.first || 50,
             after: args.after
@@ -97,7 +97,7 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
         }).finish();
         const message = await nc.request('list.entry', TIMEOUT, request);
         const response = message.data;
-        const { error, payload: entries, pageInfo } = messages.entry.GetEntriesResponse.decode(response);
+        const { error, payload: entries, pageInfo } = messages.entry.ListEntriesResponse.decode(response);
         if (error) throw mapError(error.code);
         if (entries) {
           return {
