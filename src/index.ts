@@ -22,7 +22,7 @@ function getAuthorizationToken(authorizationHeader: string | undefined) {
 }
 
 interface DecodedAuthorizationPayload {
-  userId: string;
+  uesrUuid: string;
 }
 
 async function bootstrap() {
@@ -46,7 +46,7 @@ async function bootstrap() {
     context: (integrationContext) => {
       const token = getAuthorizationToken(integrationContext.req.headers.authorization);
       const decodedToken = jwt.decode(token);
-      const userId = decodedToken ? (decodedToken as DecodedAuthorizationPayload).userId : '';
+      const userId = decodedToken ? (decodedToken as DecodedAuthorizationPayload).uesrUuid : '';
 
       console.log({ token, decodedToken, userId });
 
