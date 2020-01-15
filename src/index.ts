@@ -48,6 +48,8 @@ async function bootstrap() {
       const decodedToken = jwt.decode(token);
       const userId = decodedToken ? (decodedToken as DecodedAuthorizationPayload).userId : '';
 
+      console.log({ token, decodedToken, userId });
+
       return {
         userId,
       }
