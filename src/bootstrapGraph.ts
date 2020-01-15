@@ -77,15 +77,19 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
     id: string;
   }
 
+  interface Context {
+    userId: string;
+  }
+
   const resolvers = {
     Query: {
-      entry: async (_context: any, args: EntryQueryArgs) => {
+      entry: async ({ userId }: Context, args: EntryQueryArgs) => {
         const request = messages.entry.GetEntryRequest.encode({
           payload: {
             id: args.id,
           },
           context: {
-            userId: '123',
+            userId,
             traceId: 'abc123'
           },
         }).finish();
@@ -99,14 +103,14 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
         }
         throw new Error('not found');
       },
-      entries: async (_context: any, args: any) => {
+      entries: async ({ userId }: Context, args: any) => {
         const request = messages.entry.ListEntriesRequest.encode({
           payload: {
             first: args.first || 50,
             after: args.after
           },
           context: {
-            userId: '123',
+            userId,
             traceId: 'abc123'
           },
         }).finish();
@@ -125,13 +129,13 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
     },
 
     Mutation: {
-      createEntry: async (_context:any, args: CreateEntryArgs) => {
+      createEntry: async ({ userId }: Context, args: CreateEntryArgs) => {
         const request = messages.entry.CreateEntryRequest.encode({
           payload: {
             text: args.text,
           },
           context: {
-            userId: '123',
+            userId,
             traceId: 'abc123'
           },
         }).finish();
@@ -146,14 +150,14 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
           };
         }
       },
-      updateEntry: async (_context: any, args: UpdateEntryArgs) => {
+      updateEntry: async ({ userId }: Context, args: UpdateEntryArgs) => {
         const request = messages.entry.UpdateEntryRequest.encode({
           payload: {
             id: args.id,
             text: args.text,
           },
           context: {
-            userId: '123',
+            userId,
             traceId: 'abc123'
           },
         }).finish();
@@ -169,13 +173,13 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
           };
         }
       },
-      deleteEntry: async (_context: any, args: DeleteEntryArgs) => {
+      deleteEntry: async ({ userId }: Context, args: DeleteEntryArgs) => {
         const request = messages.entry.DeleteEntryRequest.encode({
           payload: {
             id: args.id
           },
           context: {
-            userId: '123',
+            userId,
             traceId: 'abc123'
           }
         }).finish();

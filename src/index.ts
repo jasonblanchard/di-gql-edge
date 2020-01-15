@@ -2,6 +2,7 @@ import { ApolloServer, gql } from 'apollo-server-express';
 import express from 'express';
 import morgan from 'morgan';
 import { connect, Payload } from 'ts-nats';
+import jwt from 'jsonwebtoken';
 
 import bootstrapGraph from './bootstrapGraph';
 import checkStatus from './ops/checkStatus';
@@ -12,6 +13,17 @@ require('dotenv').config();
 const PORT = process.env.PORT;
 
 const natsHosts = [<string>process.env.NATS_HOST];
+
+function getAuthorizationToken(authorizationHeader: string | undefined) {
+  if (!authorizationHeader) return '';
+  const match = authorizationHeader.match(/^Bearer (.+)$/);
+  if (!match) return '';
+  return match[1];
+}
+
+interface DecodedAuthorizationPayload {
+  userId: string;
+}
 
 async function bootstrap() {
   const app = express();
@@ -28,11 +40,23 @@ async function bootstrap() {
   });
 
   const { typeDefs, resolvers } = await bootstrapGraph({ nc });
-  const server = new ApolloServer({ typeDefs, resolvers });
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    context: (integrationContext) => {
+      const token = getAuthorizationToken(integrationContext.req.headers.authorization);
+      const decodedToken = jwt.decode(token);
+      const userId = decodedToken ? (decodedToken as DecodedAuthorizationPayload).userId : '';
+
+      return {
+        userId,
+      }
+    }
+  });
   server.applyMiddleware({ app, path: '/' });
 
   app.listen({ port: PORT }, () => {
-    console.log(`🚀 entry-gql-edge ready`);
+    console.log(`🚀 entry-gql-edge ready on port ${PORT}`);
   });
 }
 
