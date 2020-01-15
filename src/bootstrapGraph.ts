@@ -83,7 +83,7 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
 
   const resolvers = {
     Query: {
-      entry: async ({ userId }: Context, args: EntryQueryArgs) => {
+      entry: async (_parent: any, args: EntryQueryArgs, { userId }: Context) => {
         const request = messages.entry.GetEntryRequest.encode({
           payload: {
             id: args.id,
@@ -103,7 +103,7 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
         }
         throw new Error('not found');
       },
-      entries: async ({ userId }: Context, args: any) => {
+      entries: async (_parent: any, args: any, { userId }: Context) => {
         const request = messages.entry.ListEntriesRequest.encode({
           payload: {
             first: args.first || 50,
@@ -129,7 +129,7 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
     },
 
     Mutation: {
-      createEntry: async ({ userId }: Context, args: CreateEntryArgs) => {
+      createEntry: async (_parent: any, args: CreateEntryArgs, { userId }: Context) => {
         const request = messages.entry.CreateEntryRequest.encode({
           payload: {
             text: args.text,
@@ -150,7 +150,7 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
           };
         }
       },
-      updateEntry: async ({ userId }: Context, args: UpdateEntryArgs) => {
+      updateEntry: async (_parent: any, args: UpdateEntryArgs, { userId }: Context) => {
         const request = messages.entry.UpdateEntryRequest.encode({
           payload: {
             id: args.id,
@@ -173,7 +173,7 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
           };
         }
       },
-      deleteEntry: async ({ userId }: Context, args: DeleteEntryArgs) => {
+      deleteEntry: async (_parent: any, args: DeleteEntryArgs, { userId }: Context) => {
         const request = messages.entry.DeleteEntryRequest.encode({
           payload: {
             id: args.id
