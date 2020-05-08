@@ -17,7 +17,7 @@ spec:
     spec:
       serviceAccountName: entry-gql-edge
       containers:
-      - image: jasonblanchard/di-entry-gql-edge:latest # {"$ref":"#/definitions/io.k8s.cli.substitutions.image"}
+      - image: jasonblanchard/di-entry-gql-edge:latest
         name: entry-gql-edge
         envFrom:
         - configMapRef:
