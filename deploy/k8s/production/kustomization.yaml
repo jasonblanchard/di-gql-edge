@@ -4,4 +4,4 @@ bases:
 - ../base
 images:
 - name: jasonblanchard/di-entry-gql-edge
-newTag: latest # {"$ref":"#/definitions/io.k8s.cli.setters.tag"}
+  newTag: latest # {"$ref":"#/definitions/io.k8s.cli.setters.tag"}
