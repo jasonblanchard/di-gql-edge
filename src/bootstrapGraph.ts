@@ -2,6 +2,8 @@ import { gql } from 'apollo-server';
 import { messages } from './messages';
 import { Client } from 'ts-nats';
 
+import { protobufTimestampToDtoTimestamp } from './utils/timestampUtils';
+
 const TIMEOUT = 3000;
 
 function mapError(code: number | null | undefined) {
@@ -26,6 +28,8 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
     type Entry {
       id: String
       text: String
+      createdAt: String
+      updatedAt: String
     }
 
     type PageInfo {
@@ -98,8 +102,13 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
         const { error, payload: entry } = messages.entry.GetEntryResponse.decode(response);
         if (error)  throw mapError(error.code);
         if (entry) {
-          const { id, text } = entry;
-          return { id, text };
+          const { id, text, createdAt, updatedAt } = entry;
+          return {
+            id,
+            text,
+            createdAt: protobufTimestampToDtoTimestamp(createdAt),
+            updatedAt: protobufTimestampToDtoTimestamp(updatedAt),
+          };
         }
         throw new Error('not found');
       },
@@ -118,9 +127,17 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
         const response = message.data;
         const { error, payload: entries, pageInfo } = messages.entry.ListEntriesResponse.decode(response);
         if (error) throw mapError(error.code);
+        const edges = entries.map(entry => {
+          return {
+            ...entry,
+            createdAt: protobufTimestampToDtoTimestamp(entry.createdAt),
+            updatedAt: protobufTimestampToDtoTimestamp(entry.updatedAt),
+          }
+        })
+
         if (entries) {
           return {
-            edges: entries,
+            edges,
             pageInfo
           }
         }
@@ -166,10 +183,12 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
         const { error, payload: entry } = messages.entry.UpdateEntryResponse.decode(response);
         if (error) throw mapError(error.code);
         if (entry) {
-          const { id, text } = entry;
+          const { id, text, createdAt, updatedAt } = entry;
           return {
             id,
-            text
+            text,
+            createdAt: protobufTimestampToDtoTimestamp(createdAt),
+            updatedAt: protobufTimestampToDtoTimestamp(updatedAt),
           };
         }
       },
