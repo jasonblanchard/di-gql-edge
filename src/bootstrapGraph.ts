@@ -93,8 +93,12 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
             id: args.id,
           },
           context: {
-            userId,
-            traceId: 'abc123'
+            userId, // TODO: Remove,
+            principal: {
+              type: messages.entry.Principal.Type.USER,
+              id: userId,
+            },
+            traceId: 'abc123',
           },
         }).finish();
         const message = await nc.request('get.entry', TIMEOUT, request);
@@ -116,10 +120,15 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
         const request = messages.entry.ListEntriesRequest.encode({
           payload: {
             first: args.first || 50,
-            after: args.after
+            after: args.after,
+            creatorId: userId,
           },
           context: {
-            userId,
+            userId, // TODO: Remove
+            principal: {
+              type: messages.entry.Principal.Type.USER,
+              id: userId,
+            },
             traceId: 'abc123'
           },
         }).finish();
@@ -150,10 +159,15 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
         const request = messages.entry.CreateEntryRequest.encode({
           payload: {
             text: args.text,
+            creatorId: userId,
           },
           context: {
-            userId,
-            traceId: 'abc123'
+            userId, // TODO: Remove
+            traceId: 'abc123',
+            principal: {
+              type: messages.entry.Principal.Type.USER,
+              id: userId,
+            }
           },
         }).finish();
         const message = await nc.request('create.entry', TIMEOUT, request);
@@ -174,8 +188,12 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
             text: args.text,
           },
           context: {
-            userId,
-            traceId: 'abc123'
+            userId, // TODO: Remove
+            principal: {
+              type: messages.entry.Principal.Type.USER,
+              id: userId,
+            },
+            traceId: 'abc123',
           },
         }).finish();
         const message = await nc.request('update.entry', TIMEOUT, request);
@@ -198,8 +216,12 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
             id: args.id
           },
           context: {
-            userId,
-            traceId: 'abc123'
+            userId, // TODO: Remove
+            principal: {
+              type: messages.entry.Principal.Type.USER,
+              id: userId,
+            },
+            traceId: 'abc123',
           }
         }).finish();
         const message = await nc.request('delete.entry', TIMEOUT, request);
