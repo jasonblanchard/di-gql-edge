@@ -93,7 +93,6 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
             id: args.id,
           },
           context: {
-            userId, // TODO: Remove,
             principal: {
               type: messages.entry.Principal.Type.USER,
               id: userId,
@@ -124,7 +123,6 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
             creatorId: userId,
           },
           context: {
-            userId, // TODO: Remove
             principal: {
               type: messages.entry.Principal.Type.USER,
               id: userId,
@@ -162,7 +160,6 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
             creatorId: userId,
           },
           context: {
-            userId, // TODO: Remove
             traceId: 'abc123',
             principal: {
               type: messages.entry.Principal.Type.USER,
@@ -188,7 +185,6 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
             text: args.text,
           },
           context: {
-            userId, // TODO: Remove
             principal: {
               type: messages.entry.Principal.Type.USER,
               id: userId,
@@ -216,7 +212,6 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
             id: args.id
           },
           context: {
-            userId, // TODO: Remove
             principal: {
               type: messages.entry.Principal.Type.USER,
               id: userId,
