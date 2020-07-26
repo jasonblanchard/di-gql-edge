@@ -179,6 +179,7 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
         }
       },
       updateEntry: async (_parent: any, args: UpdateEntryArgs, { userId }: Context) => {
+        // TODO: Change this to be a meaningful domain event, not a generic update.
         const request = messages.entry.UpdateEntryRequest.encode({
           payload: {
             id: args.id,

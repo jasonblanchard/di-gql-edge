@@ -43,6 +43,7 @@ async function bootstrap() {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
+    introspection: true,
     context: (integrationContext) => {
       const token = getAuthorizationToken(integrationContext.req.headers.authorization);
       const decodedToken = jwt.decode(token);
