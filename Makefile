@@ -26,3 +26,6 @@ deploy:
 
 clean_k8s:
 	kubectl delete -k ./deploy/overlays/development
+
+swap:
+	telepresence --swap-deployment entry-gql-edge --namespace di --expose 4000 --run bash -c "PORT=4000 npm run watch"

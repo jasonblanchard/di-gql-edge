@@ -1,8 +1,8 @@
 import { gql } from 'apollo-server';
-import { messages } from './messages';
+import proto, { messages } from './messages';
 import { Client } from 'ts-nats';
 
-import { protobufTimestampToDtoTimestamp } from './utils/timestampUtils';
+import { protobufTimestampToDtoTimestamp, dateToProtobufTimestamp } from './utils/timestampUtils';
 
 const TIMEOUT = 3000;
 
@@ -44,9 +44,15 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
       pageInfo: PageInfo
     }
 
+    type Velocity {
+      day: String
+      score: Int
+    }
+
     type Query {
       entry(id: String!): Entry
       entries(first: Int, after: String): ListEntriesResponse
+      monthlyVelocity: [Velocity]
     }
 
     type CreateEntryResponse {
@@ -149,7 +155,37 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
           }
         }
         throw new Error('not found');
-      }
+      },
+      monthlyVelocity: async (_parent: any, args: any, { userId }: Context) => {
+        const monthAgo = new Date(Date.now() - 1000 * 60 * 60 * 24 * 30)
+
+        const request = messages.insights.GetVelocityRequest.encode({
+          payload: {
+            start: dateToProtobufTimestamp(monthAgo),
+            end: dateToProtobufTimestamp(new Date()),
+            creatorId: userId,
+          },
+          context: {
+            principal: {
+              type: messages.entry.Principal.Type.USER,
+              id: userId,
+            },
+            traceId: 'abc123'
+          },
+        }).finish();
+
+        const message = await nc.request('insights.get.velocity', TIMEOUT, request)
+        const response = message.data;
+        const { error, payload } = messages.insights.GetVelocityResponse.decode(response);;
+        if (error) throw mapError(error.code);
+        const velocities = payload.map(velocity => {
+          return {
+            score: velocity.score,
+            day: protobufTimestampToDtoTimestamp(velocity.day)
+          }
+        })
+        return velocities;
+      },
     },
 
     Mutation: {
