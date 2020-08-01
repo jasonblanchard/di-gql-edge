@@ -8,7 +8,7 @@ export function protobufTimestampToDtoTimestamp(timestamp?: proto.google.protobu
 
 export function dateToProtobufTimestamp(date: Date): proto.google.protobuf.ITimestamp {
   return {
-    seconds: date.getTime() / 1000,
+    seconds: Math.round(date.getTime() / 1000),
     nanos: 0
   }
 }
