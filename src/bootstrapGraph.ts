@@ -44,7 +44,7 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
       pageInfo: PageInfo
     }
 
-    type Velocity {
+    type DailyVelocity {
       day: String
       score: Int
     }
@@ -52,7 +52,7 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
     type Query {
       entry(id: String!): Entry
       entries(first: Int, after: String): ListEntriesResponse
-      monthlyVelocity: [Velocity]
+      velocityOverview: [DailyVelocity]
     }
 
     type CreateEntryResponse {
@@ -156,7 +156,8 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
         }
         throw new Error('not found');
       },
-      monthlyVelocity: async (_parent: any, args: any, { userId }: Context) => {
+      velocityOverview: async (_parent: any, args: any, { userId }: Context) => {
+        // TODO: Move to domain event?
         const monthAgo = new Date(Date.now() - 1000 * 60 * 60 * 24 * 30)
 
         const request = messages.insights.GetVelocityRequest.encode({
