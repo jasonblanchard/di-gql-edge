@@ -57,7 +57,7 @@ async function bootstrap() {
   server.applyMiddleware({ app, path: '/' });
 
   app.listen({ port: PORT }, () => {
-    console.log(`🚀 entry-gql-edge ready on port ${PORT}`);
+    console.log(`🚀 gql-edge ready on port ${PORT}`);
   });
 }
 

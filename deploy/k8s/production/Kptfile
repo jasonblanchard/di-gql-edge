@@ -3,7 +3,7 @@ kind: Kptfile
 metadata:
   name: .
 packageMetadata:
-  shortDescription: di-entry-gql-edge
+  shortDescription: di-gql-edge
 openAPI:
   definitions:
     io.k8s.cli.setters.tag:

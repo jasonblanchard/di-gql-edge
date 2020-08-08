@@ -1,6 +1,6 @@
 .PHONY: build tag push deploy
 
-IMAGE_NAME=di-entry-gql-edge
+IMAGE_NAME=di-gql-edge
 GIT_SHA = $(shell git rev-parse HEAD)
 IMAGE_REPO=jasonblanchard/${IMAGE_NAME}
 LOCAL_TAG = ${IMAGE_REPO}
@@ -28,4 +28,4 @@ clean_k8s:
 	kubectl delete -k ./deploy/overlays/development
 
 swap:
-	telepresence --swap-deployment entry-gql-edge --namespace di --expose 4000 --run bash -c "PORT=4000 npm run watch"
+	telepresence --swap-deployment gql-edge --namespace di --expose 4000 --run bash -c "PORT=4000 npm run watch"
