@@ -4,9 +4,6 @@ metadata:
   name: gql-edge
 spec:
   replicas: 1
-  selector:
-    matchLabels:
-      app: gql-edge
   template:
     spec:
       serviceAccountName: gql-edge
