@@ -3,5 +3,4 @@ kind: Mapping
 metadata:
   name: gql-edge
 spec:
-  prefix: /api/graphql/
-  rewrite: '/'
+  service: gql-edge-production:4000
