@@ -114,7 +114,7 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
           const { id, text, createdAt, updatedAt } = entry;
           return {
             id,
-            text,
+            text: text || "",
             createdAt: protobufTimestampToDtoTimestamp(createdAt),
             updatedAt: protobufTimestampToDtoTimestamp(updatedAt),
           };
@@ -143,6 +143,7 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
         const edges = entries.map(entry => {
           return {
             ...entry,
+            text: entry.text || "",
             createdAt: protobufTimestampToDtoTimestamp(entry.createdAt),
             updatedAt: protobufTimestampToDtoTimestamp(entry.updatedAt),
           }
