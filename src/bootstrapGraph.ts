@@ -1,6 +1,7 @@
 import { gql } from 'apollo-server';
 import proto, { messages } from './messages';
 import { Client } from 'ts-nats';
+import grpcErrors from 'grpc-errors';
 
 import { protobufTimestampToDtoTimestamp, dateToProtobufTimestamp } from './utils/timestampUtils';
 
@@ -14,6 +15,15 @@ function mapError(code: number | null | undefined) {
       return new Error('NOT_FOUND');
     case (messages.entry.Error.Code.VALIDATION_FAILED):
       return new Error('VALIDATION_FAILED');
+    default:
+      return new Error('UNEXPECTED');
+  }
+}
+
+function mapGrpcError(code: number | null | undefined) {
+  switch (code) {
+    case (grpcErrors.PermissionDeniedError.prototype.code):
+      return new Error('PERMISSION_DENIED');
     default:
       return new Error('UNEXPECTED');
   }
@@ -51,6 +61,7 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
 
     type Query {
       entry(id: String!): Entry
+      readEntry(id: String!): Entry
       entries(first: Int, after: String): ListEntriesResponse
       velocityOverview: [DailyVelocity]
     }
@@ -71,6 +82,10 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
 `;
 
   interface EntryQueryArgs {
+    id: string;
+  }
+
+  interface ReadEntryQueryArgs {
     id: string;
   }
 
@@ -117,6 +132,35 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
             text: text || "",
             createdAt: protobufTimestampToDtoTimestamp(createdAt),
             updatedAt: protobufTimestampToDtoTimestamp(updatedAt),
+          };
+        }
+        throw new Error('not found');
+      },
+      readEntry: async (_parent: any, args: ReadEntryQueryArgs, { userId }: Context) => {
+        const request = messages.notebook.ReadEntryRequest.encode({
+          context: {
+            principal: {
+              type: messages.entry.Principal.Type.USER,
+              id: userId,
+            },
+            traceId: 'abc123',
+          },
+          payload: {
+            id: args.id,
+          }
+        }).finish()
+        const message = await nc.request('notebook.ReadEntry', TIMEOUT, request)
+        const response = message.data;
+        const { status, payload: entry } = messages.notebook.ReadEntryResponse.decode(response);
+        if (status?.code && status?.code > 0) mapGrpcError(status?.code)
+        if (entry) {
+          const { id, text, createdAt, updatedAt } = entry;
+          const updatedAtTimestamp = protobufTimestampToDtoTimestamp(updatedAt?.timestamp)
+          return {
+            id,
+            text: text || "",
+            createdAt: protobufTimestampToDtoTimestamp(createdAt),
+            updatedAt: updatedAtTimestamp,
           };
         }
         throw new Error('not found');
