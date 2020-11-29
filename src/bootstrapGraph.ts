@@ -203,11 +203,11 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
       },
       velocityOverview: async (_parent: any, args: any, { userId }: Context) => {
         // TODO: Move to domain event?
-        const monthAgo = new Date(Date.now() - 1000 * 60 * 60 * 24 * 30)
+        const yearAgo = new Date(Date.now() - 12 * (1000 * 60 * 60 * 24 * 30))
 
         const request = messages.insights.GetVelocityRequest.encode({
           payload: {
-            start: dateToProtobufTimestamp(monthAgo),
+            start: dateToProtobufTimestamp(yearAgo),
             end: dateToProtobufTimestamp(new Date()),
             creatorId: userId,
           },
