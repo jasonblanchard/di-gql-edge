@@ -140,6 +140,8 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
       readEntry: async (_parent: any, args: ReadEntryQueryArgs, { userId }: Context) => {
         const client = new grpc.Client("notebook-grpc-production:8080", grpc.credentials.createInsecure());
         const rpcImpl = function (method: any, requestData: any, callback: any) {
+          console.log('+++++++')
+          console.log({ method, requestData });
           client.makeUnaryRequest(
             method.name,
             arg => arg,
@@ -164,7 +166,7 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
             console.log("====")
             console.log(response)
             console.log("++++")
-          })
+          });
 
         const request = messages.notebook.ReadEntryRequest.encode({
           context: {
