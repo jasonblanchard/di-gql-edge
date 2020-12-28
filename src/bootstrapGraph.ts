@@ -1,5 +1,6 @@
 import { gql } from 'apollo-server';
 import proto, { messages } from './messages';
+import grpc from 'grpc';
 import { Client } from 'ts-nats';
 import grpcErrors from 'grpc-errors';
 
@@ -137,6 +138,34 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
         throw new Error('not found');
       },
       readEntry: async (_parent: any, args: ReadEntryQueryArgs, { userId }: Context) => {
+        const client = new grpc.Client("notebook-grpc-production:8080", grpc.credentials.createInsecure());
+        const rpcImpl = function (method: any, requestData: any, callback: any) {
+          client.makeUnaryRequest(
+            method.name,
+            arg => arg,
+            arg => arg,
+            requestData,
+            null,
+            null,
+            callback
+          )
+        }
+        const service = messages.notebook.Notebook.create(rpcImpl)
+        service.readEntry({
+          principal: {
+            type: messages.entry.Principal.Type.USER,
+            id: userId,
+          },
+          payload: {
+            id: args.id,
+          }
+        })
+          .then(response => {
+            console.log("====")
+            console.log(response)
+            console.log("++++")
+          })
+
         const request = messages.notebook.ReadEntryRequest.encode({
           context: {
             principal: {

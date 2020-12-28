@@ -92,9 +92,9 @@ $root.messages = (function() {
             Error.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.code != null && message.hasOwnProperty("code"))
+                if (message.code != null && Object.hasOwnProperty.call(message, "code"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
-                if (message.message != null && message.hasOwnProperty("message"))
+                if (message.message != null && Object.hasOwnProperty.call(message, "message"))
                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.message);
                 return writer;
             };
@@ -255,7 +255,7 @@ $root.messages = (function() {
             /**
              * Code enum.
              * @name messages.entry.Error.Code
-             * @enum {string}
+             * @enum {number}
              * @property {number} UNKNOWN=0 UNKNOWN value
              * @property {number} NOT_FOUND=1 NOT_FOUND value
              * @property {number} VALIDATION_FAILED=2 VALIDATION_FAILED value
@@ -336,9 +336,9 @@ $root.messages = (function() {
             Principal.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.type != null && message.hasOwnProperty("type"))
+                if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.type);
-                if (message.id != null && message.hasOwnProperty("id"))
+                if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.id);
                 return writer;
             };
@@ -489,7 +489,7 @@ $root.messages = (function() {
             /**
              * Type enum.
              * @name messages.entry.Principal.Type
-             * @enum {string}
+             * @enum {number}
              * @property {number} USER=0 USER value
              */
             Principal.Type = (function() {
@@ -566,9 +566,9 @@ $root.messages = (function() {
             RequestContext.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.traceId != null && message.hasOwnProperty("traceId"))
+                if (message.traceId != null && Object.hasOwnProperty.call(message, "traceId"))
                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.traceId);
-                if (message.principal != null && message.hasOwnProperty("principal"))
+                if (message.principal != null && Object.hasOwnProperty.call(message, "principal"))
                     $root.messages.entry.Principal.encode(message.principal, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
                 return writer;
             };
@@ -781,9 +781,9 @@ $root.messages = (function() {
             GetEntryRequest.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.context != null && message.hasOwnProperty("context"))
+                if (message.context != null && Object.hasOwnProperty.call(message, "context"))
                     $root.messages.entry.RequestContext.encode(message.context, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
-                if (message.payload != null && message.hasOwnProperty("payload"))
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
                     $root.messages.entry.GetEntryRequest.Payload.encode(message.payload, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
                 return writer;
             };
@@ -989,7 +989,7 @@ $root.messages = (function() {
                 Payload.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    if (message.id != null && message.hasOwnProperty("id"))
+                    if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
                     return writer;
                 };
@@ -1197,11 +1197,11 @@ $root.messages = (function() {
             GetEntryResponse.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.payload != null && message.hasOwnProperty("payload"))
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
                     $root.messages.entry.GetEntryResponse.Payload.encode(message.payload, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                if (message.error != null && message.hasOwnProperty("error"))
+                if (message.error != null && Object.hasOwnProperty.call(message, "error"))
                     $root.messages.entry.Error.encode(message.error, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-                if (message.traceId != null && message.hasOwnProperty("traceId"))
+                if (message.traceId != null && Object.hasOwnProperty.call(message, "traceId"))
                     writer.uint32(/* id 3, wireType 2 =*/26).string(message.traceId);
                 return writer;
             };
@@ -1454,15 +1454,15 @@ $root.messages = (function() {
                 Payload.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    if (message.id != null && message.hasOwnProperty("id"))
+                    if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
-                    if (message.text != null && message.hasOwnProperty("text"))
+                    if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                         writer.uint32(/* id 2, wireType 2 =*/18).string(message.text);
-                    if (message.creatorId != null && message.hasOwnProperty("creatorId"))
+                    if (message.creatorId != null && Object.hasOwnProperty.call(message, "creatorId"))
                         writer.uint32(/* id 3, wireType 2 =*/26).string(message.creatorId);
-                    if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                    if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
                         $root.google.protobuf.Timestamp.encode(message.createdAt, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
-                    if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                    if (message.updatedAt != null && Object.hasOwnProperty.call(message, "updatedAt"))
                         $root.google.protobuf.Timestamp.encode(message.updatedAt, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
                     return writer;
                 };
@@ -1716,9 +1716,9 @@ $root.messages = (function() {
             CreateEntryRequest.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.context != null && message.hasOwnProperty("context"))
+                if (message.context != null && Object.hasOwnProperty.call(message, "context"))
                     $root.messages.entry.RequestContext.encode(message.context, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
-                if (message.payload != null && message.hasOwnProperty("payload"))
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
                     $root.messages.entry.CreateEntryRequest.Payload.encode(message.payload, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
                 return writer;
             };
@@ -1951,13 +1951,13 @@ $root.messages = (function() {
                 Payload.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    if (message.text != null && message.hasOwnProperty("text"))
+                    if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.text);
-                    if (message.creatorId != null && message.hasOwnProperty("creatorId"))
+                    if (message.creatorId != null && Object.hasOwnProperty.call(message, "creatorId"))
                         writer.uint32(/* id 2, wireType 2 =*/18).string(message.creatorId);
-                    if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                    if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
                         $root.google.protobuf.Timestamp.encode(message.createdAt, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
-                    if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                    if (message.updatedAt != null && Object.hasOwnProperty.call(message, "updatedAt"))
                         $root.google.protobuf.Timestamp.encode(message.updatedAt, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
                     return writer;
                 };
@@ -2209,11 +2209,11 @@ $root.messages = (function() {
             CreateEntryResponse.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.payload != null && message.hasOwnProperty("payload"))
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
                     $root.messages.entry.CreateEntryResponse.Payload.encode(message.payload, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                if (message.error != null && message.hasOwnProperty("error"))
+                if (message.error != null && Object.hasOwnProperty.call(message, "error"))
                     $root.messages.entry.Error.encode(message.error, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-                if (message.traceId != null && message.hasOwnProperty("traceId"))
+                if (message.traceId != null && Object.hasOwnProperty.call(message, "traceId"))
                     writer.uint32(/* id 3, wireType 2 =*/26).string(message.traceId);
                 return writer;
             };
@@ -2430,7 +2430,7 @@ $root.messages = (function() {
                 Payload.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    if (message.id != null && message.hasOwnProperty("id"))
+                    if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
                     return writer;
                 };
@@ -2629,9 +2629,9 @@ $root.messages = (function() {
             UpdateEntryRequest.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.context != null && message.hasOwnProperty("context"))
+                if (message.context != null && Object.hasOwnProperty.call(message, "context"))
                     $root.messages.entry.RequestContext.encode(message.context, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                if (message.payload != null && message.hasOwnProperty("payload"))
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
                     $root.messages.entry.UpdateEntryRequest.Payload.encode(message.payload, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                 return writer;
             };
@@ -2846,9 +2846,9 @@ $root.messages = (function() {
                 Payload.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    if (message.id != null && message.hasOwnProperty("id"))
+                    if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
-                    if (message.text != null && message.hasOwnProperty("text"))
+                    if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                         writer.uint32(/* id 2, wireType 2 =*/18).string(message.text);
                     return writer;
                 };
@@ -3068,11 +3068,11 @@ $root.messages = (function() {
             UpdateEntryResponse.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.payload != null && message.hasOwnProperty("payload"))
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
                     $root.messages.entry.UpdateEntryResponse.Payload.encode(message.payload, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                if (message.error != null && message.hasOwnProperty("error"))
+                if (message.error != null && Object.hasOwnProperty.call(message, "error"))
                     $root.messages.entry.Error.encode(message.error, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-                if (message.traceId != null && message.hasOwnProperty("traceId"))
+                if (message.traceId != null && Object.hasOwnProperty.call(message, "traceId"))
                     writer.uint32(/* id 3, wireType 2 =*/26).string(message.traceId);
                 return writer;
             };
@@ -3325,15 +3325,15 @@ $root.messages = (function() {
                 Payload.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    if (message.id != null && message.hasOwnProperty("id"))
+                    if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
-                    if (message.text != null && message.hasOwnProperty("text"))
+                    if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                         writer.uint32(/* id 2, wireType 2 =*/18).string(message.text);
-                    if (message.creatorId != null && message.hasOwnProperty("creatorId"))
+                    if (message.creatorId != null && Object.hasOwnProperty.call(message, "creatorId"))
                         writer.uint32(/* id 3, wireType 2 =*/26).string(message.creatorId);
-                    if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                    if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
                         $root.google.protobuf.Timestamp.encode(message.createdAt, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
-                    if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                    if (message.updatedAt != null && Object.hasOwnProperty.call(message, "updatedAt"))
                         $root.google.protobuf.Timestamp.encode(message.updatedAt, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
                     return writer;
                 };
@@ -3587,9 +3587,9 @@ $root.messages = (function() {
             ListEntriesRequest.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.context != null && message.hasOwnProperty("context"))
+                if (message.context != null && Object.hasOwnProperty.call(message, "context"))
                     $root.messages.entry.RequestContext.encode(message.context, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                if (message.payload != null && message.hasOwnProperty("payload"))
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
                     $root.messages.entry.ListEntriesRequest.Payload.encode(message.payload, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                 return writer;
             };
@@ -3813,11 +3813,11 @@ $root.messages = (function() {
                 Payload.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    if (message.first != null && message.hasOwnProperty("first"))
+                    if (message.first != null && Object.hasOwnProperty.call(message, "first"))
                         writer.uint32(/* id 1, wireType 0 =*/8).int32(message.first);
-                    if (message.after != null && message.hasOwnProperty("after"))
+                    if (message.after != null && Object.hasOwnProperty.call(message, "after"))
                         writer.uint32(/* id 2, wireType 2 =*/18).string(message.after);
-                    if (message.creatorId != null && message.hasOwnProperty("creatorId"))
+                    if (message.creatorId != null && Object.hasOwnProperty.call(message, "creatorId"))
                         writer.uint32(/* id 3, wireType 2 =*/26).string(message.creatorId);
                     return writer;
                 };
@@ -4061,11 +4061,11 @@ $root.messages = (function() {
                 if (message.payload != null && message.payload.length)
                     for (var i = 0; i < message.payload.length; ++i)
                         $root.messages.entry.ListEntriesResponse.Entity.encode(message.payload[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                if (message.error != null && message.hasOwnProperty("error"))
+                if (message.error != null && Object.hasOwnProperty.call(message, "error"))
                     $root.messages.entry.Error.encode(message.error, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-                if (message.traceId != null && message.hasOwnProperty("traceId"))
+                if (message.traceId != null && Object.hasOwnProperty.call(message, "traceId"))
                     writer.uint32(/* id 3, wireType 2 =*/26).string(message.traceId);
-                if (message.pageInfo != null && message.hasOwnProperty("pageInfo"))
+                if (message.pageInfo != null && Object.hasOwnProperty.call(message, "pageInfo"))
                     $root.messages.entry.ListEntriesResponse.PageInfo.encode(message.pageInfo, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
                 return writer;
             };
@@ -4340,13 +4340,13 @@ $root.messages = (function() {
                 PageInfo.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    if (message.totalCount != null && message.hasOwnProperty("totalCount"))
+                    if (message.totalCount != null && Object.hasOwnProperty.call(message, "totalCount"))
                         writer.uint32(/* id 1, wireType 0 =*/8).int32(message.totalCount);
-                    if (message.hasNextPage != null && message.hasOwnProperty("hasNextPage"))
+                    if (message.hasNextPage != null && Object.hasOwnProperty.call(message, "hasNextPage"))
                         writer.uint32(/* id 2, wireType 0 =*/16).bool(message.hasNextPage);
-                    if (message.startCursor != null && message.hasOwnProperty("startCursor"))
+                    if (message.startCursor != null && Object.hasOwnProperty.call(message, "startCursor"))
                         writer.uint32(/* id 3, wireType 2 =*/26).string(message.startCursor);
-                    if (message.endCursor != null && message.hasOwnProperty("endCursor"))
+                    if (message.endCursor != null && Object.hasOwnProperty.call(message, "endCursor"))
                         writer.uint32(/* id 4, wireType 2 =*/34).string(message.endCursor);
                     return writer;
                 };
@@ -4603,15 +4603,15 @@ $root.messages = (function() {
                 Entity.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    if (message.id != null && message.hasOwnProperty("id"))
+                    if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
-                    if (message.text != null && message.hasOwnProperty("text"))
+                    if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                         writer.uint32(/* id 2, wireType 2 =*/18).string(message.text);
-                    if (message.creatorId != null && message.hasOwnProperty("creatorId"))
+                    if (message.creatorId != null && Object.hasOwnProperty.call(message, "creatorId"))
                         writer.uint32(/* id 3, wireType 2 =*/26).string(message.creatorId);
-                    if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                    if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
                         $root.google.protobuf.Timestamp.encode(message.createdAt, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
-                    if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                    if (message.updatedAt != null && Object.hasOwnProperty.call(message, "updatedAt"))
                         $root.google.protobuf.Timestamp.encode(message.updatedAt, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
                     return writer;
                 };
@@ -4865,9 +4865,9 @@ $root.messages = (function() {
             DeleteEntryRequest.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.context != null && message.hasOwnProperty("context"))
+                if (message.context != null && Object.hasOwnProperty.call(message, "context"))
                     $root.messages.entry.RequestContext.encode(message.context, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                if (message.payload != null && message.hasOwnProperty("payload"))
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
                     $root.messages.entry.DeleteEntryRequest.Payload.encode(message.payload, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                 return writer;
             };
@@ -5073,7 +5073,7 @@ $root.messages = (function() {
                 Payload.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    if (message.id != null && message.hasOwnProperty("id"))
+                    if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
                     return writer;
                 };
@@ -5272,9 +5272,9 @@ $root.messages = (function() {
             DeleteEntryResponse.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.error != null && message.hasOwnProperty("error"))
+                if (message.error != null && Object.hasOwnProperty.call(message, "error"))
                     $root.messages.entry.Error.encode(message.error, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                if (message.traceId != null && message.hasOwnProperty("traceId"))
+                if (message.traceId != null && Object.hasOwnProperty.call(message, "traceId"))
                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.traceId);
                 return writer;
             };
@@ -5478,7 +5478,7 @@ $root.messages = (function() {
             InfoEntryCreated.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.payload != null && message.hasOwnProperty("payload"))
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
                     $root.messages.entry.InfoEntryCreated.Payload.encode(message.payload, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
                 return writer;
             };
@@ -5667,7 +5667,7 @@ $root.messages = (function() {
                 Payload.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    if (message.id != null && message.hasOwnProperty("id"))
+                    if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
                     return writer;
                 };
@@ -5857,7 +5857,7 @@ $root.messages = (function() {
             InfoEntryUpdated.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.payload != null && message.hasOwnProperty("payload"))
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
                     $root.messages.entry.InfoEntryUpdated.Payload.encode(message.payload, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
                 return writer;
             };
@@ -6082,15 +6082,15 @@ $root.messages = (function() {
                 Payload.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    if (message.id != null && message.hasOwnProperty("id"))
+                    if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
-                    if (message.text != null && message.hasOwnProperty("text"))
+                    if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                         writer.uint32(/* id 2, wireType 2 =*/18).string(message.text);
-                    if (message.creatorId != null && message.hasOwnProperty("creatorId"))
+                    if (message.creatorId != null && Object.hasOwnProperty.call(message, "creatorId"))
                         writer.uint32(/* id 3, wireType 2 =*/26).string(message.creatorId);
-                    if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                    if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
                         $root.google.protobuf.Timestamp.encode(message.createdAt, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
-                    if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                    if (message.updatedAt != null && Object.hasOwnProperty.call(message, "updatedAt"))
                         $root.google.protobuf.Timestamp.encode(message.updatedAt, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
                     return writer;
                 };
@@ -6335,7 +6335,7 @@ $root.messages = (function() {
             InfoEntryDeleted.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.payload != null && message.hasOwnProperty("payload"))
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
                     $root.messages.entry.InfoEntryDeleted.Payload.encode(message.payload, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
                 return writer;
             };
@@ -6524,7 +6524,7 @@ $root.messages = (function() {
                 Payload.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    if (message.id != null && message.hasOwnProperty("id"))
+                    if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
                     return writer;
                 };
@@ -6735,9 +6735,9 @@ $root.messages = (function() {
             Error.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.code != null && message.hasOwnProperty("code"))
+                if (message.code != null && Object.hasOwnProperty.call(message, "code"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
-                if (message.message != null && message.hasOwnProperty("message"))
+                if (message.message != null && Object.hasOwnProperty.call(message, "message"))
                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.message);
                 return writer;
             };
@@ -6898,7 +6898,7 @@ $root.messages = (function() {
             /**
              * Code enum.
              * @name messages.insights.Error.Code
-             * @enum {string}
+             * @enum {number}
              * @property {number} UNKNOWN=0 UNKNOWN value
              * @property {number} NOT_FOUND=1 NOT_FOUND value
              * @property {number} VALIDATION_FAILED=2 VALIDATION_FAILED value
@@ -6979,9 +6979,9 @@ $root.messages = (function() {
             Principal.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.type != null && message.hasOwnProperty("type"))
+                if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.type);
-                if (message.id != null && message.hasOwnProperty("id"))
+                if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.id);
                 return writer;
             };
@@ -7132,7 +7132,7 @@ $root.messages = (function() {
             /**
              * Type enum.
              * @name messages.insights.Principal.Type
-             * @enum {string}
+             * @enum {number}
              * @property {number} USER=0 USER value
              */
             Principal.Type = (function() {
@@ -7209,9 +7209,9 @@ $root.messages = (function() {
             RequestContext.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.traceId != null && message.hasOwnProperty("traceId"))
+                if (message.traceId != null && Object.hasOwnProperty.call(message, "traceId"))
                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.traceId);
-                if (message.principal != null && message.hasOwnProperty("principal"))
+                if (message.principal != null && Object.hasOwnProperty.call(message, "principal"))
                     $root.messages.insights.Principal.encode(message.principal, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
                 return writer;
             };
@@ -7424,9 +7424,9 @@ $root.messages = (function() {
             IncrementDailyCounter.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.context != null && message.hasOwnProperty("context"))
+                if (message.context != null && Object.hasOwnProperty.call(message, "context"))
                     $root.messages.insights.RequestContext.encode(message.context, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                if (message.payload != null && message.hasOwnProperty("payload"))
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
                     $root.messages.insights.IncrementDailyCounter.Payload.encode(message.payload, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                 return writer;
             };
@@ -7641,9 +7641,9 @@ $root.messages = (function() {
                 Payload.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    if (message.day != null && message.hasOwnProperty("day"))
+                    if (message.day != null && Object.hasOwnProperty.call(message, "day"))
                         $root.google.protobuf.Timestamp.encode(message.day, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                    if (message.creatorId != null && message.hasOwnProperty("creatorId"))
+                    if (message.creatorId != null && Object.hasOwnProperty.call(message, "creatorId"))
                         writer.uint32(/* id 2, wireType 2 =*/18).string(message.creatorId);
                     return writer;
                 };
@@ -7859,9 +7859,9 @@ $root.messages = (function() {
             GetVelocityRequest.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.context != null && message.hasOwnProperty("context"))
+                if (message.context != null && Object.hasOwnProperty.call(message, "context"))
                     $root.messages.insights.RequestContext.encode(message.context, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                if (message.payload != null && message.hasOwnProperty("payload"))
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
                     $root.messages.insights.GetVelocityRequest.Payload.encode(message.payload, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                 return writer;
             };
@@ -8085,11 +8085,11 @@ $root.messages = (function() {
                 Payload.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    if (message.start != null && message.hasOwnProperty("start"))
+                    if (message.start != null && Object.hasOwnProperty.call(message, "start"))
                         $root.google.protobuf.Timestamp.encode(message.start, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                    if (message.end != null && message.hasOwnProperty("end"))
+                    if (message.end != null && Object.hasOwnProperty.call(message, "end"))
                         $root.google.protobuf.Timestamp.encode(message.end, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-                    if (message.creatorId != null && message.hasOwnProperty("creatorId"))
+                    if (message.creatorId != null && Object.hasOwnProperty.call(message, "creatorId"))
                         writer.uint32(/* id 3, wireType 2 =*/26).string(message.creatorId);
                     return writer;
                 };
@@ -8325,7 +8325,7 @@ $root.messages = (function() {
                 if (message.payload != null && message.payload.length)
                     for (var i = 0; i < message.payload.length; ++i)
                         $root.messages.insights.GetVelocityResponse.DailyVelocity.encode(message.payload[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                if (message.error != null && message.hasOwnProperty("error"))
+                if (message.error != null && Object.hasOwnProperty.call(message, "error"))
                     $root.messages.insights.Error.encode(message.error, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                 return writer;
             };
@@ -8554,9 +8554,9 @@ $root.messages = (function() {
                 DailyVelocity.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    if (message.day != null && message.hasOwnProperty("day"))
+                    if (message.day != null && Object.hasOwnProperty.call(message, "day"))
                         $root.google.protobuf.Timestamp.encode(message.day, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                    if (message.score != null && message.hasOwnProperty("score"))
+                    if (message.score != null && Object.hasOwnProperty.call(message, "score"))
                         writer.uint32(/* id 2, wireType 0 =*/16).int32(message.score);
                     return writer;
                 };
@@ -8798,9 +8798,9 @@ $root.messages = (function() {
             NullableTimestamp.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message["null"] != null && message.hasOwnProperty("null"))
+                if (message["null"] != null && Object.hasOwnProperty.call(message, "null"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message["null"]);
-                if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+                if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
                     $root.google.protobuf.Timestamp.encode(message.timestamp, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                 return writer;
             };
@@ -9031,9 +9031,9 @@ $root.messages = (function() {
             Principal.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.type != null && message.hasOwnProperty("type"))
+                if (message.type != null && Object.hasOwnProperty.call(message, "type"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.type);
-                if (message.id != null && message.hasOwnProperty("id"))
+                if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.id);
                 return writer;
             };
@@ -9184,7 +9184,7 @@ $root.messages = (function() {
             /**
              * Type enum.
              * @name messages.notebook.Principal.Type
-             * @enum {string}
+             * @enum {number}
              * @property {number} USER=0 USER value
              */
             Principal.Type = (function() {
@@ -9270,11 +9270,11 @@ $root.messages = (function() {
             RequestContext.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.traceId != null && message.hasOwnProperty("traceId"))
+                if (message.traceId != null && Object.hasOwnProperty.call(message, "traceId"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.traceId);
-                if (message.principal != null && message.hasOwnProperty("principal"))
+                if (message.principal != null && Object.hasOwnProperty.call(message, "principal"))
                     $root.messages.notebook.Principal.encode(message.principal, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-                if (message.origin != null && message.hasOwnProperty("origin"))
+                if (message.origin != null && Object.hasOwnProperty.call(message, "origin"))
                     writer.uint32(/* id 3, wireType 2 =*/26).string(message.origin);
                 return writer;
             };
@@ -9498,9 +9498,9 @@ $root.messages = (function() {
             ResponseContext.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.traceId != null && message.hasOwnProperty("traceId"))
+                if (message.traceId != null && Object.hasOwnProperty.call(message, "traceId"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.traceId);
-                if (message.origin != null && message.hasOwnProperty("origin"))
+                if (message.origin != null && Object.hasOwnProperty.call(message, "origin"))
                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.origin);
                 return writer;
             };
@@ -9708,9 +9708,9 @@ $root.messages = (function() {
             InfoContext.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.traceId != null && message.hasOwnProperty("traceId"))
+                if (message.traceId != null && Object.hasOwnProperty.call(message, "traceId"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.traceId);
-                if (message.origin != null && message.hasOwnProperty("origin"))
+                if (message.origin != null && Object.hasOwnProperty.call(message, "origin"))
                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.origin);
                 return writer;
             };
@@ -9859,7 +9859,7 @@ $root.messages = (function() {
              * Properties of an ErrorResponse.
              * @memberof messages.notebook
              * @interface IErrorResponse
-             * @property {google.rpc.IStatus|null} [status] ErrorResponse status
+             * @property {messages.notebook.IStatus|null} [status] ErrorResponse status
              * @property {messages.notebook.IResponseContext|null} [context] ErrorResponse context
              */
 
@@ -9880,7 +9880,7 @@ $root.messages = (function() {
 
             /**
              * ErrorResponse status.
-             * @member {google.rpc.IStatus|null|undefined} status
+             * @member {messages.notebook.IStatus|null|undefined} status
              * @memberof messages.notebook.ErrorResponse
              * @instance
              */
@@ -9918,9 +9918,9 @@ $root.messages = (function() {
             ErrorResponse.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.status != null && message.hasOwnProperty("status"))
-                    $root.google.rpc.Status.encode(message.status, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                if (message.context != null && message.hasOwnProperty("context"))
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                    $root.messages.notebook.Status.encode(message.status, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                if (message.context != null && Object.hasOwnProperty.call(message, "context"))
                     $root.messages.notebook.ResponseContext.encode(message.context, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                 return writer;
             };
@@ -9957,7 +9957,7 @@ $root.messages = (function() {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
-                        message.status = $root.google.rpc.Status.decode(reader, reader.uint32());
+                        message.status = $root.messages.notebook.Status.decode(reader, reader.uint32());
                         break;
                     case 2:
                         message.context = $root.messages.notebook.ResponseContext.decode(reader, reader.uint32());
@@ -9998,7 +9998,7 @@ $root.messages = (function() {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
                 if (message.status != null && message.hasOwnProperty("status")) {
-                    var error = $root.google.rpc.Status.verify(message.status);
+                    var error = $root.messages.notebook.Status.verify(message.status);
                     if (error)
                         return "status." + error;
                 }
@@ -10025,7 +10025,7 @@ $root.messages = (function() {
                 if (object.status != null) {
                     if (typeof object.status !== "object")
                         throw TypeError(".messages.notebook.ErrorResponse.status: object expected");
-                    message.status = $root.google.rpc.Status.fromObject(object.status);
+                    message.status = $root.messages.notebook.Status.fromObject(object.status);
                 }
                 if (object.context != null) {
                     if (typeof object.context !== "object")
@@ -10053,7 +10053,7 @@ $root.messages = (function() {
                     object.context = null;
                 }
                 if (message.status != null && message.hasOwnProperty("status"))
-                    object.status = $root.google.rpc.Status.toObject(message.status, options);
+                    object.status = $root.messages.notebook.Status.toObject(message.status, options);
                 if (message.context != null && message.hasOwnProperty("context"))
                     object.context = $root.messages.notebook.ResponseContext.toObject(message.context, options);
                 return object;
@@ -10138,9 +10138,9 @@ $root.messages = (function() {
             ReadEntryRequest.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.context != null && message.hasOwnProperty("context"))
+                if (message.context != null && Object.hasOwnProperty.call(message, "context"))
                     $root.messages.notebook.RequestContext.encode(message.context, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                if (message.payload != null && message.hasOwnProperty("payload"))
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
                     $root.messages.notebook.ReadEntryRequest.Payload.encode(message.payload, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                 return writer;
             };
@@ -10346,7 +10346,7 @@ $root.messages = (function() {
                 Payload.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    if (message.id != null && message.hasOwnProperty("id"))
+                    if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
                     return writer;
                 };
@@ -10486,7 +10486,7 @@ $root.messages = (function() {
              * Properties of a ReadEntryResponse.
              * @memberof messages.notebook
              * @interface IReadEntryResponse
-             * @property {google.rpc.IStatus|null} [status] ReadEntryResponse status
+             * @property {messages.notebook.IStatus|null} [status] ReadEntryResponse status
              * @property {messages.notebook.IResponseContext|null} [context] ReadEntryResponse context
              * @property {messages.notebook.ReadEntryResponse.IPayload|null} [payload] ReadEntryResponse payload
              */
@@ -10508,7 +10508,7 @@ $root.messages = (function() {
 
             /**
              * ReadEntryResponse status.
-             * @member {google.rpc.IStatus|null|undefined} status
+             * @member {messages.notebook.IStatus|null|undefined} status
              * @memberof messages.notebook.ReadEntryResponse
              * @instance
              */
@@ -10554,11 +10554,11 @@ $root.messages = (function() {
             ReadEntryResponse.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.status != null && message.hasOwnProperty("status"))
-                    $root.google.rpc.Status.encode(message.status, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                if (message.context != null && message.hasOwnProperty("context"))
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                    $root.messages.notebook.Status.encode(message.status, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                if (message.context != null && Object.hasOwnProperty.call(message, "context"))
                     $root.messages.notebook.ResponseContext.encode(message.context, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-                if (message.payload != null && message.hasOwnProperty("payload"))
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
                     $root.messages.notebook.ReadEntryResponse.Payload.encode(message.payload, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
                 return writer;
             };
@@ -10595,7 +10595,7 @@ $root.messages = (function() {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
-                        message.status = $root.google.rpc.Status.decode(reader, reader.uint32());
+                        message.status = $root.messages.notebook.Status.decode(reader, reader.uint32());
                         break;
                     case 2:
                         message.context = $root.messages.notebook.ResponseContext.decode(reader, reader.uint32());
@@ -10639,7 +10639,7 @@ $root.messages = (function() {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
                 if (message.status != null && message.hasOwnProperty("status")) {
-                    var error = $root.google.rpc.Status.verify(message.status);
+                    var error = $root.messages.notebook.Status.verify(message.status);
                     if (error)
                         return "status." + error;
                 }
@@ -10671,7 +10671,7 @@ $root.messages = (function() {
                 if (object.status != null) {
                     if (typeof object.status !== "object")
                         throw TypeError(".messages.notebook.ReadEntryResponse.status: object expected");
-                    message.status = $root.google.rpc.Status.fromObject(object.status);
+                    message.status = $root.messages.notebook.Status.fromObject(object.status);
                 }
                 if (object.context != null) {
                     if (typeof object.context !== "object")
@@ -10705,7 +10705,7 @@ $root.messages = (function() {
                     object.payload = null;
                 }
                 if (message.status != null && message.hasOwnProperty("status"))
-                    object.status = $root.google.rpc.Status.toObject(message.status, options);
+                    object.status = $root.messages.notebook.Status.toObject(message.status, options);
                 if (message.context != null && message.hasOwnProperty("context"))
                     object.context = $root.messages.notebook.ResponseContext.toObject(message.context, options);
                 if (message.payload != null && message.hasOwnProperty("payload"))
@@ -10816,15 +10816,15 @@ $root.messages = (function() {
                 Payload.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    if (message.id != null && message.hasOwnProperty("id"))
+                    if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
-                    if (message.text != null && message.hasOwnProperty("text"))
+                    if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                         writer.uint32(/* id 2, wireType 2 =*/18).string(message.text);
-                    if (message.creatorId != null && message.hasOwnProperty("creatorId"))
+                    if (message.creatorId != null && Object.hasOwnProperty.call(message, "creatorId"))
                         writer.uint32(/* id 3, wireType 2 =*/26).string(message.creatorId);
-                    if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                    if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
                         $root.google.protobuf.Timestamp.encode(message.createdAt, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
-                    if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                    if (message.updatedAt != null && Object.hasOwnProperty.call(message, "updatedAt"))
                         $root.messages.notebook.NullableTimestamp.encode(message.updatedAt, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
                     return writer;
                 };
@@ -11078,9 +11078,9 @@ $root.messages = (function() {
             StartNewEntryRequest.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.context != null && message.hasOwnProperty("context"))
+                if (message.context != null && Object.hasOwnProperty.call(message, "context"))
                     $root.messages.notebook.RequestContext.encode(message.context, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                if (message.payload != null && message.hasOwnProperty("payload"))
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
                     $root.messages.notebook.StartNewEntryRequest.Payload.encode(message.payload, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                 return writer;
             };
@@ -11286,7 +11286,7 @@ $root.messages = (function() {
                 Payload.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    if (message.creatorId != null && message.hasOwnProperty("creatorId"))
+                    if (message.creatorId != null && Object.hasOwnProperty.call(message, "creatorId"))
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.creatorId);
                     return writer;
                 };
@@ -11426,7 +11426,7 @@ $root.messages = (function() {
              * Properties of a StartNewEntryResponse.
              * @memberof messages.notebook
              * @interface IStartNewEntryResponse
-             * @property {google.rpc.IStatus|null} [status] StartNewEntryResponse status
+             * @property {messages.notebook.IStatus|null} [status] StartNewEntryResponse status
              * @property {messages.notebook.IResponseContext|null} [context] StartNewEntryResponse context
              * @property {messages.notebook.StartNewEntryResponse.IPayload|null} [payload] StartNewEntryResponse payload
              */
@@ -11448,7 +11448,7 @@ $root.messages = (function() {
 
             /**
              * StartNewEntryResponse status.
-             * @member {google.rpc.IStatus|null|undefined} status
+             * @member {messages.notebook.IStatus|null|undefined} status
              * @memberof messages.notebook.StartNewEntryResponse
              * @instance
              */
@@ -11494,11 +11494,11 @@ $root.messages = (function() {
             StartNewEntryResponse.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.status != null && message.hasOwnProperty("status"))
-                    $root.google.rpc.Status.encode(message.status, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                if (message.context != null && message.hasOwnProperty("context"))
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                    $root.messages.notebook.Status.encode(message.status, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                if (message.context != null && Object.hasOwnProperty.call(message, "context"))
                     $root.messages.notebook.ResponseContext.encode(message.context, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-                if (message.payload != null && message.hasOwnProperty("payload"))
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
                     $root.messages.notebook.StartNewEntryResponse.Payload.encode(message.payload, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
                 return writer;
             };
@@ -11535,7 +11535,7 @@ $root.messages = (function() {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
-                        message.status = $root.google.rpc.Status.decode(reader, reader.uint32());
+                        message.status = $root.messages.notebook.Status.decode(reader, reader.uint32());
                         break;
                     case 2:
                         message.context = $root.messages.notebook.ResponseContext.decode(reader, reader.uint32());
@@ -11579,7 +11579,7 @@ $root.messages = (function() {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
                 if (message.status != null && message.hasOwnProperty("status")) {
-                    var error = $root.google.rpc.Status.verify(message.status);
+                    var error = $root.messages.notebook.Status.verify(message.status);
                     if (error)
                         return "status." + error;
                 }
@@ -11611,7 +11611,7 @@ $root.messages = (function() {
                 if (object.status != null) {
                     if (typeof object.status !== "object")
                         throw TypeError(".messages.notebook.StartNewEntryResponse.status: object expected");
-                    message.status = $root.google.rpc.Status.fromObject(object.status);
+                    message.status = $root.messages.notebook.Status.fromObject(object.status);
                 }
                 if (object.context != null) {
                     if (typeof object.context !== "object")
@@ -11645,7 +11645,7 @@ $root.messages = (function() {
                     object.payload = null;
                 }
                 if (message.status != null && message.hasOwnProperty("status"))
-                    object.status = $root.google.rpc.Status.toObject(message.status, options);
+                    object.status = $root.messages.notebook.Status.toObject(message.status, options);
                 if (message.context != null && message.hasOwnProperty("context"))
                     object.context = $root.messages.notebook.ResponseContext.toObject(message.context, options);
                 if (message.payload != null && message.hasOwnProperty("payload"))
@@ -11720,7 +11720,7 @@ $root.messages = (function() {
                 Payload.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    if (message.id != null && message.hasOwnProperty("id"))
+                    if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
                     return writer;
                 };
@@ -11919,9 +11919,9 @@ $root.messages = (function() {
             ChangeEntryRequest.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.context != null && message.hasOwnProperty("context"))
+                if (message.context != null && Object.hasOwnProperty.call(message, "context"))
                     $root.messages.notebook.RequestContext.encode(message.context, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                if (message.payload != null && message.hasOwnProperty("payload"))
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
                     $root.messages.notebook.ChangeEntryRequest.Payload.encode(message.payload, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                 return writer;
             };
@@ -12136,9 +12136,9 @@ $root.messages = (function() {
                 Payload.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    if (message.id != null && message.hasOwnProperty("id"))
+                    if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
-                    if (message.text != null && message.hasOwnProperty("text"))
+                    if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                         writer.uint32(/* id 2, wireType 2 =*/18).string(message.text);
                     return writer;
                 };
@@ -12290,7 +12290,7 @@ $root.messages = (function() {
              * Properties of a ChangeEntryResponse.
              * @memberof messages.notebook
              * @interface IChangeEntryResponse
-             * @property {google.rpc.IStatus|null} [status] ChangeEntryResponse status
+             * @property {messages.notebook.IStatus|null} [status] ChangeEntryResponse status
              * @property {messages.notebook.IResponseContext|null} [context] ChangeEntryResponse context
              * @property {messages.notebook.ChangeEntryResponse.IPayload|null} [payload] ChangeEntryResponse payload
              */
@@ -12312,7 +12312,7 @@ $root.messages = (function() {
 
             /**
              * ChangeEntryResponse status.
-             * @member {google.rpc.IStatus|null|undefined} status
+             * @member {messages.notebook.IStatus|null|undefined} status
              * @memberof messages.notebook.ChangeEntryResponse
              * @instance
              */
@@ -12358,11 +12358,11 @@ $root.messages = (function() {
             ChangeEntryResponse.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.status != null && message.hasOwnProperty("status"))
-                    $root.google.rpc.Status.encode(message.status, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                if (message.context != null && message.hasOwnProperty("context"))
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                    $root.messages.notebook.Status.encode(message.status, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                if (message.context != null && Object.hasOwnProperty.call(message, "context"))
                     $root.messages.notebook.ResponseContext.encode(message.context, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-                if (message.payload != null && message.hasOwnProperty("payload"))
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
                     $root.messages.notebook.ChangeEntryResponse.Payload.encode(message.payload, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
                 return writer;
             };
@@ -12399,7 +12399,7 @@ $root.messages = (function() {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
-                        message.status = $root.google.rpc.Status.decode(reader, reader.uint32());
+                        message.status = $root.messages.notebook.Status.decode(reader, reader.uint32());
                         break;
                     case 2:
                         message.context = $root.messages.notebook.ResponseContext.decode(reader, reader.uint32());
@@ -12443,7 +12443,7 @@ $root.messages = (function() {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
                 if (message.status != null && message.hasOwnProperty("status")) {
-                    var error = $root.google.rpc.Status.verify(message.status);
+                    var error = $root.messages.notebook.Status.verify(message.status);
                     if (error)
                         return "status." + error;
                 }
@@ -12475,7 +12475,7 @@ $root.messages = (function() {
                 if (object.status != null) {
                     if (typeof object.status !== "object")
                         throw TypeError(".messages.notebook.ChangeEntryResponse.status: object expected");
-                    message.status = $root.google.rpc.Status.fromObject(object.status);
+                    message.status = $root.messages.notebook.Status.fromObject(object.status);
                 }
                 if (object.context != null) {
                     if (typeof object.context !== "object")
@@ -12509,7 +12509,7 @@ $root.messages = (function() {
                     object.payload = null;
                 }
                 if (message.status != null && message.hasOwnProperty("status"))
-                    object.status = $root.google.rpc.Status.toObject(message.status, options);
+                    object.status = $root.messages.notebook.Status.toObject(message.status, options);
                 if (message.context != null && message.hasOwnProperty("context"))
                     object.context = $root.messages.notebook.ResponseContext.toObject(message.context, options);
                 if (message.payload != null && message.hasOwnProperty("payload"))
@@ -12602,11 +12602,11 @@ $root.messages = (function() {
                 Payload.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    if (message.id != null && message.hasOwnProperty("id"))
+                    if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
-                    if (message.text != null && message.hasOwnProperty("text"))
+                    if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                         writer.uint32(/* id 2, wireType 2 =*/18).string(message.text);
-                    if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                    if (message.updatedAt != null && Object.hasOwnProperty.call(message, "updatedAt"))
                         $root.google.protobuf.Timestamp.encode(message.updatedAt, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
                     return writer;
                 };
@@ -12833,9 +12833,9 @@ $root.messages = (function() {
             ListEntriesRequest.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.context != null && message.hasOwnProperty("context"))
+                if (message.context != null && Object.hasOwnProperty.call(message, "context"))
                     $root.messages.notebook.RequestContext.encode(message.context, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                if (message.payload != null && message.hasOwnProperty("payload"))
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
                     $root.messages.notebook.ListEntriesRequest.Payload.encode(message.payload, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                 return writer;
             };
@@ -13059,11 +13059,11 @@ $root.messages = (function() {
                 Payload.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    if (message.first != null && message.hasOwnProperty("first"))
+                    if (message.first != null && Object.hasOwnProperty.call(message, "first"))
                         writer.uint32(/* id 1, wireType 0 =*/8).int32(message.first);
-                    if (message.after != null && message.hasOwnProperty("after"))
+                    if (message.after != null && Object.hasOwnProperty.call(message, "after"))
                         writer.uint32(/* id 2, wireType 2 =*/18).string(message.after);
-                    if (message.creatorId != null && message.hasOwnProperty("creatorId"))
+                    if (message.creatorId != null && Object.hasOwnProperty.call(message, "creatorId"))
                         writer.uint32(/* id 3, wireType 2 =*/26).string(message.creatorId);
                     return writer;
                 };
@@ -13226,7 +13226,7 @@ $root.messages = (function() {
              * Properties of a ListEntriesResponse.
              * @memberof messages.notebook
              * @interface IListEntriesResponse
-             * @property {google.rpc.IStatus|null} [status] ListEntriesResponse status
+             * @property {messages.notebook.IStatus|null} [status] ListEntriesResponse status
              * @property {messages.notebook.IResponseContext|null} [context] ListEntriesResponse context
              * @property {messages.notebook.ListEntriesResponse.IPayload|null} [payload] ListEntriesResponse payload
              */
@@ -13248,7 +13248,7 @@ $root.messages = (function() {
 
             /**
              * ListEntriesResponse status.
-             * @member {google.rpc.IStatus|null|undefined} status
+             * @member {messages.notebook.IStatus|null|undefined} status
              * @memberof messages.notebook.ListEntriesResponse
              * @instance
              */
@@ -13294,11 +13294,11 @@ $root.messages = (function() {
             ListEntriesResponse.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.status != null && message.hasOwnProperty("status"))
-                    $root.google.rpc.Status.encode(message.status, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                if (message.context != null && message.hasOwnProperty("context"))
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                    $root.messages.notebook.Status.encode(message.status, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                if (message.context != null && Object.hasOwnProperty.call(message, "context"))
                     $root.messages.notebook.ResponseContext.encode(message.context, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-                if (message.payload != null && message.hasOwnProperty("payload"))
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
                     $root.messages.notebook.ListEntriesResponse.Payload.encode(message.payload, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
                 return writer;
             };
@@ -13335,7 +13335,7 @@ $root.messages = (function() {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
-                        message.status = $root.google.rpc.Status.decode(reader, reader.uint32());
+                        message.status = $root.messages.notebook.Status.decode(reader, reader.uint32());
                         break;
                     case 2:
                         message.context = $root.messages.notebook.ResponseContext.decode(reader, reader.uint32());
@@ -13379,7 +13379,7 @@ $root.messages = (function() {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
                 if (message.status != null && message.hasOwnProperty("status")) {
-                    var error = $root.google.rpc.Status.verify(message.status);
+                    var error = $root.messages.notebook.Status.verify(message.status);
                     if (error)
                         return "status." + error;
                 }
@@ -13411,7 +13411,7 @@ $root.messages = (function() {
                 if (object.status != null) {
                     if (typeof object.status !== "object")
                         throw TypeError(".messages.notebook.ListEntriesResponse.status: object expected");
-                    message.status = $root.google.rpc.Status.fromObject(object.status);
+                    message.status = $root.messages.notebook.Status.fromObject(object.status);
                 }
                 if (object.context != null) {
                     if (typeof object.context !== "object")
@@ -13445,7 +13445,7 @@ $root.messages = (function() {
                     object.payload = null;
                 }
                 if (message.status != null && message.hasOwnProperty("status"))
-                    object.status = $root.google.rpc.Status.toObject(message.status, options);
+                    object.status = $root.messages.notebook.Status.toObject(message.status, options);
                 if (message.context != null && message.hasOwnProperty("context"))
                     object.context = $root.messages.notebook.ResponseContext.toObject(message.context, options);
                 if (message.payload != null && message.hasOwnProperty("payload"))
@@ -13547,13 +13547,13 @@ $root.messages = (function() {
                 PageInfo.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    if (message.totalCount != null && message.hasOwnProperty("totalCount"))
+                    if (message.totalCount != null && Object.hasOwnProperty.call(message, "totalCount"))
                         writer.uint32(/* id 1, wireType 0 =*/8).int32(message.totalCount);
-                    if (message.hasNextPage != null && message.hasOwnProperty("hasNextPage"))
+                    if (message.hasNextPage != null && Object.hasOwnProperty.call(message, "hasNextPage"))
                         writer.uint32(/* id 2, wireType 0 =*/16).bool(message.hasNextPage);
-                    if (message.startCursor != null && message.hasOwnProperty("startCursor"))
+                    if (message.startCursor != null && Object.hasOwnProperty.call(message, "startCursor"))
                         writer.uint32(/* id 3, wireType 2 =*/26).string(message.startCursor);
-                    if (message.endCursor != null && message.hasOwnProperty("endCursor"))
+                    if (message.endCursor != null && Object.hasOwnProperty.call(message, "endCursor"))
                         writer.uint32(/* id 4, wireType 2 =*/34).string(message.endCursor);
                     return writer;
                 };
@@ -13810,15 +13810,15 @@ $root.messages = (function() {
                 Entry.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    if (message.id != null && message.hasOwnProperty("id"))
+                    if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
-                    if (message.text != null && message.hasOwnProperty("text"))
+                    if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                         writer.uint32(/* id 2, wireType 2 =*/18).string(message.text);
-                    if (message.creatorId != null && message.hasOwnProperty("creatorId"))
+                    if (message.creatorId != null && Object.hasOwnProperty.call(message, "creatorId"))
                         writer.uint32(/* id 3, wireType 2 =*/26).string(message.creatorId);
-                    if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                    if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
                         $root.google.protobuf.Timestamp.encode(message.createdAt, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
-                    if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                    if (message.updatedAt != null && Object.hasOwnProperty.call(message, "updatedAt"))
                         $root.messages.notebook.NullableTimestamp.encode(message.updatedAt, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
                     return writer;
                 };
@@ -14073,7 +14073,7 @@ $root.messages = (function() {
                     if (message.entries != null && message.entries.length)
                         for (var i = 0; i < message.entries.length; ++i)
                             $root.messages.notebook.ListEntriesResponse.Entry.encode(message.entries[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                    if (message.pageInfo != null && message.hasOwnProperty("pageInfo"))
+                    if (message.pageInfo != null && Object.hasOwnProperty.call(message, "pageInfo"))
                         $root.messages.notebook.ListEntriesResponse.PageInfo.encode(message.pageInfo, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                     return writer;
                 };
@@ -14308,9 +14308,9 @@ $root.messages = (function() {
             DiscardEntryRequest.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.context != null && message.hasOwnProperty("context"))
+                if (message.context != null && Object.hasOwnProperty.call(message, "context"))
                     $root.messages.notebook.RequestContext.encode(message.context, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                if (message.payload != null && message.hasOwnProperty("payload"))
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
                     $root.messages.notebook.DiscardEntryRequest.Payload.encode(message.payload, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                 return writer;
             };
@@ -14516,7 +14516,7 @@ $root.messages = (function() {
                 Payload.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    if (message.id != null && message.hasOwnProperty("id"))
+                    if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
                     return writer;
                 };
@@ -14656,7 +14656,7 @@ $root.messages = (function() {
              * Properties of a DiscardEntryResponse.
              * @memberof messages.notebook
              * @interface IDiscardEntryResponse
-             * @property {google.rpc.IStatus|null} [status] DiscardEntryResponse status
+             * @property {messages.notebook.IStatus|null} [status] DiscardEntryResponse status
              * @property {messages.notebook.IResponseContext|null} [context] DiscardEntryResponse context
              */
 
@@ -14677,7 +14677,7 @@ $root.messages = (function() {
 
             /**
              * DiscardEntryResponse status.
-             * @member {google.rpc.IStatus|null|undefined} status
+             * @member {messages.notebook.IStatus|null|undefined} status
              * @memberof messages.notebook.DiscardEntryResponse
              * @instance
              */
@@ -14715,9 +14715,9 @@ $root.messages = (function() {
             DiscardEntryResponse.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.status != null && message.hasOwnProperty("status"))
-                    $root.google.rpc.Status.encode(message.status, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                if (message.context != null && message.hasOwnProperty("context"))
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                    $root.messages.notebook.Status.encode(message.status, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                if (message.context != null && Object.hasOwnProperty.call(message, "context"))
                     $root.messages.notebook.ResponseContext.encode(message.context, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                 return writer;
             };
@@ -14754,7 +14754,7 @@ $root.messages = (function() {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
-                        message.status = $root.google.rpc.Status.decode(reader, reader.uint32());
+                        message.status = $root.messages.notebook.Status.decode(reader, reader.uint32());
                         break;
                     case 2:
                         message.context = $root.messages.notebook.ResponseContext.decode(reader, reader.uint32());
@@ -14795,7 +14795,7 @@ $root.messages = (function() {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
                 if (message.status != null && message.hasOwnProperty("status")) {
-                    var error = $root.google.rpc.Status.verify(message.status);
+                    var error = $root.messages.notebook.Status.verify(message.status);
                     if (error)
                         return "status." + error;
                 }
@@ -14822,7 +14822,7 @@ $root.messages = (function() {
                 if (object.status != null) {
                     if (typeof object.status !== "object")
                         throw TypeError(".messages.notebook.DiscardEntryResponse.status: object expected");
-                    message.status = $root.google.rpc.Status.fromObject(object.status);
+                    message.status = $root.messages.notebook.Status.fromObject(object.status);
                 }
                 if (object.context != null) {
                     if (typeof object.context !== "object")
@@ -14850,7 +14850,7 @@ $root.messages = (function() {
                     object.context = null;
                 }
                 if (message.status != null && message.hasOwnProperty("status"))
-                    object.status = $root.google.rpc.Status.toObject(message.status, options);
+                    object.status = $root.messages.notebook.Status.toObject(message.status, options);
                 if (message.context != null && message.hasOwnProperty("context"))
                     object.context = $root.messages.notebook.ResponseContext.toObject(message.context, options);
                 return object;
@@ -14935,9 +14935,9 @@ $root.messages = (function() {
             InfoEntryCreated.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.context != null && message.hasOwnProperty("context"))
+                if (message.context != null && Object.hasOwnProperty.call(message, "context"))
                     $root.messages.notebook.InfoContext.encode(message.context, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                if (message.payload != null && message.hasOwnProperty("payload"))
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
                     $root.messages.notebook.InfoEntryCreated.Payload.encode(message.payload, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                 return writer;
             };
@@ -15170,13 +15170,13 @@ $root.messages = (function() {
                 Payload.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    if (message.id != null && message.hasOwnProperty("id"))
+                    if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
-                    if (message.text != null && message.hasOwnProperty("text"))
+                    if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                         writer.uint32(/* id 2, wireType 2 =*/18).string(message.text);
-                    if (message.creatorId != null && message.hasOwnProperty("creatorId"))
+                    if (message.creatorId != null && Object.hasOwnProperty.call(message, "creatorId"))
                         writer.uint32(/* id 3, wireType 2 =*/26).string(message.creatorId);
-                    if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                    if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
                         $root.google.protobuf.Timestamp.encode(message.createdAt, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
                     return writer;
                 };
@@ -15414,9 +15414,9 @@ $root.messages = (function() {
             InfoEntryUpdated.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.context != null && message.hasOwnProperty("context"))
+                if (message.context != null && Object.hasOwnProperty.call(message, "context"))
                     $root.messages.notebook.InfoContext.encode(message.context, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                if (message.payload != null && message.hasOwnProperty("payload"))
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
                     $root.messages.notebook.InfoEntryUpdated.Payload.encode(message.payload, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                 return writer;
             };
@@ -15658,15 +15658,15 @@ $root.messages = (function() {
                 Payload.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    if (message.id != null && message.hasOwnProperty("id"))
+                    if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
-                    if (message.text != null && message.hasOwnProperty("text"))
+                    if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                         writer.uint32(/* id 2, wireType 2 =*/18).string(message.text);
-                    if (message.creatorId != null && message.hasOwnProperty("creatorId"))
+                    if (message.creatorId != null && Object.hasOwnProperty.call(message, "creatorId"))
                         writer.uint32(/* id 3, wireType 2 =*/26).string(message.creatorId);
-                    if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                    if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
                         $root.google.protobuf.Timestamp.encode(message.createdAt, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
-                    if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                    if (message.updatedAt != null && Object.hasOwnProperty.call(message, "updatedAt"))
                         $root.google.protobuf.Timestamp.encode(message.updatedAt, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
                     return writer;
                 };
@@ -15920,9 +15920,9 @@ $root.messages = (function() {
             InfoEntryDeleted.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.context != null && message.hasOwnProperty("context"))
+                if (message.context != null && Object.hasOwnProperty.call(message, "context"))
                     $root.messages.notebook.InfoContext.encode(message.context, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                if (message.payload != null && message.hasOwnProperty("payload"))
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
                     $root.messages.notebook.InfoEntryDeleted.Payload.encode(message.payload, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                 return writer;
             };
@@ -16164,15 +16164,15 @@ $root.messages = (function() {
                 Payload.encode = function encode(message, writer) {
                     if (!writer)
                         writer = $Writer.create();
-                    if (message.id != null && message.hasOwnProperty("id"))
+                    if (message.id != null && Object.hasOwnProperty.call(message, "id"))
                         writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
-                    if (message.text != null && message.hasOwnProperty("text"))
+                    if (message.text != null && Object.hasOwnProperty.call(message, "text"))
                         writer.uint32(/* id 2, wireType 2 =*/18).string(message.text);
-                    if (message.creatorId != null && message.hasOwnProperty("creatorId"))
+                    if (message.creatorId != null && Object.hasOwnProperty.call(message, "creatorId"))
                         writer.uint32(/* id 3, wireType 2 =*/26).string(message.creatorId);
-                    if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                    if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
                         $root.google.protobuf.Timestamp.encode(message.createdAt, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
-                    if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                    if (message.updatedAt != null && Object.hasOwnProperty.call(message, "updatedAt"))
                         $root.messages.notebook.NullableTimestamp.encode(message.updatedAt, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
                     return writer;
                 };
@@ -16361,6 +16361,2032 @@ $root.messages = (function() {
             return InfoEntryDeleted;
         })();
 
+        notebook.ReadEntryGRPCRequest = (function() {
+
+            /**
+             * Properties of a ReadEntryGRPCRequest.
+             * @memberof messages.notebook
+             * @interface IReadEntryGRPCRequest
+             * @property {messages.notebook.IPrincipal|null} [principal] ReadEntryGRPCRequest principal
+             * @property {messages.notebook.ReadEntryGRPCRequest.IPayload|null} [payload] ReadEntryGRPCRequest payload
+             */
+
+            /**
+             * Constructs a new ReadEntryGRPCRequest.
+             * @memberof messages.notebook
+             * @classdesc Represents a ReadEntryGRPCRequest.
+             * @implements IReadEntryGRPCRequest
+             * @constructor
+             * @param {messages.notebook.IReadEntryGRPCRequest=} [properties] Properties to set
+             */
+            function ReadEntryGRPCRequest(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * ReadEntryGRPCRequest principal.
+             * @member {messages.notebook.IPrincipal|null|undefined} principal
+             * @memberof messages.notebook.ReadEntryGRPCRequest
+             * @instance
+             */
+            ReadEntryGRPCRequest.prototype.principal = null;
+
+            /**
+             * ReadEntryGRPCRequest payload.
+             * @member {messages.notebook.ReadEntryGRPCRequest.IPayload|null|undefined} payload
+             * @memberof messages.notebook.ReadEntryGRPCRequest
+             * @instance
+             */
+            ReadEntryGRPCRequest.prototype.payload = null;
+
+            /**
+             * Creates a new ReadEntryGRPCRequest instance using the specified properties.
+             * @function create
+             * @memberof messages.notebook.ReadEntryGRPCRequest
+             * @static
+             * @param {messages.notebook.IReadEntryGRPCRequest=} [properties] Properties to set
+             * @returns {messages.notebook.ReadEntryGRPCRequest} ReadEntryGRPCRequest instance
+             */
+            ReadEntryGRPCRequest.create = function create(properties) {
+                return new ReadEntryGRPCRequest(properties);
+            };
+
+            /**
+             * Encodes the specified ReadEntryGRPCRequest message. Does not implicitly {@link messages.notebook.ReadEntryGRPCRequest.verify|verify} messages.
+             * @function encode
+             * @memberof messages.notebook.ReadEntryGRPCRequest
+             * @static
+             * @param {messages.notebook.IReadEntryGRPCRequest} message ReadEntryGRPCRequest message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReadEntryGRPCRequest.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.principal != null && Object.hasOwnProperty.call(message, "principal"))
+                    $root.messages.notebook.Principal.encode(message.principal, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
+                    $root.messages.notebook.ReadEntryGRPCRequest.Payload.encode(message.payload, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                return writer;
+            };
+
+            /**
+             * Encodes the specified ReadEntryGRPCRequest message, length delimited. Does not implicitly {@link messages.notebook.ReadEntryGRPCRequest.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof messages.notebook.ReadEntryGRPCRequest
+             * @static
+             * @param {messages.notebook.IReadEntryGRPCRequest} message ReadEntryGRPCRequest message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReadEntryGRPCRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a ReadEntryGRPCRequest message from the specified reader or buffer.
+             * @function decode
+             * @memberof messages.notebook.ReadEntryGRPCRequest
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {messages.notebook.ReadEntryGRPCRequest} ReadEntryGRPCRequest
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReadEntryGRPCRequest.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.messages.notebook.ReadEntryGRPCRequest();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1:
+                        message.principal = $root.messages.notebook.Principal.decode(reader, reader.uint32());
+                        break;
+                    case 2:
+                        message.payload = $root.messages.notebook.ReadEntryGRPCRequest.Payload.decode(reader, reader.uint32());
+                        break;
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a ReadEntryGRPCRequest message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof messages.notebook.ReadEntryGRPCRequest
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {messages.notebook.ReadEntryGRPCRequest} ReadEntryGRPCRequest
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReadEntryGRPCRequest.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a ReadEntryGRPCRequest message.
+             * @function verify
+             * @memberof messages.notebook.ReadEntryGRPCRequest
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ReadEntryGRPCRequest.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.principal != null && message.hasOwnProperty("principal")) {
+                    var error = $root.messages.notebook.Principal.verify(message.principal);
+                    if (error)
+                        return "principal." + error;
+                }
+                if (message.payload != null && message.hasOwnProperty("payload")) {
+                    var error = $root.messages.notebook.ReadEntryGRPCRequest.Payload.verify(message.payload);
+                    if (error)
+                        return "payload." + error;
+                }
+                return null;
+            };
+
+            /**
+             * Creates a ReadEntryGRPCRequest message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof messages.notebook.ReadEntryGRPCRequest
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {messages.notebook.ReadEntryGRPCRequest} ReadEntryGRPCRequest
+             */
+            ReadEntryGRPCRequest.fromObject = function fromObject(object) {
+                if (object instanceof $root.messages.notebook.ReadEntryGRPCRequest)
+                    return object;
+                var message = new $root.messages.notebook.ReadEntryGRPCRequest();
+                if (object.principal != null) {
+                    if (typeof object.principal !== "object")
+                        throw TypeError(".messages.notebook.ReadEntryGRPCRequest.principal: object expected");
+                    message.principal = $root.messages.notebook.Principal.fromObject(object.principal);
+                }
+                if (object.payload != null) {
+                    if (typeof object.payload !== "object")
+                        throw TypeError(".messages.notebook.ReadEntryGRPCRequest.payload: object expected");
+                    message.payload = $root.messages.notebook.ReadEntryGRPCRequest.Payload.fromObject(object.payload);
+                }
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a ReadEntryGRPCRequest message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof messages.notebook.ReadEntryGRPCRequest
+             * @static
+             * @param {messages.notebook.ReadEntryGRPCRequest} message ReadEntryGRPCRequest
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ReadEntryGRPCRequest.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.principal = null;
+                    object.payload = null;
+                }
+                if (message.principal != null && message.hasOwnProperty("principal"))
+                    object.principal = $root.messages.notebook.Principal.toObject(message.principal, options);
+                if (message.payload != null && message.hasOwnProperty("payload"))
+                    object.payload = $root.messages.notebook.ReadEntryGRPCRequest.Payload.toObject(message.payload, options);
+                return object;
+            };
+
+            /**
+             * Converts this ReadEntryGRPCRequest to JSON.
+             * @function toJSON
+             * @memberof messages.notebook.ReadEntryGRPCRequest
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ReadEntryGRPCRequest.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            ReadEntryGRPCRequest.Payload = (function() {
+
+                /**
+                 * Properties of a Payload.
+                 * @memberof messages.notebook.ReadEntryGRPCRequest
+                 * @interface IPayload
+                 * @property {string|null} [id] Payload id
+                 */
+
+                /**
+                 * Constructs a new Payload.
+                 * @memberof messages.notebook.ReadEntryGRPCRequest
+                 * @classdesc Represents a Payload.
+                 * @implements IPayload
+                 * @constructor
+                 * @param {messages.notebook.ReadEntryGRPCRequest.IPayload=} [properties] Properties to set
+                 */
+                function Payload(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * Payload id.
+                 * @member {string} id
+                 * @memberof messages.notebook.ReadEntryGRPCRequest.Payload
+                 * @instance
+                 */
+                Payload.prototype.id = "";
+
+                /**
+                 * Creates a new Payload instance using the specified properties.
+                 * @function create
+                 * @memberof messages.notebook.ReadEntryGRPCRequest.Payload
+                 * @static
+                 * @param {messages.notebook.ReadEntryGRPCRequest.IPayload=} [properties] Properties to set
+                 * @returns {messages.notebook.ReadEntryGRPCRequest.Payload} Payload instance
+                 */
+                Payload.create = function create(properties) {
+                    return new Payload(properties);
+                };
+
+                /**
+                 * Encodes the specified Payload message. Does not implicitly {@link messages.notebook.ReadEntryGRPCRequest.Payload.verify|verify} messages.
+                 * @function encode
+                 * @memberof messages.notebook.ReadEntryGRPCRequest.Payload
+                 * @static
+                 * @param {messages.notebook.ReadEntryGRPCRequest.IPayload} message Payload message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                Payload.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified Payload message, length delimited. Does not implicitly {@link messages.notebook.ReadEntryGRPCRequest.Payload.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof messages.notebook.ReadEntryGRPCRequest.Payload
+                 * @static
+                 * @param {messages.notebook.ReadEntryGRPCRequest.IPayload} message Payload message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                Payload.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+
+                /**
+                 * Decodes a Payload message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof messages.notebook.ReadEntryGRPCRequest.Payload
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {messages.notebook.ReadEntryGRPCRequest.Payload} Payload
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                Payload.decode = function decode(reader, length) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.messages.notebook.ReadEntryGRPCRequest.Payload();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        switch (tag >>> 3) {
+                        case 1:
+                            message.id = reader.string();
+                            break;
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Decodes a Payload message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof messages.notebook.ReadEntryGRPCRequest.Payload
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {messages.notebook.ReadEntryGRPCRequest.Payload} Payload
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                Payload.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a Payload message.
+                 * @function verify
+                 * @memberof messages.notebook.ReadEntryGRPCRequest.Payload
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                Payload.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.id != null && message.hasOwnProperty("id"))
+                        if (!$util.isString(message.id))
+                            return "id: string expected";
+                    return null;
+                };
+
+                /**
+                 * Creates a Payload message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof messages.notebook.ReadEntryGRPCRequest.Payload
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {messages.notebook.ReadEntryGRPCRequest.Payload} Payload
+                 */
+                Payload.fromObject = function fromObject(object) {
+                    if (object instanceof $root.messages.notebook.ReadEntryGRPCRequest.Payload)
+                        return object;
+                    var message = new $root.messages.notebook.ReadEntryGRPCRequest.Payload();
+                    if (object.id != null)
+                        message.id = String(object.id);
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a Payload message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof messages.notebook.ReadEntryGRPCRequest.Payload
+                 * @static
+                 * @param {messages.notebook.ReadEntryGRPCRequest.Payload} message Payload
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                Payload.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults)
+                        object.id = "";
+                    if (message.id != null && message.hasOwnProperty("id"))
+                        object.id = message.id;
+                    return object;
+                };
+
+                /**
+                 * Converts this Payload to JSON.
+                 * @function toJSON
+                 * @memberof messages.notebook.ReadEntryGRPCRequest.Payload
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                Payload.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                return Payload;
+            })();
+
+            return ReadEntryGRPCRequest;
+        })();
+
+        notebook.ReadEntryGRPCResponse = (function() {
+
+            /**
+             * Properties of a ReadEntryGRPCResponse.
+             * @memberof messages.notebook
+             * @interface IReadEntryGRPCResponse
+             * @property {messages.notebook.ReadEntryGRPCResponse.IPayload|null} [payload] ReadEntryGRPCResponse payload
+             */
+
+            /**
+             * Constructs a new ReadEntryGRPCResponse.
+             * @memberof messages.notebook
+             * @classdesc Represents a ReadEntryGRPCResponse.
+             * @implements IReadEntryGRPCResponse
+             * @constructor
+             * @param {messages.notebook.IReadEntryGRPCResponse=} [properties] Properties to set
+             */
+            function ReadEntryGRPCResponse(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * ReadEntryGRPCResponse payload.
+             * @member {messages.notebook.ReadEntryGRPCResponse.IPayload|null|undefined} payload
+             * @memberof messages.notebook.ReadEntryGRPCResponse
+             * @instance
+             */
+            ReadEntryGRPCResponse.prototype.payload = null;
+
+            /**
+             * Creates a new ReadEntryGRPCResponse instance using the specified properties.
+             * @function create
+             * @memberof messages.notebook.ReadEntryGRPCResponse
+             * @static
+             * @param {messages.notebook.IReadEntryGRPCResponse=} [properties] Properties to set
+             * @returns {messages.notebook.ReadEntryGRPCResponse} ReadEntryGRPCResponse instance
+             */
+            ReadEntryGRPCResponse.create = function create(properties) {
+                return new ReadEntryGRPCResponse(properties);
+            };
+
+            /**
+             * Encodes the specified ReadEntryGRPCResponse message. Does not implicitly {@link messages.notebook.ReadEntryGRPCResponse.verify|verify} messages.
+             * @function encode
+             * @memberof messages.notebook.ReadEntryGRPCResponse
+             * @static
+             * @param {messages.notebook.IReadEntryGRPCResponse} message ReadEntryGRPCResponse message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReadEntryGRPCResponse.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
+                    $root.messages.notebook.ReadEntryGRPCResponse.Payload.encode(message.payload, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                return writer;
+            };
+
+            /**
+             * Encodes the specified ReadEntryGRPCResponse message, length delimited. Does not implicitly {@link messages.notebook.ReadEntryGRPCResponse.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof messages.notebook.ReadEntryGRPCResponse
+             * @static
+             * @param {messages.notebook.IReadEntryGRPCResponse} message ReadEntryGRPCResponse message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReadEntryGRPCResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a ReadEntryGRPCResponse message from the specified reader or buffer.
+             * @function decode
+             * @memberof messages.notebook.ReadEntryGRPCResponse
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {messages.notebook.ReadEntryGRPCResponse} ReadEntryGRPCResponse
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReadEntryGRPCResponse.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.messages.notebook.ReadEntryGRPCResponse();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1:
+                        message.payload = $root.messages.notebook.ReadEntryGRPCResponse.Payload.decode(reader, reader.uint32());
+                        break;
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a ReadEntryGRPCResponse message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof messages.notebook.ReadEntryGRPCResponse
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {messages.notebook.ReadEntryGRPCResponse} ReadEntryGRPCResponse
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReadEntryGRPCResponse.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a ReadEntryGRPCResponse message.
+             * @function verify
+             * @memberof messages.notebook.ReadEntryGRPCResponse
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ReadEntryGRPCResponse.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.payload != null && message.hasOwnProperty("payload")) {
+                    var error = $root.messages.notebook.ReadEntryGRPCResponse.Payload.verify(message.payload);
+                    if (error)
+                        return "payload." + error;
+                }
+                return null;
+            };
+
+            /**
+             * Creates a ReadEntryGRPCResponse message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof messages.notebook.ReadEntryGRPCResponse
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {messages.notebook.ReadEntryGRPCResponse} ReadEntryGRPCResponse
+             */
+            ReadEntryGRPCResponse.fromObject = function fromObject(object) {
+                if (object instanceof $root.messages.notebook.ReadEntryGRPCResponse)
+                    return object;
+                var message = new $root.messages.notebook.ReadEntryGRPCResponse();
+                if (object.payload != null) {
+                    if (typeof object.payload !== "object")
+                        throw TypeError(".messages.notebook.ReadEntryGRPCResponse.payload: object expected");
+                    message.payload = $root.messages.notebook.ReadEntryGRPCResponse.Payload.fromObject(object.payload);
+                }
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a ReadEntryGRPCResponse message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof messages.notebook.ReadEntryGRPCResponse
+             * @static
+             * @param {messages.notebook.ReadEntryGRPCResponse} message ReadEntryGRPCResponse
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ReadEntryGRPCResponse.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.payload = null;
+                if (message.payload != null && message.hasOwnProperty("payload"))
+                    object.payload = $root.messages.notebook.ReadEntryGRPCResponse.Payload.toObject(message.payload, options);
+                return object;
+            };
+
+            /**
+             * Converts this ReadEntryGRPCResponse to JSON.
+             * @function toJSON
+             * @memberof messages.notebook.ReadEntryGRPCResponse
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ReadEntryGRPCResponse.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            ReadEntryGRPCResponse.Payload = (function() {
+
+                /**
+                 * Properties of a Payload.
+                 * @memberof messages.notebook.ReadEntryGRPCResponse
+                 * @interface IPayload
+                 * @property {string|null} [id] Payload id
+                 * @property {string|null} [text] Payload text
+                 * @property {string|null} [creatorId] Payload creatorId
+                 * @property {google.protobuf.ITimestamp|null} [createdAt] Payload createdAt
+                 * @property {google.protobuf.ITimestamp|null} [updatedAt] Payload updatedAt
+                 */
+
+                /**
+                 * Constructs a new Payload.
+                 * @memberof messages.notebook.ReadEntryGRPCResponse
+                 * @classdesc Represents a Payload.
+                 * @implements IPayload
+                 * @constructor
+                 * @param {messages.notebook.ReadEntryGRPCResponse.IPayload=} [properties] Properties to set
+                 */
+                function Payload(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * Payload id.
+                 * @member {string} id
+                 * @memberof messages.notebook.ReadEntryGRPCResponse.Payload
+                 * @instance
+                 */
+                Payload.prototype.id = "";
+
+                /**
+                 * Payload text.
+                 * @member {string} text
+                 * @memberof messages.notebook.ReadEntryGRPCResponse.Payload
+                 * @instance
+                 */
+                Payload.prototype.text = "";
+
+                /**
+                 * Payload creatorId.
+                 * @member {string} creatorId
+                 * @memberof messages.notebook.ReadEntryGRPCResponse.Payload
+                 * @instance
+                 */
+                Payload.prototype.creatorId = "";
+
+                /**
+                 * Payload createdAt.
+                 * @member {google.protobuf.ITimestamp|null|undefined} createdAt
+                 * @memberof messages.notebook.ReadEntryGRPCResponse.Payload
+                 * @instance
+                 */
+                Payload.prototype.createdAt = null;
+
+                /**
+                 * Payload updatedAt.
+                 * @member {google.protobuf.ITimestamp|null|undefined} updatedAt
+                 * @memberof messages.notebook.ReadEntryGRPCResponse.Payload
+                 * @instance
+                 */
+                Payload.prototype.updatedAt = null;
+
+                /**
+                 * Creates a new Payload instance using the specified properties.
+                 * @function create
+                 * @memberof messages.notebook.ReadEntryGRPCResponse.Payload
+                 * @static
+                 * @param {messages.notebook.ReadEntryGRPCResponse.IPayload=} [properties] Properties to set
+                 * @returns {messages.notebook.ReadEntryGRPCResponse.Payload} Payload instance
+                 */
+                Payload.create = function create(properties) {
+                    return new Payload(properties);
+                };
+
+                /**
+                 * Encodes the specified Payload message. Does not implicitly {@link messages.notebook.ReadEntryGRPCResponse.Payload.verify|verify} messages.
+                 * @function encode
+                 * @memberof messages.notebook.ReadEntryGRPCResponse.Payload
+                 * @static
+                 * @param {messages.notebook.ReadEntryGRPCResponse.IPayload} message Payload message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                Payload.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
+                    if (message.text != null && Object.hasOwnProperty.call(message, "text"))
+                        writer.uint32(/* id 2, wireType 2 =*/18).string(message.text);
+                    if (message.creatorId != null && Object.hasOwnProperty.call(message, "creatorId"))
+                        writer.uint32(/* id 3, wireType 2 =*/26).string(message.creatorId);
+                    if (message.createdAt != null && Object.hasOwnProperty.call(message, "createdAt"))
+                        $root.google.protobuf.Timestamp.encode(message.createdAt, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                    if (message.updatedAt != null && Object.hasOwnProperty.call(message, "updatedAt"))
+                        $root.google.protobuf.Timestamp.encode(message.updatedAt, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified Payload message, length delimited. Does not implicitly {@link messages.notebook.ReadEntryGRPCResponse.Payload.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof messages.notebook.ReadEntryGRPCResponse.Payload
+                 * @static
+                 * @param {messages.notebook.ReadEntryGRPCResponse.IPayload} message Payload message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                Payload.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+
+                /**
+                 * Decodes a Payload message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof messages.notebook.ReadEntryGRPCResponse.Payload
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {messages.notebook.ReadEntryGRPCResponse.Payload} Payload
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                Payload.decode = function decode(reader, length) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.messages.notebook.ReadEntryGRPCResponse.Payload();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        switch (tag >>> 3) {
+                        case 1:
+                            message.id = reader.string();
+                            break;
+                        case 2:
+                            message.text = reader.string();
+                            break;
+                        case 3:
+                            message.creatorId = reader.string();
+                            break;
+                        case 4:
+                            message.createdAt = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
+                            break;
+                        case 5:
+                            message.updatedAt = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
+                            break;
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Decodes a Payload message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof messages.notebook.ReadEntryGRPCResponse.Payload
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {messages.notebook.ReadEntryGRPCResponse.Payload} Payload
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                Payload.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a Payload message.
+                 * @function verify
+                 * @memberof messages.notebook.ReadEntryGRPCResponse.Payload
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                Payload.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.id != null && message.hasOwnProperty("id"))
+                        if (!$util.isString(message.id))
+                            return "id: string expected";
+                    if (message.text != null && message.hasOwnProperty("text"))
+                        if (!$util.isString(message.text))
+                            return "text: string expected";
+                    if (message.creatorId != null && message.hasOwnProperty("creatorId"))
+                        if (!$util.isString(message.creatorId))
+                            return "creatorId: string expected";
+                    if (message.createdAt != null && message.hasOwnProperty("createdAt")) {
+                        var error = $root.google.protobuf.Timestamp.verify(message.createdAt);
+                        if (error)
+                            return "createdAt." + error;
+                    }
+                    if (message.updatedAt != null && message.hasOwnProperty("updatedAt")) {
+                        var error = $root.google.protobuf.Timestamp.verify(message.updatedAt);
+                        if (error)
+                            return "updatedAt." + error;
+                    }
+                    return null;
+                };
+
+                /**
+                 * Creates a Payload message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof messages.notebook.ReadEntryGRPCResponse.Payload
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {messages.notebook.ReadEntryGRPCResponse.Payload} Payload
+                 */
+                Payload.fromObject = function fromObject(object) {
+                    if (object instanceof $root.messages.notebook.ReadEntryGRPCResponse.Payload)
+                        return object;
+                    var message = new $root.messages.notebook.ReadEntryGRPCResponse.Payload();
+                    if (object.id != null)
+                        message.id = String(object.id);
+                    if (object.text != null)
+                        message.text = String(object.text);
+                    if (object.creatorId != null)
+                        message.creatorId = String(object.creatorId);
+                    if (object.createdAt != null) {
+                        if (typeof object.createdAt !== "object")
+                            throw TypeError(".messages.notebook.ReadEntryGRPCResponse.Payload.createdAt: object expected");
+                        message.createdAt = $root.google.protobuf.Timestamp.fromObject(object.createdAt);
+                    }
+                    if (object.updatedAt != null) {
+                        if (typeof object.updatedAt !== "object")
+                            throw TypeError(".messages.notebook.ReadEntryGRPCResponse.Payload.updatedAt: object expected");
+                        message.updatedAt = $root.google.protobuf.Timestamp.fromObject(object.updatedAt);
+                    }
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a Payload message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof messages.notebook.ReadEntryGRPCResponse.Payload
+                 * @static
+                 * @param {messages.notebook.ReadEntryGRPCResponse.Payload} message Payload
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                Payload.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults) {
+                        object.id = "";
+                        object.text = "";
+                        object.creatorId = "";
+                        object.createdAt = null;
+                        object.updatedAt = null;
+                    }
+                    if (message.id != null && message.hasOwnProperty("id"))
+                        object.id = message.id;
+                    if (message.text != null && message.hasOwnProperty("text"))
+                        object.text = message.text;
+                    if (message.creatorId != null && message.hasOwnProperty("creatorId"))
+                        object.creatorId = message.creatorId;
+                    if (message.createdAt != null && message.hasOwnProperty("createdAt"))
+                        object.createdAt = $root.google.protobuf.Timestamp.toObject(message.createdAt, options);
+                    if (message.updatedAt != null && message.hasOwnProperty("updatedAt"))
+                        object.updatedAt = $root.google.protobuf.Timestamp.toObject(message.updatedAt, options);
+                    return object;
+                };
+
+                /**
+                 * Converts this Payload to JSON.
+                 * @function toJSON
+                 * @memberof messages.notebook.ReadEntryGRPCResponse.Payload
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                Payload.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                return Payload;
+            })();
+
+            return ReadEntryGRPCResponse;
+        })();
+
+        notebook.StartNewEntryGRPCRequest = (function() {
+
+            /**
+             * Properties of a StartNewEntryGRPCRequest.
+             * @memberof messages.notebook
+             * @interface IStartNewEntryGRPCRequest
+             * @property {messages.notebook.IPrincipal|null} [principal] StartNewEntryGRPCRequest principal
+             * @property {messages.notebook.StartNewEntryGRPCRequest.IPayload|null} [payload] StartNewEntryGRPCRequest payload
+             */
+
+            /**
+             * Constructs a new StartNewEntryGRPCRequest.
+             * @memberof messages.notebook
+             * @classdesc Represents a StartNewEntryGRPCRequest.
+             * @implements IStartNewEntryGRPCRequest
+             * @constructor
+             * @param {messages.notebook.IStartNewEntryGRPCRequest=} [properties] Properties to set
+             */
+            function StartNewEntryGRPCRequest(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * StartNewEntryGRPCRequest principal.
+             * @member {messages.notebook.IPrincipal|null|undefined} principal
+             * @memberof messages.notebook.StartNewEntryGRPCRequest
+             * @instance
+             */
+            StartNewEntryGRPCRequest.prototype.principal = null;
+
+            /**
+             * StartNewEntryGRPCRequest payload.
+             * @member {messages.notebook.StartNewEntryGRPCRequest.IPayload|null|undefined} payload
+             * @memberof messages.notebook.StartNewEntryGRPCRequest
+             * @instance
+             */
+            StartNewEntryGRPCRequest.prototype.payload = null;
+
+            /**
+             * Creates a new StartNewEntryGRPCRequest instance using the specified properties.
+             * @function create
+             * @memberof messages.notebook.StartNewEntryGRPCRequest
+             * @static
+             * @param {messages.notebook.IStartNewEntryGRPCRequest=} [properties] Properties to set
+             * @returns {messages.notebook.StartNewEntryGRPCRequest} StartNewEntryGRPCRequest instance
+             */
+            StartNewEntryGRPCRequest.create = function create(properties) {
+                return new StartNewEntryGRPCRequest(properties);
+            };
+
+            /**
+             * Encodes the specified StartNewEntryGRPCRequest message. Does not implicitly {@link messages.notebook.StartNewEntryGRPCRequest.verify|verify} messages.
+             * @function encode
+             * @memberof messages.notebook.StartNewEntryGRPCRequest
+             * @static
+             * @param {messages.notebook.IStartNewEntryGRPCRequest} message StartNewEntryGRPCRequest message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            StartNewEntryGRPCRequest.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.principal != null && Object.hasOwnProperty.call(message, "principal"))
+                    $root.messages.notebook.Principal.encode(message.principal, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
+                    $root.messages.notebook.StartNewEntryGRPCRequest.Payload.encode(message.payload, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                return writer;
+            };
+
+            /**
+             * Encodes the specified StartNewEntryGRPCRequest message, length delimited. Does not implicitly {@link messages.notebook.StartNewEntryGRPCRequest.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof messages.notebook.StartNewEntryGRPCRequest
+             * @static
+             * @param {messages.notebook.IStartNewEntryGRPCRequest} message StartNewEntryGRPCRequest message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            StartNewEntryGRPCRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a StartNewEntryGRPCRequest message from the specified reader or buffer.
+             * @function decode
+             * @memberof messages.notebook.StartNewEntryGRPCRequest
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {messages.notebook.StartNewEntryGRPCRequest} StartNewEntryGRPCRequest
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            StartNewEntryGRPCRequest.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.messages.notebook.StartNewEntryGRPCRequest();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1:
+                        message.principal = $root.messages.notebook.Principal.decode(reader, reader.uint32());
+                        break;
+                    case 2:
+                        message.payload = $root.messages.notebook.StartNewEntryGRPCRequest.Payload.decode(reader, reader.uint32());
+                        break;
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a StartNewEntryGRPCRequest message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof messages.notebook.StartNewEntryGRPCRequest
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {messages.notebook.StartNewEntryGRPCRequest} StartNewEntryGRPCRequest
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            StartNewEntryGRPCRequest.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a StartNewEntryGRPCRequest message.
+             * @function verify
+             * @memberof messages.notebook.StartNewEntryGRPCRequest
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            StartNewEntryGRPCRequest.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.principal != null && message.hasOwnProperty("principal")) {
+                    var error = $root.messages.notebook.Principal.verify(message.principal);
+                    if (error)
+                        return "principal." + error;
+                }
+                if (message.payload != null && message.hasOwnProperty("payload")) {
+                    var error = $root.messages.notebook.StartNewEntryGRPCRequest.Payload.verify(message.payload);
+                    if (error)
+                        return "payload." + error;
+                }
+                return null;
+            };
+
+            /**
+             * Creates a StartNewEntryGRPCRequest message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof messages.notebook.StartNewEntryGRPCRequest
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {messages.notebook.StartNewEntryGRPCRequest} StartNewEntryGRPCRequest
+             */
+            StartNewEntryGRPCRequest.fromObject = function fromObject(object) {
+                if (object instanceof $root.messages.notebook.StartNewEntryGRPCRequest)
+                    return object;
+                var message = new $root.messages.notebook.StartNewEntryGRPCRequest();
+                if (object.principal != null) {
+                    if (typeof object.principal !== "object")
+                        throw TypeError(".messages.notebook.StartNewEntryGRPCRequest.principal: object expected");
+                    message.principal = $root.messages.notebook.Principal.fromObject(object.principal);
+                }
+                if (object.payload != null) {
+                    if (typeof object.payload !== "object")
+                        throw TypeError(".messages.notebook.StartNewEntryGRPCRequest.payload: object expected");
+                    message.payload = $root.messages.notebook.StartNewEntryGRPCRequest.Payload.fromObject(object.payload);
+                }
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a StartNewEntryGRPCRequest message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof messages.notebook.StartNewEntryGRPCRequest
+             * @static
+             * @param {messages.notebook.StartNewEntryGRPCRequest} message StartNewEntryGRPCRequest
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            StartNewEntryGRPCRequest.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.principal = null;
+                    object.payload = null;
+                }
+                if (message.principal != null && message.hasOwnProperty("principal"))
+                    object.principal = $root.messages.notebook.Principal.toObject(message.principal, options);
+                if (message.payload != null && message.hasOwnProperty("payload"))
+                    object.payload = $root.messages.notebook.StartNewEntryGRPCRequest.Payload.toObject(message.payload, options);
+                return object;
+            };
+
+            /**
+             * Converts this StartNewEntryGRPCRequest to JSON.
+             * @function toJSON
+             * @memberof messages.notebook.StartNewEntryGRPCRequest
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            StartNewEntryGRPCRequest.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            StartNewEntryGRPCRequest.Payload = (function() {
+
+                /**
+                 * Properties of a Payload.
+                 * @memberof messages.notebook.StartNewEntryGRPCRequest
+                 * @interface IPayload
+                 * @property {string|null} [creatorId] Payload creatorId
+                 */
+
+                /**
+                 * Constructs a new Payload.
+                 * @memberof messages.notebook.StartNewEntryGRPCRequest
+                 * @classdesc Represents a Payload.
+                 * @implements IPayload
+                 * @constructor
+                 * @param {messages.notebook.StartNewEntryGRPCRequest.IPayload=} [properties] Properties to set
+                 */
+                function Payload(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * Payload creatorId.
+                 * @member {string} creatorId
+                 * @memberof messages.notebook.StartNewEntryGRPCRequest.Payload
+                 * @instance
+                 */
+                Payload.prototype.creatorId = "";
+
+                /**
+                 * Creates a new Payload instance using the specified properties.
+                 * @function create
+                 * @memberof messages.notebook.StartNewEntryGRPCRequest.Payload
+                 * @static
+                 * @param {messages.notebook.StartNewEntryGRPCRequest.IPayload=} [properties] Properties to set
+                 * @returns {messages.notebook.StartNewEntryGRPCRequest.Payload} Payload instance
+                 */
+                Payload.create = function create(properties) {
+                    return new Payload(properties);
+                };
+
+                /**
+                 * Encodes the specified Payload message. Does not implicitly {@link messages.notebook.StartNewEntryGRPCRequest.Payload.verify|verify} messages.
+                 * @function encode
+                 * @memberof messages.notebook.StartNewEntryGRPCRequest.Payload
+                 * @static
+                 * @param {messages.notebook.StartNewEntryGRPCRequest.IPayload} message Payload message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                Payload.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.creatorId != null && Object.hasOwnProperty.call(message, "creatorId"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.creatorId);
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified Payload message, length delimited. Does not implicitly {@link messages.notebook.StartNewEntryGRPCRequest.Payload.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof messages.notebook.StartNewEntryGRPCRequest.Payload
+                 * @static
+                 * @param {messages.notebook.StartNewEntryGRPCRequest.IPayload} message Payload message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                Payload.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+
+                /**
+                 * Decodes a Payload message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof messages.notebook.StartNewEntryGRPCRequest.Payload
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {messages.notebook.StartNewEntryGRPCRequest.Payload} Payload
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                Payload.decode = function decode(reader, length) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.messages.notebook.StartNewEntryGRPCRequest.Payload();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        switch (tag >>> 3) {
+                        case 1:
+                            message.creatorId = reader.string();
+                            break;
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Decodes a Payload message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof messages.notebook.StartNewEntryGRPCRequest.Payload
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {messages.notebook.StartNewEntryGRPCRequest.Payload} Payload
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                Payload.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a Payload message.
+                 * @function verify
+                 * @memberof messages.notebook.StartNewEntryGRPCRequest.Payload
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                Payload.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.creatorId != null && message.hasOwnProperty("creatorId"))
+                        if (!$util.isString(message.creatorId))
+                            return "creatorId: string expected";
+                    return null;
+                };
+
+                /**
+                 * Creates a Payload message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof messages.notebook.StartNewEntryGRPCRequest.Payload
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {messages.notebook.StartNewEntryGRPCRequest.Payload} Payload
+                 */
+                Payload.fromObject = function fromObject(object) {
+                    if (object instanceof $root.messages.notebook.StartNewEntryGRPCRequest.Payload)
+                        return object;
+                    var message = new $root.messages.notebook.StartNewEntryGRPCRequest.Payload();
+                    if (object.creatorId != null)
+                        message.creatorId = String(object.creatorId);
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a Payload message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof messages.notebook.StartNewEntryGRPCRequest.Payload
+                 * @static
+                 * @param {messages.notebook.StartNewEntryGRPCRequest.Payload} message Payload
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                Payload.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults)
+                        object.creatorId = "";
+                    if (message.creatorId != null && message.hasOwnProperty("creatorId"))
+                        object.creatorId = message.creatorId;
+                    return object;
+                };
+
+                /**
+                 * Converts this Payload to JSON.
+                 * @function toJSON
+                 * @memberof messages.notebook.StartNewEntryGRPCRequest.Payload
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                Payload.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                return Payload;
+            })();
+
+            return StartNewEntryGRPCRequest;
+        })();
+
+        notebook.StartNewEntryGRPCResponse = (function() {
+
+            /**
+             * Properties of a StartNewEntryGRPCResponse.
+             * @memberof messages.notebook
+             * @interface IStartNewEntryGRPCResponse
+             * @property {messages.notebook.StartNewEntryGRPCResponse.IPayload|null} [payload] StartNewEntryGRPCResponse payload
+             */
+
+            /**
+             * Constructs a new StartNewEntryGRPCResponse.
+             * @memberof messages.notebook
+             * @classdesc Represents a StartNewEntryGRPCResponse.
+             * @implements IStartNewEntryGRPCResponse
+             * @constructor
+             * @param {messages.notebook.IStartNewEntryGRPCResponse=} [properties] Properties to set
+             */
+            function StartNewEntryGRPCResponse(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * StartNewEntryGRPCResponse payload.
+             * @member {messages.notebook.StartNewEntryGRPCResponse.IPayload|null|undefined} payload
+             * @memberof messages.notebook.StartNewEntryGRPCResponse
+             * @instance
+             */
+            StartNewEntryGRPCResponse.prototype.payload = null;
+
+            /**
+             * Creates a new StartNewEntryGRPCResponse instance using the specified properties.
+             * @function create
+             * @memberof messages.notebook.StartNewEntryGRPCResponse
+             * @static
+             * @param {messages.notebook.IStartNewEntryGRPCResponse=} [properties] Properties to set
+             * @returns {messages.notebook.StartNewEntryGRPCResponse} StartNewEntryGRPCResponse instance
+             */
+            StartNewEntryGRPCResponse.create = function create(properties) {
+                return new StartNewEntryGRPCResponse(properties);
+            };
+
+            /**
+             * Encodes the specified StartNewEntryGRPCResponse message. Does not implicitly {@link messages.notebook.StartNewEntryGRPCResponse.verify|verify} messages.
+             * @function encode
+             * @memberof messages.notebook.StartNewEntryGRPCResponse
+             * @static
+             * @param {messages.notebook.IStartNewEntryGRPCResponse} message StartNewEntryGRPCResponse message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            StartNewEntryGRPCResponse.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.payload != null && Object.hasOwnProperty.call(message, "payload"))
+                    $root.messages.notebook.StartNewEntryGRPCResponse.Payload.encode(message.payload, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                return writer;
+            };
+
+            /**
+             * Encodes the specified StartNewEntryGRPCResponse message, length delimited. Does not implicitly {@link messages.notebook.StartNewEntryGRPCResponse.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof messages.notebook.StartNewEntryGRPCResponse
+             * @static
+             * @param {messages.notebook.IStartNewEntryGRPCResponse} message StartNewEntryGRPCResponse message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            StartNewEntryGRPCResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a StartNewEntryGRPCResponse message from the specified reader or buffer.
+             * @function decode
+             * @memberof messages.notebook.StartNewEntryGRPCResponse
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {messages.notebook.StartNewEntryGRPCResponse} StartNewEntryGRPCResponse
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            StartNewEntryGRPCResponse.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.messages.notebook.StartNewEntryGRPCResponse();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1:
+                        message.payload = $root.messages.notebook.StartNewEntryGRPCResponse.Payload.decode(reader, reader.uint32());
+                        break;
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a StartNewEntryGRPCResponse message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof messages.notebook.StartNewEntryGRPCResponse
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {messages.notebook.StartNewEntryGRPCResponse} StartNewEntryGRPCResponse
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            StartNewEntryGRPCResponse.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a StartNewEntryGRPCResponse message.
+             * @function verify
+             * @memberof messages.notebook.StartNewEntryGRPCResponse
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            StartNewEntryGRPCResponse.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.payload != null && message.hasOwnProperty("payload")) {
+                    var error = $root.messages.notebook.StartNewEntryGRPCResponse.Payload.verify(message.payload);
+                    if (error)
+                        return "payload." + error;
+                }
+                return null;
+            };
+
+            /**
+             * Creates a StartNewEntryGRPCResponse message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof messages.notebook.StartNewEntryGRPCResponse
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {messages.notebook.StartNewEntryGRPCResponse} StartNewEntryGRPCResponse
+             */
+            StartNewEntryGRPCResponse.fromObject = function fromObject(object) {
+                if (object instanceof $root.messages.notebook.StartNewEntryGRPCResponse)
+                    return object;
+                var message = new $root.messages.notebook.StartNewEntryGRPCResponse();
+                if (object.payload != null) {
+                    if (typeof object.payload !== "object")
+                        throw TypeError(".messages.notebook.StartNewEntryGRPCResponse.payload: object expected");
+                    message.payload = $root.messages.notebook.StartNewEntryGRPCResponse.Payload.fromObject(object.payload);
+                }
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a StartNewEntryGRPCResponse message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof messages.notebook.StartNewEntryGRPCResponse
+             * @static
+             * @param {messages.notebook.StartNewEntryGRPCResponse} message StartNewEntryGRPCResponse
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            StartNewEntryGRPCResponse.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.payload = null;
+                if (message.payload != null && message.hasOwnProperty("payload"))
+                    object.payload = $root.messages.notebook.StartNewEntryGRPCResponse.Payload.toObject(message.payload, options);
+                return object;
+            };
+
+            /**
+             * Converts this StartNewEntryGRPCResponse to JSON.
+             * @function toJSON
+             * @memberof messages.notebook.StartNewEntryGRPCResponse
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            StartNewEntryGRPCResponse.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            StartNewEntryGRPCResponse.Payload = (function() {
+
+                /**
+                 * Properties of a Payload.
+                 * @memberof messages.notebook.StartNewEntryGRPCResponse
+                 * @interface IPayload
+                 * @property {string|null} [id] Payload id
+                 */
+
+                /**
+                 * Constructs a new Payload.
+                 * @memberof messages.notebook.StartNewEntryGRPCResponse
+                 * @classdesc Represents a Payload.
+                 * @implements IPayload
+                 * @constructor
+                 * @param {messages.notebook.StartNewEntryGRPCResponse.IPayload=} [properties] Properties to set
+                 */
+                function Payload(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+
+                /**
+                 * Payload id.
+                 * @member {string} id
+                 * @memberof messages.notebook.StartNewEntryGRPCResponse.Payload
+                 * @instance
+                 */
+                Payload.prototype.id = "";
+
+                /**
+                 * Creates a new Payload instance using the specified properties.
+                 * @function create
+                 * @memberof messages.notebook.StartNewEntryGRPCResponse.Payload
+                 * @static
+                 * @param {messages.notebook.StartNewEntryGRPCResponse.IPayload=} [properties] Properties to set
+                 * @returns {messages.notebook.StartNewEntryGRPCResponse.Payload} Payload instance
+                 */
+                Payload.create = function create(properties) {
+                    return new Payload(properties);
+                };
+
+                /**
+                 * Encodes the specified Payload message. Does not implicitly {@link messages.notebook.StartNewEntryGRPCResponse.Payload.verify|verify} messages.
+                 * @function encode
+                 * @memberof messages.notebook.StartNewEntryGRPCResponse.Payload
+                 * @static
+                 * @param {messages.notebook.StartNewEntryGRPCResponse.IPayload} message Payload message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                Payload.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
+                    return writer;
+                };
+
+                /**
+                 * Encodes the specified Payload message, length delimited. Does not implicitly {@link messages.notebook.StartNewEntryGRPCResponse.Payload.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof messages.notebook.StartNewEntryGRPCResponse.Payload
+                 * @static
+                 * @param {messages.notebook.StartNewEntryGRPCResponse.IPayload} message Payload message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                Payload.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+
+                /**
+                 * Decodes a Payload message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof messages.notebook.StartNewEntryGRPCResponse.Payload
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {messages.notebook.StartNewEntryGRPCResponse.Payload} Payload
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                Payload.decode = function decode(reader, length) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.messages.notebook.StartNewEntryGRPCResponse.Payload();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        switch (tag >>> 3) {
+                        case 1:
+                            message.id = reader.string();
+                            break;
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+
+                /**
+                 * Decodes a Payload message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof messages.notebook.StartNewEntryGRPCResponse.Payload
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {messages.notebook.StartNewEntryGRPCResponse.Payload} Payload
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                Payload.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+
+                /**
+                 * Verifies a Payload message.
+                 * @function verify
+                 * @memberof messages.notebook.StartNewEntryGRPCResponse.Payload
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                Payload.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.id != null && message.hasOwnProperty("id"))
+                        if (!$util.isString(message.id))
+                            return "id: string expected";
+                    return null;
+                };
+
+                /**
+                 * Creates a Payload message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof messages.notebook.StartNewEntryGRPCResponse.Payload
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {messages.notebook.StartNewEntryGRPCResponse.Payload} Payload
+                 */
+                Payload.fromObject = function fromObject(object) {
+                    if (object instanceof $root.messages.notebook.StartNewEntryGRPCResponse.Payload)
+                        return object;
+                    var message = new $root.messages.notebook.StartNewEntryGRPCResponse.Payload();
+                    if (object.id != null)
+                        message.id = String(object.id);
+                    return message;
+                };
+
+                /**
+                 * Creates a plain object from a Payload message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof messages.notebook.StartNewEntryGRPCResponse.Payload
+                 * @static
+                 * @param {messages.notebook.StartNewEntryGRPCResponse.Payload} message Payload
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                Payload.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults)
+                        object.id = "";
+                    if (message.id != null && message.hasOwnProperty("id"))
+                        object.id = message.id;
+                    return object;
+                };
+
+                /**
+                 * Converts this Payload to JSON.
+                 * @function toJSON
+                 * @memberof messages.notebook.StartNewEntryGRPCResponse.Payload
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                Payload.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+
+                return Payload;
+            })();
+
+            return StartNewEntryGRPCResponse;
+        })();
+
+        notebook.Notebook = (function() {
+
+            /**
+             * Constructs a new Notebook service.
+             * @memberof messages.notebook
+             * @classdesc Represents a Notebook
+             * @extends $protobuf.rpc.Service
+             * @constructor
+             * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+             * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+             * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+             */
+            function Notebook(rpcImpl, requestDelimited, responseDelimited) {
+                $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+            }
+
+            (Notebook.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = Notebook;
+
+            /**
+             * Creates new Notebook service using the specified rpc implementation.
+             * @function create
+             * @memberof messages.notebook.Notebook
+             * @static
+             * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+             * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+             * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+             * @returns {Notebook} RPC service. Useful where requests and/or responses are streamed.
+             */
+            Notebook.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+                return new this(rpcImpl, requestDelimited, responseDelimited);
+            };
+
+            /**
+             * Callback as used by {@link messages.notebook.Notebook#readEntry}.
+             * @memberof messages.notebook.Notebook
+             * @typedef ReadEntryCallback
+             * @type {function}
+             * @param {Error|null} error Error, if any
+             * @param {messages.notebook.ReadEntryGRPCResponse} [response] ReadEntryGRPCResponse
+             */
+
+            /**
+             * Calls ReadEntry.
+             * @function readEntry
+             * @memberof messages.notebook.Notebook
+             * @instance
+             * @param {messages.notebook.IReadEntryGRPCRequest} request ReadEntryGRPCRequest message or plain object
+             * @param {messages.notebook.Notebook.ReadEntryCallback} callback Node-style callback called with the error, if any, and ReadEntryGRPCResponse
+             * @returns {undefined}
+             * @variation 1
+             */
+            Object.defineProperty(Notebook.prototype.readEntry = function readEntry(request, callback) {
+                return this.rpcCall(readEntry, $root.messages.notebook.ReadEntryGRPCRequest, $root.messages.notebook.ReadEntryGRPCResponse, request, callback);
+            }, "name", { value: "ReadEntry" });
+
+            /**
+             * Calls ReadEntry.
+             * @function readEntry
+             * @memberof messages.notebook.Notebook
+             * @instance
+             * @param {messages.notebook.IReadEntryGRPCRequest} request ReadEntryGRPCRequest message or plain object
+             * @returns {Promise<messages.notebook.ReadEntryGRPCResponse>} Promise
+             * @variation 2
+             */
+
+            /**
+             * Callback as used by {@link messages.notebook.Notebook#startNewEntry}.
+             * @memberof messages.notebook.Notebook
+             * @typedef StartNewEntryCallback
+             * @type {function}
+             * @param {Error|null} error Error, if any
+             * @param {messages.notebook.StartNewEntryGRPCResponse} [response] StartNewEntryGRPCResponse
+             */
+
+            /**
+             * Calls StartNewEntry.
+             * @function startNewEntry
+             * @memberof messages.notebook.Notebook
+             * @instance
+             * @param {messages.notebook.IStartNewEntryGRPCRequest} request StartNewEntryGRPCRequest message or plain object
+             * @param {messages.notebook.Notebook.StartNewEntryCallback} callback Node-style callback called with the error, if any, and StartNewEntryGRPCResponse
+             * @returns {undefined}
+             * @variation 1
+             */
+            Object.defineProperty(Notebook.prototype.startNewEntry = function startNewEntry(request, callback) {
+                return this.rpcCall(startNewEntry, $root.messages.notebook.StartNewEntryGRPCRequest, $root.messages.notebook.StartNewEntryGRPCResponse, request, callback);
+            }, "name", { value: "StartNewEntry" });
+
+            /**
+             * Calls StartNewEntry.
+             * @function startNewEntry
+             * @memberof messages.notebook.Notebook
+             * @instance
+             * @param {messages.notebook.IStartNewEntryGRPCRequest} request StartNewEntryGRPCRequest message or plain object
+             * @returns {Promise<messages.notebook.StartNewEntryGRPCResponse>} Promise
+             * @variation 2
+             */
+
+            return Notebook;
+        })();
+
+        notebook.Status = (function() {
+
+            /**
+             * Properties of a Status.
+             * @memberof messages.notebook
+             * @interface IStatus
+             * @property {number|null} [code] Status code
+             * @property {string|null} [message] Status message
+             * @property {Array.<google.protobuf.IAny>|null} [details] Status details
+             */
+
+            /**
+             * Constructs a new Status.
+             * @memberof messages.notebook
+             * @classdesc Represents a Status.
+             * @implements IStatus
+             * @constructor
+             * @param {messages.notebook.IStatus=} [properties] Properties to set
+             */
+            function Status(properties) {
+                this.details = [];
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+
+            /**
+             * Status code.
+             * @member {number} code
+             * @memberof messages.notebook.Status
+             * @instance
+             */
+            Status.prototype.code = 0;
+
+            /**
+             * Status message.
+             * @member {string} message
+             * @memberof messages.notebook.Status
+             * @instance
+             */
+            Status.prototype.message = "";
+
+            /**
+             * Status details.
+             * @member {Array.<google.protobuf.IAny>} details
+             * @memberof messages.notebook.Status
+             * @instance
+             */
+            Status.prototype.details = $util.emptyArray;
+
+            /**
+             * Creates a new Status instance using the specified properties.
+             * @function create
+             * @memberof messages.notebook.Status
+             * @static
+             * @param {messages.notebook.IStatus=} [properties] Properties to set
+             * @returns {messages.notebook.Status} Status instance
+             */
+            Status.create = function create(properties) {
+                return new Status(properties);
+            };
+
+            /**
+             * Encodes the specified Status message. Does not implicitly {@link messages.notebook.Status.verify|verify} messages.
+             * @function encode
+             * @memberof messages.notebook.Status
+             * @static
+             * @param {messages.notebook.IStatus} message Status message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Status.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
+                if (message.message != null && Object.hasOwnProperty.call(message, "message"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.message);
+                if (message.details != null && message.details.length)
+                    for (var i = 0; i < message.details.length; ++i)
+                        $root.google.protobuf.Any.encode(message.details[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                return writer;
+            };
+
+            /**
+             * Encodes the specified Status message, length delimited. Does not implicitly {@link messages.notebook.Status.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof messages.notebook.Status
+             * @static
+             * @param {messages.notebook.IStatus} message Status message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Status.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+
+            /**
+             * Decodes a Status message from the specified reader or buffer.
+             * @function decode
+             * @memberof messages.notebook.Status
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {messages.notebook.Status} Status
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Status.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.messages.notebook.Status();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1:
+                        message.code = reader.int32();
+                        break;
+                    case 2:
+                        message.message = reader.string();
+                        break;
+                    case 3:
+                        if (!(message.details && message.details.length))
+                            message.details = [];
+                        message.details.push($root.google.protobuf.Any.decode(reader, reader.uint32()));
+                        break;
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Decodes a Status message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof messages.notebook.Status
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {messages.notebook.Status} Status
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Status.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+
+            /**
+             * Verifies a Status message.
+             * @function verify
+             * @memberof messages.notebook.Status
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            Status.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.code != null && message.hasOwnProperty("code"))
+                    if (!$util.isInteger(message.code))
+                        return "code: integer expected";
+                if (message.message != null && message.hasOwnProperty("message"))
+                    if (!$util.isString(message.message))
+                        return "message: string expected";
+                if (message.details != null && message.hasOwnProperty("details")) {
+                    if (!Array.isArray(message.details))
+                        return "details: array expected";
+                    for (var i = 0; i < message.details.length; ++i) {
+                        var error = $root.google.protobuf.Any.verify(message.details[i]);
+                        if (error)
+                            return "details." + error;
+                    }
+                }
+                return null;
+            };
+
+            /**
+             * Creates a Status message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof messages.notebook.Status
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {messages.notebook.Status} Status
+             */
+            Status.fromObject = function fromObject(object) {
+                if (object instanceof $root.messages.notebook.Status)
+                    return object;
+                var message = new $root.messages.notebook.Status();
+                if (object.code != null)
+                    message.code = object.code | 0;
+                if (object.message != null)
+                    message.message = String(object.message);
+                if (object.details) {
+                    if (!Array.isArray(object.details))
+                        throw TypeError(".messages.notebook.Status.details: array expected");
+                    message.details = [];
+                    for (var i = 0; i < object.details.length; ++i) {
+                        if (typeof object.details[i] !== "object")
+                            throw TypeError(".messages.notebook.Status.details: object expected");
+                        message.details[i] = $root.google.protobuf.Any.fromObject(object.details[i]);
+                    }
+                }
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a Status message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof messages.notebook.Status
+             * @static
+             * @param {messages.notebook.Status} message Status
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            Status.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.arrays || options.defaults)
+                    object.details = [];
+                if (options.defaults) {
+                    object.code = 0;
+                    object.message = "";
+                }
+                if (message.code != null && message.hasOwnProperty("code"))
+                    object.code = message.code;
+                if (message.message != null && message.hasOwnProperty("message"))
+                    object.message = message.message;
+                if (message.details && message.details.length) {
+                    object.details = [];
+                    for (var j = 0; j < message.details.length; ++j)
+                        object.details[j] = $root.google.protobuf.Any.toObject(message.details[j], options);
+                }
+                return object;
+            };
+
+            /**
+             * Converts this Status to JSON.
+             * @function toJSON
+             * @memberof messages.notebook.Status
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            Status.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            return Status;
+        })();
+
         return notebook;
     })();
 
@@ -16450,9 +18476,9 @@ $root.google = (function() {
             Timestamp.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.seconds != null && message.hasOwnProperty("seconds"))
+                if (message.seconds != null && Object.hasOwnProperty.call(message, "seconds"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int64(message.seconds);
-                if (message.nanos != null && message.hasOwnProperty("nanos"))
+                if (message.nanos != null && Object.hasOwnProperty.call(message, "nanos"))
                     writer.uint32(/* id 2, wireType 0 =*/16).int32(message.nanos);
                 return writer;
             };
@@ -16666,7 +18692,7 @@ $root.google = (function() {
             Struct.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.fields != null && message.hasOwnProperty("fields"))
+                if (message.fields != null && Object.hasOwnProperty.call(message, "fields"))
                     for (var keys = Object.keys(message.fields), i = 0; i < keys.length; ++i) {
                         writer.uint32(/* id 1, wireType 2 =*/10).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]);
                         $root.google.protobuf.Value.encode(message.fields[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim().ldelim();
@@ -16701,17 +18727,31 @@ $root.google = (function() {
             Struct.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Struct(), key;
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Struct(), key, value;
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
-                        reader.skip().pos++;
                         if (message.fields === $util.emptyObject)
                             message.fields = {};
-                        key = reader.string();
-                        reader.pos++;
-                        message.fields[key] = $root.google.protobuf.Value.decode(reader, reader.uint32());
+                        var end2 = reader.uint32() + reader.pos;
+                        key = "";
+                        value = null;
+                        while (reader.pos < end2) {
+                            var tag2 = reader.uint32();
+                            switch (tag2 >>> 3) {
+                            case 1:
+                                key = reader.string();
+                                break;
+                            case 2:
+                                value = $root.google.protobuf.Value.decode(reader, reader.uint32());
+                                break;
+                            default:
+                                reader.skipType(tag2 & 7);
+                                break;
+                            }
+                        }
+                        message.fields[key] = value;
                         break;
                     default:
                         reader.skipType(tag & 7);
@@ -16939,17 +18979,17 @@ $root.google = (function() {
             Value.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.nullValue != null && message.hasOwnProperty("nullValue"))
+                if (message.nullValue != null && Object.hasOwnProperty.call(message, "nullValue"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.nullValue);
-                if (message.numberValue != null && message.hasOwnProperty("numberValue"))
+                if (message.numberValue != null && Object.hasOwnProperty.call(message, "numberValue"))
                     writer.uint32(/* id 2, wireType 1 =*/17).double(message.numberValue);
-                if (message.stringValue != null && message.hasOwnProperty("stringValue"))
+                if (message.stringValue != null && Object.hasOwnProperty.call(message, "stringValue"))
                     writer.uint32(/* id 3, wireType 2 =*/26).string(message.stringValue);
-                if (message.boolValue != null && message.hasOwnProperty("boolValue"))
+                if (message.boolValue != null && Object.hasOwnProperty.call(message, "boolValue"))
                     writer.uint32(/* id 4, wireType 0 =*/32).bool(message.boolValue);
-                if (message.structValue != null && message.hasOwnProperty("structValue"))
+                if (message.structValue != null && Object.hasOwnProperty.call(message, "structValue"))
                     $root.google.protobuf.Struct.encode(message.structValue, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
-                if (message.listValue != null && message.hasOwnProperty("listValue"))
+                if (message.listValue != null && Object.hasOwnProperty.call(message, "listValue"))
                     $root.google.protobuf.ListValue.encode(message.listValue, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
                 return writer;
             };
@@ -17192,7 +19232,7 @@ $root.google = (function() {
         /**
          * NullValue enum.
          * @name google.protobuf.NullValue
-         * @enum {string}
+         * @enum {number}
          * @property {number} NULL_VALUE=0 NULL_VALUE value
          */
         protobuf.NullValue = (function() {
@@ -17474,9 +19514,9 @@ $root.google = (function() {
             Any.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.type_url != null && message.hasOwnProperty("type_url"))
+                if (message.type_url != null && Object.hasOwnProperty.call(message, "type_url"))
                     writer.uint32(/* id 1, wireType 2 =*/10).string(message.type_url);
-                if (message.value != null && message.hasOwnProperty("value"))
+                if (message.value != null && Object.hasOwnProperty.call(message, "value"))
                     writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.value);
                 return writer;
             };
@@ -17640,264 +19680,10 @@ $root.google = (function() {
          */
         var rpc = {};
 
-        rpc.Status = (function() {
-
-            /**
-             * Properties of a Status.
-             * @memberof google.rpc
-             * @interface IStatus
-             * @property {number|null} [code] Status code
-             * @property {string|null} [message] Status message
-             * @property {Array.<google.protobuf.IAny>|null} [details] Status details
-             */
-
-            /**
-             * Constructs a new Status.
-             * @memberof google.rpc
-             * @classdesc Represents a Status.
-             * @implements IStatus
-             * @constructor
-             * @param {google.rpc.IStatus=} [properties] Properties to set
-             */
-            function Status(properties) {
-                this.details = [];
-                if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
-                            this[keys[i]] = properties[keys[i]];
-            }
-
-            /**
-             * Status code.
-             * @member {number} code
-             * @memberof google.rpc.Status
-             * @instance
-             */
-            Status.prototype.code = 0;
-
-            /**
-             * Status message.
-             * @member {string} message
-             * @memberof google.rpc.Status
-             * @instance
-             */
-            Status.prototype.message = "";
-
-            /**
-             * Status details.
-             * @member {Array.<google.protobuf.IAny>} details
-             * @memberof google.rpc.Status
-             * @instance
-             */
-            Status.prototype.details = $util.emptyArray;
-
-            /**
-             * Creates a new Status instance using the specified properties.
-             * @function create
-             * @memberof google.rpc.Status
-             * @static
-             * @param {google.rpc.IStatus=} [properties] Properties to set
-             * @returns {google.rpc.Status} Status instance
-             */
-            Status.create = function create(properties) {
-                return new Status(properties);
-            };
-
-            /**
-             * Encodes the specified Status message. Does not implicitly {@link google.rpc.Status.verify|verify} messages.
-             * @function encode
-             * @memberof google.rpc.Status
-             * @static
-             * @param {google.rpc.IStatus} message Status message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            Status.encode = function encode(message, writer) {
-                if (!writer)
-                    writer = $Writer.create();
-                if (message.code != null && message.hasOwnProperty("code"))
-                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.code);
-                if (message.message != null && message.hasOwnProperty("message"))
-                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.message);
-                if (message.details != null && message.details.length)
-                    for (var i = 0; i < message.details.length; ++i)
-                        $root.google.protobuf.Any.encode(message.details[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
-                return writer;
-            };
-
-            /**
-             * Encodes the specified Status message, length delimited. Does not implicitly {@link google.rpc.Status.verify|verify} messages.
-             * @function encodeDelimited
-             * @memberof google.rpc.Status
-             * @static
-             * @param {google.rpc.IStatus} message Status message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            Status.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
-            };
-
-            /**
-             * Decodes a Status message from the specified reader or buffer.
-             * @function decode
-             * @memberof google.rpc.Status
-             * @static
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @param {number} [length] Message length if known beforehand
-             * @returns {google.rpc.Status} Status
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            Status.decode = function decode(reader, length) {
-                if (!(reader instanceof $Reader))
-                    reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.rpc.Status();
-                while (reader.pos < end) {
-                    var tag = reader.uint32();
-                    switch (tag >>> 3) {
-                    case 1:
-                        message.code = reader.int32();
-                        break;
-                    case 2:
-                        message.message = reader.string();
-                        break;
-                    case 3:
-                        if (!(message.details && message.details.length))
-                            message.details = [];
-                        message.details.push($root.google.protobuf.Any.decode(reader, reader.uint32()));
-                        break;
-                    default:
-                        reader.skipType(tag & 7);
-                        break;
-                    }
-                }
-                return message;
-            };
-
-            /**
-             * Decodes a Status message from the specified reader or buffer, length delimited.
-             * @function decodeDelimited
-             * @memberof google.rpc.Status
-             * @static
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @returns {google.rpc.Status} Status
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            Status.decodeDelimited = function decodeDelimited(reader) {
-                if (!(reader instanceof $Reader))
-                    reader = new $Reader(reader);
-                return this.decode(reader, reader.uint32());
-            };
-
-            /**
-             * Verifies a Status message.
-             * @function verify
-             * @memberof google.rpc.Status
-             * @static
-             * @param {Object.<string,*>} message Plain object to verify
-             * @returns {string|null} `null` if valid, otherwise the reason why it is not
-             */
-            Status.verify = function verify(message) {
-                if (typeof message !== "object" || message === null)
-                    return "object expected";
-                if (message.code != null && message.hasOwnProperty("code"))
-                    if (!$util.isInteger(message.code))
-                        return "code: integer expected";
-                if (message.message != null && message.hasOwnProperty("message"))
-                    if (!$util.isString(message.message))
-                        return "message: string expected";
-                if (message.details != null && message.hasOwnProperty("details")) {
-                    if (!Array.isArray(message.details))
-                        return "details: array expected";
-                    for (var i = 0; i < message.details.length; ++i) {
-                        var error = $root.google.protobuf.Any.verify(message.details[i]);
-                        if (error)
-                            return "details." + error;
-                    }
-                }
-                return null;
-            };
-
-            /**
-             * Creates a Status message from a plain object. Also converts values to their respective internal types.
-             * @function fromObject
-             * @memberof google.rpc.Status
-             * @static
-             * @param {Object.<string,*>} object Plain object
-             * @returns {google.rpc.Status} Status
-             */
-            Status.fromObject = function fromObject(object) {
-                if (object instanceof $root.google.rpc.Status)
-                    return object;
-                var message = new $root.google.rpc.Status();
-                if (object.code != null)
-                    message.code = object.code | 0;
-                if (object.message != null)
-                    message.message = String(object.message);
-                if (object.details) {
-                    if (!Array.isArray(object.details))
-                        throw TypeError(".google.rpc.Status.details: array expected");
-                    message.details = [];
-                    for (var i = 0; i < object.details.length; ++i) {
-                        if (typeof object.details[i] !== "object")
-                            throw TypeError(".google.rpc.Status.details: object expected");
-                        message.details[i] = $root.google.protobuf.Any.fromObject(object.details[i]);
-                    }
-                }
-                return message;
-            };
-
-            /**
-             * Creates a plain object from a Status message. Also converts values to other types if specified.
-             * @function toObject
-             * @memberof google.rpc.Status
-             * @static
-             * @param {google.rpc.Status} message Status
-             * @param {$protobuf.IConversionOptions} [options] Conversion options
-             * @returns {Object.<string,*>} Plain object
-             */
-            Status.toObject = function toObject(message, options) {
-                if (!options)
-                    options = {};
-                var object = {};
-                if (options.arrays || options.defaults)
-                    object.details = [];
-                if (options.defaults) {
-                    object.code = 0;
-                    object.message = "";
-                }
-                if (message.code != null && message.hasOwnProperty("code"))
-                    object.code = message.code;
-                if (message.message != null && message.hasOwnProperty("message"))
-                    object.message = message.message;
-                if (message.details && message.details.length) {
-                    object.details = [];
-                    for (var j = 0; j < message.details.length; ++j)
-                        object.details[j] = $root.google.protobuf.Any.toObject(message.details[j], options);
-                }
-                return object;
-            };
-
-            /**
-             * Converts this Status to JSON.
-             * @function toJSON
-             * @memberof google.rpc.Status
-             * @instance
-             * @returns {Object.<string,*>} JSON object
-             */
-            Status.prototype.toJSON = function toJSON() {
-                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-            };
-
-            return Status;
-        })();
-
         /**
          * Code enum.
          * @name google.rpc.Code
-         * @enum {string}
+         * @enum {number}
          * @property {number} OK=0 OK value
          * @property {number} CANCELLED=1 CANCELLED value
          * @property {number} UNKNOWN=2 UNKNOWN value

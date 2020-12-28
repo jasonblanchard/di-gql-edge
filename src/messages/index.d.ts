@@ -4333,7 +4333,7 @@ export namespace messages {
         interface IErrorResponse {
 
             /** ErrorResponse status */
-            status?: (google.rpc.IStatus|null);
+            status?: (messages.notebook.IStatus|null);
 
             /** ErrorResponse context */
             context?: (messages.notebook.IResponseContext|null);
@@ -4349,7 +4349,7 @@ export namespace messages {
             constructor(properties?: messages.notebook.IErrorResponse);
 
             /** ErrorResponse status. */
-            public status?: (google.rpc.IStatus|null);
+            public status?: (messages.notebook.IStatus|null);
 
             /** ErrorResponse context. */
             public context?: (messages.notebook.IResponseContext|null);
@@ -4618,7 +4618,7 @@ export namespace messages {
         interface IReadEntryResponse {
 
             /** ReadEntryResponse status */
-            status?: (google.rpc.IStatus|null);
+            status?: (messages.notebook.IStatus|null);
 
             /** ReadEntryResponse context */
             context?: (messages.notebook.IResponseContext|null);
@@ -4637,7 +4637,7 @@ export namespace messages {
             constructor(properties?: messages.notebook.IReadEntryResponse);
 
             /** ReadEntryResponse status. */
-            public status?: (google.rpc.IStatus|null);
+            public status?: (messages.notebook.IStatus|null);
 
             /** ReadEntryResponse context. */
             public context?: (messages.notebook.IResponseContext|null);
@@ -5026,7 +5026,7 @@ export namespace messages {
         interface IStartNewEntryResponse {
 
             /** StartNewEntryResponse status */
-            status?: (google.rpc.IStatus|null);
+            status?: (messages.notebook.IStatus|null);
 
             /** StartNewEntryResponse context */
             context?: (messages.notebook.IResponseContext|null);
@@ -5045,7 +5045,7 @@ export namespace messages {
             constructor(properties?: messages.notebook.IStartNewEntryResponse);
 
             /** StartNewEntryResponse status. */
-            public status?: (google.rpc.IStatus|null);
+            public status?: (messages.notebook.IStatus|null);
 
             /** StartNewEntryResponse context. */
             public context?: (messages.notebook.IResponseContext|null);
@@ -5416,7 +5416,7 @@ export namespace messages {
         interface IChangeEntryResponse {
 
             /** ChangeEntryResponse status */
-            status?: (google.rpc.IStatus|null);
+            status?: (messages.notebook.IStatus|null);
 
             /** ChangeEntryResponse context */
             context?: (messages.notebook.IResponseContext|null);
@@ -5435,7 +5435,7 @@ export namespace messages {
             constructor(properties?: messages.notebook.IChangeEntryResponse);
 
             /** ChangeEntryResponse status. */
-            public status?: (google.rpc.IStatus|null);
+            public status?: (messages.notebook.IStatus|null);
 
             /** ChangeEntryResponse context. */
             public context?: (messages.notebook.IResponseContext|null);
@@ -5824,7 +5824,7 @@ export namespace messages {
         interface IListEntriesResponse {
 
             /** ListEntriesResponse status */
-            status?: (google.rpc.IStatus|null);
+            status?: (messages.notebook.IStatus|null);
 
             /** ListEntriesResponse context */
             context?: (messages.notebook.IResponseContext|null);
@@ -5843,7 +5843,7 @@ export namespace messages {
             constructor(properties?: messages.notebook.IListEntriesResponse);
 
             /** ListEntriesResponse status. */
-            public status?: (google.rpc.IStatus|null);
+            public status?: (messages.notebook.IStatus|null);
 
             /** ListEntriesResponse context. */
             public context?: (messages.notebook.IResponseContext|null);
@@ -6436,7 +6436,7 @@ export namespace messages {
         interface IDiscardEntryResponse {
 
             /** DiscardEntryResponse status */
-            status?: (google.rpc.IStatus|null);
+            status?: (messages.notebook.IStatus|null);
 
             /** DiscardEntryResponse context */
             context?: (messages.notebook.IResponseContext|null);
@@ -6452,7 +6452,7 @@ export namespace messages {
             constructor(properties?: messages.notebook.IDiscardEntryResponse);
 
             /** DiscardEntryResponse status. */
-            public status?: (google.rpc.IStatus|null);
+            public status?: (messages.notebook.IStatus|null);
 
             /** DiscardEntryResponse context. */
             public context?: (messages.notebook.IResponseContext|null);
@@ -7160,6 +7160,942 @@ export namespace messages {
                 public toJSON(): { [k: string]: any };
             }
         }
+
+        /** Properties of a ReadEntryGRPCRequest. */
+        interface IReadEntryGRPCRequest {
+
+            /** ReadEntryGRPCRequest principal */
+            principal?: (messages.notebook.IPrincipal|null);
+
+            /** ReadEntryGRPCRequest payload */
+            payload?: (messages.notebook.ReadEntryGRPCRequest.IPayload|null);
+        }
+
+        /** Represents a ReadEntryGRPCRequest. */
+        class ReadEntryGRPCRequest implements IReadEntryGRPCRequest {
+
+            /**
+             * Constructs a new ReadEntryGRPCRequest.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: messages.notebook.IReadEntryGRPCRequest);
+
+            /** ReadEntryGRPCRequest principal. */
+            public principal?: (messages.notebook.IPrincipal|null);
+
+            /** ReadEntryGRPCRequest payload. */
+            public payload?: (messages.notebook.ReadEntryGRPCRequest.IPayload|null);
+
+            /**
+             * Creates a new ReadEntryGRPCRequest instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns ReadEntryGRPCRequest instance
+             */
+            public static create(properties?: messages.notebook.IReadEntryGRPCRequest): messages.notebook.ReadEntryGRPCRequest;
+
+            /**
+             * Encodes the specified ReadEntryGRPCRequest message. Does not implicitly {@link messages.notebook.ReadEntryGRPCRequest.verify|verify} messages.
+             * @param message ReadEntryGRPCRequest message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: messages.notebook.IReadEntryGRPCRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified ReadEntryGRPCRequest message, length delimited. Does not implicitly {@link messages.notebook.ReadEntryGRPCRequest.verify|verify} messages.
+             * @param message ReadEntryGRPCRequest message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: messages.notebook.IReadEntryGRPCRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a ReadEntryGRPCRequest message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns ReadEntryGRPCRequest
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): messages.notebook.ReadEntryGRPCRequest;
+
+            /**
+             * Decodes a ReadEntryGRPCRequest message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns ReadEntryGRPCRequest
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): messages.notebook.ReadEntryGRPCRequest;
+
+            /**
+             * Verifies a ReadEntryGRPCRequest message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a ReadEntryGRPCRequest message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns ReadEntryGRPCRequest
+             */
+            public static fromObject(object: { [k: string]: any }): messages.notebook.ReadEntryGRPCRequest;
+
+            /**
+             * Creates a plain object from a ReadEntryGRPCRequest message. Also converts values to other types if specified.
+             * @param message ReadEntryGRPCRequest
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: messages.notebook.ReadEntryGRPCRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this ReadEntryGRPCRequest to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+        }
+
+        namespace ReadEntryGRPCRequest {
+
+            /** Properties of a Payload. */
+            interface IPayload {
+
+                /** Payload id */
+                id?: (string|null);
+            }
+
+            /** Represents a Payload. */
+            class Payload implements IPayload {
+
+                /**
+                 * Constructs a new Payload.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: messages.notebook.ReadEntryGRPCRequest.IPayload);
+
+                /** Payload id. */
+                public id: string;
+
+                /**
+                 * Creates a new Payload instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns Payload instance
+                 */
+                public static create(properties?: messages.notebook.ReadEntryGRPCRequest.IPayload): messages.notebook.ReadEntryGRPCRequest.Payload;
+
+                /**
+                 * Encodes the specified Payload message. Does not implicitly {@link messages.notebook.ReadEntryGRPCRequest.Payload.verify|verify} messages.
+                 * @param message Payload message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: messages.notebook.ReadEntryGRPCRequest.IPayload, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified Payload message, length delimited. Does not implicitly {@link messages.notebook.ReadEntryGRPCRequest.Payload.verify|verify} messages.
+                 * @param message Payload message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: messages.notebook.ReadEntryGRPCRequest.IPayload, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a Payload message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns Payload
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): messages.notebook.ReadEntryGRPCRequest.Payload;
+
+                /**
+                 * Decodes a Payload message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns Payload
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): messages.notebook.ReadEntryGRPCRequest.Payload;
+
+                /**
+                 * Verifies a Payload message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a Payload message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns Payload
+                 */
+                public static fromObject(object: { [k: string]: any }): messages.notebook.ReadEntryGRPCRequest.Payload;
+
+                /**
+                 * Creates a plain object from a Payload message. Also converts values to other types if specified.
+                 * @param message Payload
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: messages.notebook.ReadEntryGRPCRequest.Payload, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this Payload to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+            }
+        }
+
+        /** Properties of a ReadEntryGRPCResponse. */
+        interface IReadEntryGRPCResponse {
+
+            /** ReadEntryGRPCResponse payload */
+            payload?: (messages.notebook.ReadEntryGRPCResponse.IPayload|null);
+        }
+
+        /** Represents a ReadEntryGRPCResponse. */
+        class ReadEntryGRPCResponse implements IReadEntryGRPCResponse {
+
+            /**
+             * Constructs a new ReadEntryGRPCResponse.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: messages.notebook.IReadEntryGRPCResponse);
+
+            /** ReadEntryGRPCResponse payload. */
+            public payload?: (messages.notebook.ReadEntryGRPCResponse.IPayload|null);
+
+            /**
+             * Creates a new ReadEntryGRPCResponse instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns ReadEntryGRPCResponse instance
+             */
+            public static create(properties?: messages.notebook.IReadEntryGRPCResponse): messages.notebook.ReadEntryGRPCResponse;
+
+            /**
+             * Encodes the specified ReadEntryGRPCResponse message. Does not implicitly {@link messages.notebook.ReadEntryGRPCResponse.verify|verify} messages.
+             * @param message ReadEntryGRPCResponse message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: messages.notebook.IReadEntryGRPCResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified ReadEntryGRPCResponse message, length delimited. Does not implicitly {@link messages.notebook.ReadEntryGRPCResponse.verify|verify} messages.
+             * @param message ReadEntryGRPCResponse message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: messages.notebook.IReadEntryGRPCResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a ReadEntryGRPCResponse message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns ReadEntryGRPCResponse
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): messages.notebook.ReadEntryGRPCResponse;
+
+            /**
+             * Decodes a ReadEntryGRPCResponse message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns ReadEntryGRPCResponse
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): messages.notebook.ReadEntryGRPCResponse;
+
+            /**
+             * Verifies a ReadEntryGRPCResponse message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a ReadEntryGRPCResponse message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns ReadEntryGRPCResponse
+             */
+            public static fromObject(object: { [k: string]: any }): messages.notebook.ReadEntryGRPCResponse;
+
+            /**
+             * Creates a plain object from a ReadEntryGRPCResponse message. Also converts values to other types if specified.
+             * @param message ReadEntryGRPCResponse
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: messages.notebook.ReadEntryGRPCResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this ReadEntryGRPCResponse to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+        }
+
+        namespace ReadEntryGRPCResponse {
+
+            /** Properties of a Payload. */
+            interface IPayload {
+
+                /** Payload id */
+                id?: (string|null);
+
+                /** Payload text */
+                text?: (string|null);
+
+                /** Payload creatorId */
+                creatorId?: (string|null);
+
+                /** Payload createdAt */
+                createdAt?: (google.protobuf.ITimestamp|null);
+
+                /** Payload updatedAt */
+                updatedAt?: (google.protobuf.ITimestamp|null);
+            }
+
+            /** Represents a Payload. */
+            class Payload implements IPayload {
+
+                /**
+                 * Constructs a new Payload.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: messages.notebook.ReadEntryGRPCResponse.IPayload);
+
+                /** Payload id. */
+                public id: string;
+
+                /** Payload text. */
+                public text: string;
+
+                /** Payload creatorId. */
+                public creatorId: string;
+
+                /** Payload createdAt. */
+                public createdAt?: (google.protobuf.ITimestamp|null);
+
+                /** Payload updatedAt. */
+                public updatedAt?: (google.protobuf.ITimestamp|null);
+
+                /**
+                 * Creates a new Payload instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns Payload instance
+                 */
+                public static create(properties?: messages.notebook.ReadEntryGRPCResponse.IPayload): messages.notebook.ReadEntryGRPCResponse.Payload;
+
+                /**
+                 * Encodes the specified Payload message. Does not implicitly {@link messages.notebook.ReadEntryGRPCResponse.Payload.verify|verify} messages.
+                 * @param message Payload message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: messages.notebook.ReadEntryGRPCResponse.IPayload, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified Payload message, length delimited. Does not implicitly {@link messages.notebook.ReadEntryGRPCResponse.Payload.verify|verify} messages.
+                 * @param message Payload message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: messages.notebook.ReadEntryGRPCResponse.IPayload, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a Payload message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns Payload
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): messages.notebook.ReadEntryGRPCResponse.Payload;
+
+                /**
+                 * Decodes a Payload message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns Payload
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): messages.notebook.ReadEntryGRPCResponse.Payload;
+
+                /**
+                 * Verifies a Payload message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a Payload message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns Payload
+                 */
+                public static fromObject(object: { [k: string]: any }): messages.notebook.ReadEntryGRPCResponse.Payload;
+
+                /**
+                 * Creates a plain object from a Payload message. Also converts values to other types if specified.
+                 * @param message Payload
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: messages.notebook.ReadEntryGRPCResponse.Payload, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this Payload to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+            }
+        }
+
+        /** Properties of a StartNewEntryGRPCRequest. */
+        interface IStartNewEntryGRPCRequest {
+
+            /** StartNewEntryGRPCRequest principal */
+            principal?: (messages.notebook.IPrincipal|null);
+
+            /** StartNewEntryGRPCRequest payload */
+            payload?: (messages.notebook.StartNewEntryGRPCRequest.IPayload|null);
+        }
+
+        /** Represents a StartNewEntryGRPCRequest. */
+        class StartNewEntryGRPCRequest implements IStartNewEntryGRPCRequest {
+
+            /**
+             * Constructs a new StartNewEntryGRPCRequest.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: messages.notebook.IStartNewEntryGRPCRequest);
+
+            /** StartNewEntryGRPCRequest principal. */
+            public principal?: (messages.notebook.IPrincipal|null);
+
+            /** StartNewEntryGRPCRequest payload. */
+            public payload?: (messages.notebook.StartNewEntryGRPCRequest.IPayload|null);
+
+            /**
+             * Creates a new StartNewEntryGRPCRequest instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns StartNewEntryGRPCRequest instance
+             */
+            public static create(properties?: messages.notebook.IStartNewEntryGRPCRequest): messages.notebook.StartNewEntryGRPCRequest;
+
+            /**
+             * Encodes the specified StartNewEntryGRPCRequest message. Does not implicitly {@link messages.notebook.StartNewEntryGRPCRequest.verify|verify} messages.
+             * @param message StartNewEntryGRPCRequest message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: messages.notebook.IStartNewEntryGRPCRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified StartNewEntryGRPCRequest message, length delimited. Does not implicitly {@link messages.notebook.StartNewEntryGRPCRequest.verify|verify} messages.
+             * @param message StartNewEntryGRPCRequest message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: messages.notebook.IStartNewEntryGRPCRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a StartNewEntryGRPCRequest message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns StartNewEntryGRPCRequest
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): messages.notebook.StartNewEntryGRPCRequest;
+
+            /**
+             * Decodes a StartNewEntryGRPCRequest message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns StartNewEntryGRPCRequest
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): messages.notebook.StartNewEntryGRPCRequest;
+
+            /**
+             * Verifies a StartNewEntryGRPCRequest message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a StartNewEntryGRPCRequest message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns StartNewEntryGRPCRequest
+             */
+            public static fromObject(object: { [k: string]: any }): messages.notebook.StartNewEntryGRPCRequest;
+
+            /**
+             * Creates a plain object from a StartNewEntryGRPCRequest message. Also converts values to other types if specified.
+             * @param message StartNewEntryGRPCRequest
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: messages.notebook.StartNewEntryGRPCRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this StartNewEntryGRPCRequest to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+        }
+
+        namespace StartNewEntryGRPCRequest {
+
+            /** Properties of a Payload. */
+            interface IPayload {
+
+                /** Payload creatorId */
+                creatorId?: (string|null);
+            }
+
+            /** Represents a Payload. */
+            class Payload implements IPayload {
+
+                /**
+                 * Constructs a new Payload.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: messages.notebook.StartNewEntryGRPCRequest.IPayload);
+
+                /** Payload creatorId. */
+                public creatorId: string;
+
+                /**
+                 * Creates a new Payload instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns Payload instance
+                 */
+                public static create(properties?: messages.notebook.StartNewEntryGRPCRequest.IPayload): messages.notebook.StartNewEntryGRPCRequest.Payload;
+
+                /**
+                 * Encodes the specified Payload message. Does not implicitly {@link messages.notebook.StartNewEntryGRPCRequest.Payload.verify|verify} messages.
+                 * @param message Payload message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: messages.notebook.StartNewEntryGRPCRequest.IPayload, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified Payload message, length delimited. Does not implicitly {@link messages.notebook.StartNewEntryGRPCRequest.Payload.verify|verify} messages.
+                 * @param message Payload message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: messages.notebook.StartNewEntryGRPCRequest.IPayload, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a Payload message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns Payload
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): messages.notebook.StartNewEntryGRPCRequest.Payload;
+
+                /**
+                 * Decodes a Payload message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns Payload
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): messages.notebook.StartNewEntryGRPCRequest.Payload;
+
+                /**
+                 * Verifies a Payload message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a Payload message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns Payload
+                 */
+                public static fromObject(object: { [k: string]: any }): messages.notebook.StartNewEntryGRPCRequest.Payload;
+
+                /**
+                 * Creates a plain object from a Payload message. Also converts values to other types if specified.
+                 * @param message Payload
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: messages.notebook.StartNewEntryGRPCRequest.Payload, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this Payload to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+            }
+        }
+
+        /** Properties of a StartNewEntryGRPCResponse. */
+        interface IStartNewEntryGRPCResponse {
+
+            /** StartNewEntryGRPCResponse payload */
+            payload?: (messages.notebook.StartNewEntryGRPCResponse.IPayload|null);
+        }
+
+        /** Represents a StartNewEntryGRPCResponse. */
+        class StartNewEntryGRPCResponse implements IStartNewEntryGRPCResponse {
+
+            /**
+             * Constructs a new StartNewEntryGRPCResponse.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: messages.notebook.IStartNewEntryGRPCResponse);
+
+            /** StartNewEntryGRPCResponse payload. */
+            public payload?: (messages.notebook.StartNewEntryGRPCResponse.IPayload|null);
+
+            /**
+             * Creates a new StartNewEntryGRPCResponse instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns StartNewEntryGRPCResponse instance
+             */
+            public static create(properties?: messages.notebook.IStartNewEntryGRPCResponse): messages.notebook.StartNewEntryGRPCResponse;
+
+            /**
+             * Encodes the specified StartNewEntryGRPCResponse message. Does not implicitly {@link messages.notebook.StartNewEntryGRPCResponse.verify|verify} messages.
+             * @param message StartNewEntryGRPCResponse message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: messages.notebook.IStartNewEntryGRPCResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified StartNewEntryGRPCResponse message, length delimited. Does not implicitly {@link messages.notebook.StartNewEntryGRPCResponse.verify|verify} messages.
+             * @param message StartNewEntryGRPCResponse message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: messages.notebook.IStartNewEntryGRPCResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a StartNewEntryGRPCResponse message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns StartNewEntryGRPCResponse
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): messages.notebook.StartNewEntryGRPCResponse;
+
+            /**
+             * Decodes a StartNewEntryGRPCResponse message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns StartNewEntryGRPCResponse
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): messages.notebook.StartNewEntryGRPCResponse;
+
+            /**
+             * Verifies a StartNewEntryGRPCResponse message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a StartNewEntryGRPCResponse message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns StartNewEntryGRPCResponse
+             */
+            public static fromObject(object: { [k: string]: any }): messages.notebook.StartNewEntryGRPCResponse;
+
+            /**
+             * Creates a plain object from a StartNewEntryGRPCResponse message. Also converts values to other types if specified.
+             * @param message StartNewEntryGRPCResponse
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: messages.notebook.StartNewEntryGRPCResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this StartNewEntryGRPCResponse to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+        }
+
+        namespace StartNewEntryGRPCResponse {
+
+            /** Properties of a Payload. */
+            interface IPayload {
+
+                /** Payload id */
+                id?: (string|null);
+            }
+
+            /** Represents a Payload. */
+            class Payload implements IPayload {
+
+                /**
+                 * Constructs a new Payload.
+                 * @param [properties] Properties to set
+                 */
+                constructor(properties?: messages.notebook.StartNewEntryGRPCResponse.IPayload);
+
+                /** Payload id. */
+                public id: string;
+
+                /**
+                 * Creates a new Payload instance using the specified properties.
+                 * @param [properties] Properties to set
+                 * @returns Payload instance
+                 */
+                public static create(properties?: messages.notebook.StartNewEntryGRPCResponse.IPayload): messages.notebook.StartNewEntryGRPCResponse.Payload;
+
+                /**
+                 * Encodes the specified Payload message. Does not implicitly {@link messages.notebook.StartNewEntryGRPCResponse.Payload.verify|verify} messages.
+                 * @param message Payload message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encode(message: messages.notebook.StartNewEntryGRPCResponse.IPayload, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Encodes the specified Payload message, length delimited. Does not implicitly {@link messages.notebook.StartNewEntryGRPCResponse.Payload.verify|verify} messages.
+                 * @param message Payload message or plain object to encode
+                 * @param [writer] Writer to encode to
+                 * @returns Writer
+                 */
+                public static encodeDelimited(message: messages.notebook.StartNewEntryGRPCResponse.IPayload, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                /**
+                 * Decodes a Payload message from the specified reader or buffer.
+                 * @param reader Reader or buffer to decode from
+                 * @param [length] Message length if known beforehand
+                 * @returns Payload
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): messages.notebook.StartNewEntryGRPCResponse.Payload;
+
+                /**
+                 * Decodes a Payload message from the specified reader or buffer, length delimited.
+                 * @param reader Reader or buffer to decode from
+                 * @returns Payload
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): messages.notebook.StartNewEntryGRPCResponse.Payload;
+
+                /**
+                 * Verifies a Payload message.
+                 * @param message Plain object to verify
+                 * @returns `null` if valid, otherwise the reason why it is not
+                 */
+                public static verify(message: { [k: string]: any }): (string|null);
+
+                /**
+                 * Creates a Payload message from a plain object. Also converts values to their respective internal types.
+                 * @param object Plain object
+                 * @returns Payload
+                 */
+                public static fromObject(object: { [k: string]: any }): messages.notebook.StartNewEntryGRPCResponse.Payload;
+
+                /**
+                 * Creates a plain object from a Payload message. Also converts values to other types if specified.
+                 * @param message Payload
+                 * @param [options] Conversion options
+                 * @returns Plain object
+                 */
+                public static toObject(message: messages.notebook.StartNewEntryGRPCResponse.Payload, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                /**
+                 * Converts this Payload to JSON.
+                 * @returns JSON object
+                 */
+                public toJSON(): { [k: string]: any };
+            }
+        }
+
+        /** Represents a Notebook */
+        class Notebook extends $protobuf.rpc.Service {
+
+            /**
+             * Constructs a new Notebook service.
+             * @param rpcImpl RPC implementation
+             * @param [requestDelimited=false] Whether requests are length-delimited
+             * @param [responseDelimited=false] Whether responses are length-delimited
+             */
+            constructor(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean);
+
+            /**
+             * Creates new Notebook service using the specified rpc implementation.
+             * @param rpcImpl RPC implementation
+             * @param [requestDelimited=false] Whether requests are length-delimited
+             * @param [responseDelimited=false] Whether responses are length-delimited
+             * @returns RPC service. Useful where requests and/or responses are streamed.
+             */
+            public static create(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean): Notebook;
+
+            /**
+             * Calls ReadEntry.
+             * @param request ReadEntryGRPCRequest message or plain object
+             * @param callback Node-style callback called with the error, if any, and ReadEntryGRPCResponse
+             */
+            public readEntry(request: messages.notebook.IReadEntryGRPCRequest, callback: messages.notebook.Notebook.ReadEntryCallback): void;
+
+            /**
+             * Calls ReadEntry.
+             * @param request ReadEntryGRPCRequest message or plain object
+             * @returns Promise
+             */
+            public readEntry(request: messages.notebook.IReadEntryGRPCRequest): Promise<messages.notebook.ReadEntryGRPCResponse>;
+
+            /**
+             * Calls StartNewEntry.
+             * @param request StartNewEntryGRPCRequest message or plain object
+             * @param callback Node-style callback called with the error, if any, and StartNewEntryGRPCResponse
+             */
+            public startNewEntry(request: messages.notebook.IStartNewEntryGRPCRequest, callback: messages.notebook.Notebook.StartNewEntryCallback): void;
+
+            /**
+             * Calls StartNewEntry.
+             * @param request StartNewEntryGRPCRequest message or plain object
+             * @returns Promise
+             */
+            public startNewEntry(request: messages.notebook.IStartNewEntryGRPCRequest): Promise<messages.notebook.StartNewEntryGRPCResponse>;
+        }
+
+        namespace Notebook {
+
+            /**
+             * Callback as used by {@link messages.notebook.Notebook#readEntry}.
+             * @param error Error, if any
+             * @param [response] ReadEntryGRPCResponse
+             */
+            type ReadEntryCallback = (error: (Error|null), response?: messages.notebook.ReadEntryGRPCResponse) => void;
+
+            /**
+             * Callback as used by {@link messages.notebook.Notebook#startNewEntry}.
+             * @param error Error, if any
+             * @param [response] StartNewEntryGRPCResponse
+             */
+            type StartNewEntryCallback = (error: (Error|null), response?: messages.notebook.StartNewEntryGRPCResponse) => void;
+        }
+
+        /** Properties of a Status. */
+        interface IStatus {
+
+            /** Status code */
+            code?: (number|null);
+
+            /** Status message */
+            message?: (string|null);
+
+            /** Status details */
+            details?: (google.protobuf.IAny[]|null);
+        }
+
+        /** Represents a Status. */
+        class Status implements IStatus {
+
+            /**
+             * Constructs a new Status.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: messages.notebook.IStatus);
+
+            /** Status code. */
+            public code: number;
+
+            /** Status message. */
+            public message: string;
+
+            /** Status details. */
+            public details: google.protobuf.IAny[];
+
+            /**
+             * Creates a new Status instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns Status instance
+             */
+            public static create(properties?: messages.notebook.IStatus): messages.notebook.Status;
+
+            /**
+             * Encodes the specified Status message. Does not implicitly {@link messages.notebook.Status.verify|verify} messages.
+             * @param message Status message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: messages.notebook.IStatus, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified Status message, length delimited. Does not implicitly {@link messages.notebook.Status.verify|verify} messages.
+             * @param message Status message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: messages.notebook.IStatus, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a Status message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns Status
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): messages.notebook.Status;
+
+            /**
+             * Decodes a Status message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns Status
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): messages.notebook.Status;
+
+            /**
+             * Verifies a Status message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a Status message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns Status
+             */
+            public static fromObject(object: { [k: string]: any }): messages.notebook.Status;
+
+            /**
+             * Creates a plain object from a Status message. Also converts values to other types if specified.
+             * @param message Status
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: messages.notebook.Status, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this Status to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+        }
     }
 }
 
@@ -7672,108 +8608,6 @@ export namespace google {
 
     /** Namespace rpc. */
     namespace rpc {
-
-        /** Properties of a Status. */
-        interface IStatus {
-
-            /** Status code */
-            code?: (number|null);
-
-            /** Status message */
-            message?: (string|null);
-
-            /** Status details */
-            details?: (google.protobuf.IAny[]|null);
-        }
-
-        /** Represents a Status. */
-        class Status implements IStatus {
-
-            /**
-             * Constructs a new Status.
-             * @param [properties] Properties to set
-             */
-            constructor(properties?: google.rpc.IStatus);
-
-            /** Status code. */
-            public code: number;
-
-            /** Status message. */
-            public message: string;
-
-            /** Status details. */
-            public details: google.protobuf.IAny[];
-
-            /**
-             * Creates a new Status instance using the specified properties.
-             * @param [properties] Properties to set
-             * @returns Status instance
-             */
-            public static create(properties?: google.rpc.IStatus): google.rpc.Status;
-
-            /**
-             * Encodes the specified Status message. Does not implicitly {@link google.rpc.Status.verify|verify} messages.
-             * @param message Status message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encode(message: google.rpc.IStatus, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Encodes the specified Status message, length delimited. Does not implicitly {@link google.rpc.Status.verify|verify} messages.
-             * @param message Status message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encodeDelimited(message: google.rpc.IStatus, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Decodes a Status message from the specified reader or buffer.
-             * @param reader Reader or buffer to decode from
-             * @param [length] Message length if known beforehand
-             * @returns Status
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.rpc.Status;
-
-            /**
-             * Decodes a Status message from the specified reader or buffer, length delimited.
-             * @param reader Reader or buffer to decode from
-             * @returns Status
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.rpc.Status;
-
-            /**
-             * Verifies a Status message.
-             * @param message Plain object to verify
-             * @returns `null` if valid, otherwise the reason why it is not
-             */
-            public static verify(message: { [k: string]: any }): (string|null);
-
-            /**
-             * Creates a Status message from a plain object. Also converts values to their respective internal types.
-             * @param object Plain object
-             * @returns Status
-             */
-            public static fromObject(object: { [k: string]: any }): google.rpc.Status;
-
-            /**
-             * Creates a plain object from a Status message. Also converts values to other types if specified.
-             * @param message Status
-             * @param [options] Conversion options
-             * @returns Plain object
-             */
-            public static toObject(message: google.rpc.Status, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-            /**
-             * Converts this Status to JSON.
-             * @returns JSON object
-             */
-            public toJSON(): { [k: string]: any };
-        }
 
         /** Code enum. */
         enum Code {

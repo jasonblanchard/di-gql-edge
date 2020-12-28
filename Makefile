@@ -10,6 +10,9 @@ SHA_TAG = ${IMAGE_REPO}:${GIT_SHA}
 build:
 	docker build -t ${LOCAL_TAG} .
 
+build_dev:
+	docker build -t ${LOCAL_TAG}:dev --target build .
+
 tag: build
 	docker tag ${LOCAL_TAG} ${SHA_TAG}
 
