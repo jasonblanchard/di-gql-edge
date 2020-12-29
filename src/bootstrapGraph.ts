@@ -152,7 +152,7 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
         throw new Error('not found');
       },
       readEntry: async (_parent: any, args: ReadEntryQueryArgs, { userId }: Context) => {
-        grpcService.readEntry({
+        const response = await grpcService.readEntry({
           principal: {
             type: messages.entry.Principal.Type.USER,
             id: userId,
@@ -161,47 +161,47 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
             id: args.id,
           }
         })
-          .then(response => {
-            console.log("====")
-            console.log(response)
-            console.log("++++")
-            const entry = response.payload
-            if (entry) {
-              const { id, text, createdAt, updatedAt } = entry;
-              const updatedAtTimestamp = protobufTimestampToDtoTimestamp(updatedAt)
-              console.log({ id, text, createdAt, updatedAt: updatedAtTimestamp })
-            }
-          }).catch(error => {
-            // TODO: Handle error
-          });
-
-        const request = messages.notebook.ReadEntryRequest.encode({
-          context: {
-            principal: {
-              type: messages.entry.Principal.Type.USER,
-              id: userId,
-            },
-            traceId: 'abc123',
-          },
-          payload: {
-            id: args.id,
-          }
-        }).finish()
-        const message = await nc.request('notebook.ReadEntry', TIMEOUT, request)
-        const response = message.data;
-        const { status, payload: entry } = messages.notebook.ReadEntryResponse.decode(response);
-        if (status?.code && status?.code > 0) mapGrpcError(status?.code)
+        const entry = response.payload
         if (entry) {
           const { id, text, createdAt, updatedAt } = entry;
-          const updatedAtTimestamp = protobufTimestampToDtoTimestamp(updatedAt?.timestamp)
-          return {
+          const entity = {
             id,
-            text: text || "",
+            text,
             createdAt: protobufTimestampToDtoTimestamp(createdAt),
-            updatedAt: updatedAtTimestamp,
-          };
+            updatedAt: protobufTimestampToDtoTimestamp(updatedAt)
+          }
+          console.log(entity)
+          return entity
         }
         throw new Error('not found');
+
+      //   const request = messages.notebook.ReadEntryRequest.encode({
+      //     context: {
+      //       principal: {
+      //         type: messages.entry.Principal.Type.USER,
+      //         id: userId,
+      //       },
+      //       traceId: 'abc123',
+      //     },
+      //     payload: {
+      //       id: args.id,
+      //     }
+      //   }).finish()
+      //   const message = await nc.request('notebook.ReadEntry', TIMEOUT, request)
+      //   const response = message.data;
+      //   const { status, payload: entry } = messages.notebook.ReadEntryResponse.decode(response);
+      //   if (status?.code && status?.code > 0) mapGrpcError(status?.code)
+      //   if (entry) {
+      //     const { id, text, createdAt, updatedAt } = entry;
+      //     const updatedAtTimestamp = protobufTimestampToDtoTimestamp(updatedAt?.timestamp)
+      //     return {
+      //       id,
+      //       text: text || "",
+      //       createdAt: protobufTimestampToDtoTimestamp(createdAt),
+      //       updatedAt: updatedAtTimestamp,
+      //     };
+      //   }
+      //   throw new Error('not found');
       },
       entries: async (_parent: any, args: any, { userId }: Context) => {
         const request = messages.entry.ListEntriesRequest.encode({
