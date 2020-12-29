@@ -144,7 +144,7 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
           console.log({ name: method.name, requestData });
           client.makeUnaryRequest(
             // method.name,
-            "/notebook/Notebook/ReadEntry",
+            "/messages.notebook.Notebook/ReadEntry",
             arg => arg,
             arg => arg,
             requestData,
