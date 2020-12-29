@@ -107,6 +107,20 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
     userId: string;
   }
 
+  const grpcClient = new grpc.Client("notebook-grpc-production:8080", grpc.credentials.createInsecure());
+  const rpcImpl = function (method: any, requestData: any, callback: any) {
+    grpcClient.makeUnaryRequest(
+      `/messages.notebook.Notebook/${method.name}`,
+      arg => arg,
+      arg => arg,
+      requestData,
+      null,
+      null,
+      callback
+    )
+  }
+  const grpcService = messages.notebook.Notebook.create(rpcImpl)
+
   const resolvers = {
     Query: {
       entry: async (_parent: any, args: EntryQueryArgs, { userId }: Context) => {
@@ -138,23 +152,7 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
         throw new Error('not found');
       },
       readEntry: async (_parent: any, args: ReadEntryQueryArgs, { userId }: Context) => {
-        const client = new grpc.Client("notebook-grpc-production:8080", grpc.credentials.createInsecure());
-        const rpcImpl = function (method: any, requestData: any, callback: any) {
-          console.log('+++++++')
-          console.log({ name: method.name, requestData });
-          client.makeUnaryRequest(
-            // method.name,
-            "/messages.notebook.Notebook/ReadEntry",
-            arg => arg,
-            arg => arg,
-            requestData,
-            null,
-            null,
-            callback
-          )
-        }
-        const service = messages.notebook.Notebook.create(rpcImpl)
-        service.readEntry({
+        grpcService.readEntry({
           principal: {
             type: messages.entry.Principal.Type.USER,
             id: userId,
@@ -167,6 +165,14 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
             console.log("====")
             console.log(response)
             console.log("++++")
+            const entry = response.payload
+            if (entry) {
+              const { id, text, createdAt, updatedAt } = entry;
+              const updatedAtTimestamp = protobufTimestampToDtoTimestamp(updatedAt)
+              console.log({ id, text, createdAt, updatedAt: updatedAtTimestamp })
+            }
+          }).catch(error => {
+            // TODO: Handle error
           });
 
         const request = messages.notebook.ReadEntryRequest.encode({
