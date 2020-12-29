@@ -141,9 +141,10 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
         const client = new grpc.Client("notebook-grpc-production:8080", grpc.credentials.createInsecure());
         const rpcImpl = function (method: any, requestData: any, callback: any) {
           console.log('+++++++')
-          console.log({ method, requestData });
+          console.log({ name: method.name, requestData });
           client.makeUnaryRequest(
-            method.name,
+            // method.name,
+            "/notebook/Notebook/ReadEntry",
             arg => arg,
             arg => arg,
             requestData,
