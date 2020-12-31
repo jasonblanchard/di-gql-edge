@@ -175,13 +175,13 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
             }
             return entity
           }
-          throw new Error('not found');
+          throw new Error('NOT_FOUND');
         } catch (error) {
           console.log('====')
           console.log(error)
           console.log(JSON.stringify(error))
           console.log('++++')
-          throw (mapGrpcError(error))
+          throw (mapGrpcError(error.code))
         }
       },
       entries: async (_parent: any, args: any, { userId }: Context) => {
