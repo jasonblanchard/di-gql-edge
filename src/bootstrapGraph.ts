@@ -154,27 +154,31 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
         throw new Error('not found');
       },
       readEntry: async (_parent: any, args: ReadEntryQueryArgs, { userId }: Context) => {
-        const response = await grpcService.readEntry({
-          principal: {
-            type: messages.notebook.Principal.Type.USER,
-            id: userId,
-          },
-          payload: {
-            id: args.id,
+        try {
+          const response = await grpcService.readEntry({
+            principal: {
+              type: messages.notebook.Principal.Type.USER,
+              id: userId,
+            },
+            payload: {
+              id: args.id,
+            }
+          })
+          const entry = response.payload
+          if (entry) {
+            const { id, text, createdAt, updatedAt } = entry;
+            const entity = {
+              id,
+              text,
+              createdAt: protobufTimestampToDtoTimestamp(createdAt),
+              updatedAt: protobufTimestampToDtoTimestamp(updatedAt)
+            }
+            return entity
           }
-        })
-        const entry = response.payload
-        if (entry) {
-          const { id, text, createdAt, updatedAt } = entry;
-          const entity = {
-            id,
-            text,
-            createdAt: protobufTimestampToDtoTimestamp(createdAt),
-            updatedAt: protobufTimestampToDtoTimestamp(updatedAt)
-          }
-          return entity
+          throw new Error('NOT_FOUND');
+        } catch (error) {
+          throw (mapGrpcError(error.code))
         }
-        throw new Error('NOT_FOUND');
       },
       entries: async (_parent: any, args: any, { userId }: Context) => {
         const request = messages.entry.ListEntriesRequest.encode({
