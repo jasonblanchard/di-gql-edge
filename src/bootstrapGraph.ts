@@ -25,6 +25,8 @@ function mapGrpcError(code: number | null | undefined) {
   switch (code) {
     case (grpcErrors.PermissionDeniedError.prototype.code):
       return new Error('PERMISSION_DENIED');
+    case (grpcErrors.NotFoundError.prototype.code):
+      return new Error('NOT_FOUND');
     default:
       return new Error('UNEXPECTED');
   }
@@ -152,56 +154,35 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
         throw new Error('not found');
       },
       readEntry: async (_parent: any, args: ReadEntryQueryArgs, { userId }: Context) => {
-        const response = await grpcService.readEntry({
-          principal: {
-            type: messages.entry.Principal.Type.USER,
-            id: userId,
-          },
-          payload: {
-            id: args.id,
+        try {
+          const response = await grpcService.readEntry({
+            principal: {
+              type: messages.notebook.Principal.Type.USER,
+              id: userId,
+            },
+            payload: {
+              id: args.id,
+            }
+          })
+          const entry = response.payload
+          if (entry) {
+            const { id, text, createdAt, updatedAt } = entry;
+            const entity = {
+              id,
+              text,
+              createdAt: protobufTimestampToDtoTimestamp(createdAt),
+              updatedAt: protobufTimestampToDtoTimestamp(updatedAt)
+            }
+            return entity
           }
-        })
-        const entry = response.payload
-        if (entry) {
-          const { id, text, createdAt, updatedAt } = entry;
-          const entity = {
-            id,
-            text,
-            createdAt: protobufTimestampToDtoTimestamp(createdAt),
-            updatedAt: protobufTimestampToDtoTimestamp(updatedAt)
-          }
-          console.log(entity)
-          return entity
+          throw new Error('not found');
+        } catch (error) {
+          console.log('====')
+          console.log(error)
+          console.log(JSON.stringify(error))
+          console.log('++++')
+          throw (mapGrpcError(error))
         }
-        throw new Error('not found');
-
-      //   const request = messages.notebook.ReadEntryRequest.encode({
-      //     context: {
-      //       principal: {
-      //         type: messages.entry.Principal.Type.USER,
-      //         id: userId,
-      //       },
-      //       traceId: 'abc123',
-      //     },
-      //     payload: {
-      //       id: args.id,
-      //     }
-      //   }).finish()
-      //   const message = await nc.request('notebook.ReadEntry', TIMEOUT, request)
-      //   const response = message.data;
-      //   const { status, payload: entry } = messages.notebook.ReadEntryResponse.decode(response);
-      //   if (status?.code && status?.code > 0) mapGrpcError(status?.code)
-      //   if (entry) {
-      //     const { id, text, createdAt, updatedAt } = entry;
-      //     const updatedAtTimestamp = protobufTimestampToDtoTimestamp(updatedAt?.timestamp)
-      //     return {
-      //       id,
-      //       text: text || "",
-      //       createdAt: protobufTimestampToDtoTimestamp(createdAt),
-      //       updatedAt: updatedAtTimestamp,
-      //     };
-      //   }
-      //   throw new Error('not found');
       },
       entries: async (_parent: any, args: any, { userId }: Context) => {
         const request = messages.entry.ListEntriesRequest.encode({
