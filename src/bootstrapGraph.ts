@@ -177,7 +177,8 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
           }
           throw new Error('NOT_FOUND');
         } catch (error) {
-          throw (mapGrpcError(error.code))
+          console.log(error)
+          throw mapGrpcError(error.code)
         }
       },
       entries: async (_parent: any, args: any, { userId }: Context) => {
