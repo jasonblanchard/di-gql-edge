@@ -24,14 +24,7 @@ function mapError(code: number | null | undefined) {
 }
 
 function mapGrpcError(error: GRPCError) {
-  switch (error.code) {
-    case (grpcErrors.PermissionDeniedError.prototype.code):
-      return new Error('PERMISSION_DENIED');
-    case (grpcErrors.NotFoundError.prototype.code):
-      return new ApolloError(error.message, codeToString(error.code));
-    default:
-      return new Error('UNEXPECTED');
-  }
+  return new ApolloError(error.message, codeToString(error.code));
 }
 
 interface BootstrapGraph {
