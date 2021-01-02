@@ -2,7 +2,8 @@ import { gql } from 'apollo-server';
 import proto, { messages } from './messages';
 import grpc from 'grpc';
 import { Client } from 'ts-nats';
-import grpcErrors from 'grpc-errors';
+import grpcErrors, { GRPCError } from 'grpc-errors';
+import { AuthenticationError } from "apollo-server";
 
 import { protobufTimestampToDtoTimestamp, dateToProtobufTimestamp } from './utils/timestampUtils';
 
@@ -21,12 +22,14 @@ function mapError(code: number | null | undefined) {
   }
 }
 
-function mapGrpcError(code: number | null | undefined) {
-  switch (code) {
+function mapGrpcError(error: GRPCError) {
+  switch (error.code) {
     case (grpcErrors.PermissionDeniedError.prototype.code):
       return new Error('PERMISSION_DENIED');
     case (grpcErrors.NotFoundError.prototype.code):
-      return new Error('NOT_FOUND');
+      // return new Error('NOT_FOUND');
+      // Just use the GRPC error
+      return error
     default:
       return new Error('UNEXPECTED');
   }
@@ -177,8 +180,8 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
           }
           throw new Error('NOT_FOUND');
         } catch (error) {
-          console.log(error)
-          throw mapGrpcError(error.code)
+          console.error(error)
+          throw mapGrpcError(error)
         }
       },
       entries: async (_parent: any, args: any, { userId }: Context) => {
