@@ -3,7 +3,8 @@ import proto, { messages } from './messages';
 import grpc from 'grpc';
 import { Client } from 'ts-nats';
 import grpcErrors, { GRPCError } from 'grpc-errors';
-import { AuthenticationError } from "apollo-server";
+import { ApolloError } from "apollo-server";
+import { codeToString } from "./errors"
 
 import { protobufTimestampToDtoTimestamp, dateToProtobufTimestamp } from './utils/timestampUtils';
 
@@ -27,9 +28,7 @@ function mapGrpcError(error: GRPCError) {
     case (grpcErrors.PermissionDeniedError.prototype.code):
       return new Error('PERMISSION_DENIED');
     case (grpcErrors.NotFoundError.prototype.code):
-      // return new Error('NOT_FOUND');
-      // Just use the GRPC error
-      return error
+      return new ApolloError(error.message, codeToString(error.code));
     default:
       return new Error('UNEXPECTED');
   }
