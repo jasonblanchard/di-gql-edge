@@ -116,7 +116,7 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
       callback
     )
   }
-  const grpcService = messages.notebook.Notebook.create(rpcImpl)
+  const notebookService = messages.notebook.Notebook.create(rpcImpl)
 
   const resolvers = {
     Query: {
@@ -150,7 +150,7 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
       },
       readEntry: async (_parent: any, args: ReadEntryQueryArgs, { userId }: Context) => {
         try {
-          const response = await grpcService.readEntry({
+          const response = await notebookService.readEntry({
             principal: {
               type: messages.notebook.Principal.Type.USER,
               id: userId,
@@ -170,7 +170,7 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
             }
             return entity
           }
-          throw new Error('NOT_FOUND');
+          throw mapGrpcError(new grpcErrors.NotFoundError())
         } catch (error) {
           console.error(error)
           throw mapGrpcError(error)
@@ -247,28 +247,23 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
 
     Mutation: {
       createEntry: async (_parent: any, args: CreateEntryArgs, { userId }: Context) => {
-        const request = messages.entry.CreateEntryRequest.encode({
-          payload: {
-            text: args.text,
-            creatorId: userId,
-          },
-          context: {
-            traceId: 'abc123',
+        try {
+          const response = await notebookService.startNewEntry({
             principal: {
-              type: messages.entry.Principal.Type.USER,
+              type: messages.notebook.Principal.Type.USER,
               id: userId,
+            },
+            payload: {
+              creatorId: userId,
             }
-          },
-        }).finish();
-        const message = await nc.request('create.entry', TIMEOUT, request);
-        const response = message.data;
-        const { error, payload: entry } = messages.entry.CreateEntryResponse.decode(response);
-        if (error) throw mapError(error.code);
-        if (entry) {
-          const { id } = entry;
+          });
+          const entry = response.payload;
           return {
-            id
-          };
+            id: entry?.id,
+          }
+        } catch (error) {
+          console.error(error)
+          throw mapGrpcError(error)
         }
       },
       updateEntry: async (_parent: any, args: UpdateEntryArgs, { userId }: Context) => {
