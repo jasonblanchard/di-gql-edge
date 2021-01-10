@@ -1,10 +1,7 @@
 import { gql } from 'apollo-server';
 import proto, { messages } from './messages';
-import grpc from 'grpc';
 import { Client } from 'ts-nats';
-import grpcErrors, { GRPCError } from 'grpc-errors';
-import { ApolloError } from "apollo-server";
-import { codeToString } from "./errors"
+import grpcErrors from 'grpc-errors';
 
 import { protobufTimestampToDtoTimestamp, dateToProtobufTimestamp } from './utils/timestampUtils';
 
@@ -23,8 +20,13 @@ function mapError(code: number | null | undefined) {
   }
 }
 
-function mapGrpcError(error: GRPCError) {
-  return new ApolloError(error.message, codeToString(error.code));
+function mapGrpcError(code: number | null | undefined) {
+  switch (code) {
+    case (grpcErrors.PermissionDeniedError.prototype.code):
+      return new Error('PERMISSION_DENIED');
+    default:
+      return new Error('UNEXPECTED');
+  }
 }
 
 interface BootstrapGraph {
@@ -104,20 +106,6 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
     userId: string;
   }
 
-  const grpcClient = new grpc.Client("notebook-grpc-production:8080", grpc.credentials.createInsecure());
-  const rpcImpl = function (method: any, requestData: any, callback: any) {
-    grpcClient.makeUnaryRequest(
-      `/messages.notebook.Notebook/${method.name}`,
-      arg => arg,
-      arg => arg,
-      requestData,
-      null,
-      null,
-      callback
-    )
-  }
-  const notebookService = messages.notebook.Notebook.create(rpcImpl)
-
   const resolvers = {
     Query: {
       entry: async (_parent: any, args: EntryQueryArgs, { userId }: Context) => {
@@ -136,7 +124,7 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
         const message = await nc.request('get.entry', TIMEOUT, request);
         const response = message.data;
         const { error, payload: entry } = messages.entry.GetEntryResponse.decode(response);
-        if (error)  throw mapError(error.code);
+        if (error) throw mapError(error.code);
         if (entry) {
           const { id, text, createdAt, updatedAt } = entry;
           return {
@@ -149,32 +137,33 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
         throw new Error('not found');
       },
       readEntry: async (_parent: any, args: ReadEntryQueryArgs, { userId }: Context) => {
-        try {
-          const response = await notebookService.readEntry({
+        const request = messages.notebook.ReadEntryRequest.encode({
+          context: {
             principal: {
-              type: messages.notebook.Principal.Type.USER,
+              type: messages.entry.Principal.Type.USER,
               id: userId,
             },
-            payload: {
-              id: args.id,
-            }
-          })
-          const entry = response.payload
-          if (entry) {
-            const { id, text, createdAt, updatedAt } = entry;
-            const entity = {
-              id,
-              text,
-              createdAt: protobufTimestampToDtoTimestamp(createdAt),
-              updatedAt: protobufTimestampToDtoTimestamp(updatedAt)
-            }
-            return entity
+            traceId: 'abc123',
+          },
+          payload: {
+            id: args.id,
           }
-          throw mapGrpcError(new grpcErrors.NotFoundError())
-        } catch (error) {
-          console.error(error)
-          throw mapGrpcError(error)
+        }).finish()
+        const message = await nc.request('notebook.ReadEntry', TIMEOUT, request)
+        const response = message.data;
+        const { status, payload: entry } = messages.notebook.ReadEntryResponse.decode(response);
+        if (status?.code && status?.code > 0) mapGrpcError(status?.code)
+        if (entry) {
+          const { id, text, createdAt, updatedAt } = entry;
+          const updatedAtTimestamp = protobufTimestampToDtoTimestamp(updatedAt?.timestamp)
+          return {
+            id,
+            text: text || "",
+            createdAt: protobufTimestampToDtoTimestamp(createdAt),
+            updatedAt: updatedAtTimestamp,
+          };
         }
+        throw new Error('not found');
       },
       entries: async (_parent: any, args: any, { userId }: Context) => {
         const request = messages.entry.ListEntriesRequest.encode({
@@ -247,23 +236,28 @@ export default async function bootstrapGraph({ nc }: BootstrapGraph) {
 
     Mutation: {
       createEntry: async (_parent: any, args: CreateEntryArgs, { userId }: Context) => {
-        try {
-          const response = await notebookService.startNewEntry({
+        const request = messages.entry.CreateEntryRequest.encode({
+          payload: {
+            text: args.text,
+            creatorId: userId,
+          },
+          context: {
+            traceId: 'abc123',
             principal: {
-              type: messages.notebook.Principal.Type.USER,
+              type: messages.entry.Principal.Type.USER,
               id: userId,
-            },
-            payload: {
-              creatorId: userId,
             }
-          });
-          const entry = response.payload;
+          },
+        }).finish();
+        const message = await nc.request('create.entry', TIMEOUT, request);
+        const response = message.data;
+        const { error, payload: entry } = messages.entry.CreateEntryResponse.decode(response);
+        if (error) throw mapError(error.code);
+        if (entry) {
+          const { id } = entry;
           return {
-            id: entry?.id,
-          }
-        } catch (error) {
-          console.error(error)
-          throw mapGrpcError(error)
+            id
+          };
         }
       },
       updateEntry: async (_parent: any, args: UpdateEntryArgs, { userId }: Context) => {
