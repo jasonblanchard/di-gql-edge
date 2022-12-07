@@ -15,7 +15,7 @@
     "apollo-server": "^2.9.14",
     "apollo-server-express": "^2.9.14",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "graphql": "^14.5.8",
     "grpc": "^1.24.4",
     "grpc-errors": "^1.1.4",
